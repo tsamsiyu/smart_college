@@ -1,0 +1,14 @@
+$main: rgba(95, 255, 0, 0.03);
+
+body {
+    background-color: $main;
+}
+
+@mixin center {
+    margin: 0 auto;
+}
+
+#login-panel {
+    width: 400px;
+    @include center
+}

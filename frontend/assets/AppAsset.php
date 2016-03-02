@@ -7,7 +7,7 @@
 
 namespace frontend\assets;
 
-use common\assets\FladlyBootswatch;
+use common\assets\BootstrapAsset;
 use yii\web\AssetBundle;
 
 /**
@@ -16,14 +16,19 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@webroot/css';
 
-    public $css = [];
+    public $publishOptions = [
+        'forceCopy' => YII_DEBUG
+    ];
+
+    public $css = [
+        'site.scss'
+    ];
 
     public $js = [];
 
     public $depends = [
-        FladlyBootswatch::class,
+        BootstrapAsset::class
     ];
 }

@@ -12,19 +12,16 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-//        'view' => [
-//            'defaultExtension' => 'jade',
-//            'renderers' => [
-//                'jade' => [
-//                    'class' => '\jacmoe\talejade\JadeViewRenderer',
-//                    'cachePath' => '@runtime/jade/cache',
-//                    'options' => [
-//                        'pretty' => true,
-//                        'lifeTime' => YII_DEBUG ? 0 : 86000 // day
-//                    ],
-//                ],
-//            ],
-//        ],
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@frontend/messages',
+                    'sourceLanguage' => 'ru-RU',
+                    'forceTranslation' => true
+                ]
+            ],
+        ],
         'user' => [
             'identityClass' => 'common\models\user\Identity',
             'enableAutoLogin' => true,
@@ -41,14 +38,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
             'rules' => [
+                'GET /' => 'welcome/index'
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
