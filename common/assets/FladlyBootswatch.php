@@ -5,16 +5,17 @@ use yii\web\JqueryAsset;
 
 class FladlyBootswatch extends AssetBundle
 {
-    public $basePath = '@common/resources';
-    public $baseUrl = '@web';
+    public $sourcePath = '@common/resources';
+    public $publishOptions = [
+        'forceCopy' => true
+    ];
 
     public $js = [
         'scripts/bootswatch.fladly/bootstrap.min.js'
     ];
 
     public $css = [
-        'styles/bootswatch.fladly/bootswatch.fladly.vars.scss',
-        'styles/bootswatch.fladly/bootswatch.fladly.scss'
+        'styles/bootswatch.fladly/main.css'
     ];
 
     public $depends = [
