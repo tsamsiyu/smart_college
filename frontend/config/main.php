@@ -10,6 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'homeUrl' => 'home',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'i18n' => [
@@ -41,8 +42,18 @@ return [
 
         'urlManager' => [
             'enablePrettyUrl' => true,
+//            'showScriptName' => false,
             'rules' => [
-                'GET /' => 'welcome/index'
+                '/' => 'welcome/index',
+                'register' => 'welcome/register',
+                'register/student' => 'welcome/register-student',
+                'register/teacher' => 'welcome/register-teacher',
+                'register/owner' => 'welcome/register-owner',
+                'home' => 'home/index',
+
+                '<controller>/<action>' => '<controller>/<action>'
+//                'GET /' => 'welcome/index',
+//                'POST /sign' => 'welcome/sign'
             ],
         ],
 

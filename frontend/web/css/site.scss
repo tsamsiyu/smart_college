@@ -9,6 +9,10 @@ body {
 }
 
 #login-panel {
-    width: 400px;
+    max-width: 500px;
     @include center
+}
+
+#back-to-login {
+    margin-top: 10px;
 }

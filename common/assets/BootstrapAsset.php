@@ -5,17 +5,17 @@ use yii\web\JqueryAsset;
 
 class BootstrapAsset extends AssetBundle
 {
-    public $sourcePath = '@common/resources';
+    public $sourcePath = '@common/resources/packages/bootstrap';
     public $publishOptions = [
         'forceCopy' => false
     ];
 
     public $js = [
-        'packages/bootstrap/javascripts/bootstrap.min.js'
+        'javascripts/bootstrap.min.js'
     ];
 
     public $css = [
-        'packages/bootstrap/stylesheets/_bootstrap.scss'
+        'stylesheets/_bootstrap.scss'
     ];
 
     public $depends = [

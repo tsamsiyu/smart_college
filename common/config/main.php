@@ -1,7 +1,7 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'name' => 'CSNetwork',
+    'name' => 'Smart College',
     'language' => 'ru-RU',
     'components' => [
         'cache' => [

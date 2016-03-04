@@ -35,7 +35,7 @@ AppAsset::register($this);
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">SCNetwork</a>
+            <a class="navbar-brand" href="#">Smart College</a>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
