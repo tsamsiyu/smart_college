@@ -8,7 +8,9 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use common\assets\LinkedListAsset;
+use frontend\assets\WelcomeAsset;
 
+WelcomeAsset::register($this);
 LinkedListAsset::register($this);
 
 $this->title = 'Register in Smart College. Step 2';

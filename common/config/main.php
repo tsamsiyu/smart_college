@@ -7,5 +7,11 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'storage' => [
+            'class' => 'common\components\base\Storage'
+        ],
+        'security' => [
+            'class' => 'common\components\base\Security'
+        ]
     ],
 ];

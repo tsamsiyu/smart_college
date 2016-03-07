@@ -19,7 +19,12 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "bower-asset/bootstrap": "*",
-        "jacmoe/yii2-tale-jade": "^1.4"
+        "jacmoe/yii2-tale-jade": "^1.4",
+
+        "bower-asset/jquery.fileapi": "*",
+        "bower-asset/Jcrop": "*",
+        "bower-asset/jquery-file-upload": "*",
+        "bower-asset/cropper": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

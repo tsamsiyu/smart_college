@@ -6,6 +6,9 @@
 use yii\helpers\Url;
 use common\models\user\User;
 use yii\helpers\Html;
+use frontend\assets\WelcomeAsset;
+
+WelcomeAsset::register($this);
 
 $this->title = 'Register in Smart College';
 

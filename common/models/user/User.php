@@ -22,6 +22,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $college_id
  * @property integer $pulpit_id
  * @property integer $group_id
+ * @property Profile $profile
  * @property string $password write-only password
  */
 class User extends ActiveRecord
@@ -116,7 +117,7 @@ class User extends ActiveRecord
 
     public function getProfile()
     {
-        return $this->hasOne(Profile::class, ['id' => 'user_id']);
+        return $this->hasOne(Profile::class, ['user_id' => 'id']);
     }
 
 }

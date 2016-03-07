@@ -13,6 +13,9 @@ return [
     'homeUrl' => 'home',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'view' => [
+            'class' => '\common\components\web\View'
+        ],
         'i18n' => [
             'translations' => [
                 'app*' => [
@@ -24,6 +27,7 @@ return [
             ],
         ],
         'user' => [
+            'class' => '\frontend\components\web\User',
             'identityClass' => 'common\models\user\Identity',
             'enableAutoLogin' => true,
         ],
@@ -50,6 +54,7 @@ return [
                 'register/teacher' => 'welcome/register-teacher',
                 'register/owner' => 'welcome/register-owner',
                 'home' => 'home/index',
+                'storage/file/<path:\w+>' => 'storage/file',
 
                 '<controller>/<action>' => '<controller>/<action>'
 //                'GET /' => 'welcome/index',

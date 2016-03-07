@@ -2,12 +2,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\helpers\Html;
-use frontend\assets\AppAsset;
-
-AppAsset::register($this);
 
 ?>
 

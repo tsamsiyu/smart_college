@@ -4,6 +4,9 @@
  */
 
 use yii\helpers\Url;
+use frontend\assets\WelcomeAsset;
+
+WelcomeAsset::register($this);
 
 $this->title = 'Welcome to Smart College';
 

@@ -30,3 +30,5 @@ phpunit.phar
 /phpunit.xml
 
 node/node_modules
+
+/storage

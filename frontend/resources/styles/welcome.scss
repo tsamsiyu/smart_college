@@ -1,7 +1,7 @@
-$main: rgba(95, 255, 0, 0.03);
+$mainColor: rgba(95, 255, 0, 0.03);
 
 body {
-    background-color: $main;
+    background-color: $mainColor;
 }
 
 @mixin center {

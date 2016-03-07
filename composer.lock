@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "55b6658e403a79af5c74e8f76a6b60ed",
+    "hash": "1762ad371af17eba9483835878e4d333",
     "packages": [
+        {
+            "name": "bower-asset/blueimp-canvas-to-blob",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/JavaScript-Canvas-to-Blob.git",
+                "reference": "cb5add6fd18abba567c4824a601f57b9a9e30e04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Canvas-to-Blob/zipball/cb5add6fd18abba567c4824a601f57b9a9e30e04",
+                "reference": "cb5add6fd18abba567c4824a601f57b9a9e30e04",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/blueimp-load-image",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/JavaScript-Load-Image.git",
+                "reference": "eca5709e8d8ee037800e924b6ccb828bcfa82a6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Load-Image/zipball/eca5709e8d8ee037800e924b6ccb828bcfa82a6d",
+                "reference": "eca5709e8d8ee037800e924b6ccb828bcfa82a6d",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
+        {
+            "name": "bower-asset/blueimp-tmpl",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/JavaScript-Templates.git",
+                "reference": "14d8b68c1175033d4080600b907390cc89263380"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/JavaScript-Templates/zipball/14d8b68c1175033d4080600b907390cc89263380",
+                "reference": "14d8b68c1175033d4080600b907390cc89263380",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.5",
@@ -56,6 +104,116 @@
             ]
         },
         {
+            "name": "bower-asset/cropper",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fengyuanchen/cropper.git",
+                "reference": "2cbe834845b19c79b84a4d889dc38a156911ebd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fengyuanchen/cropper/zipball/2cbe834845b19c79b84a4d889dc38a156911ebd8",
+                "reference": "2cbe834845b19c79b84a4d889dc38a156911ebd8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.9.1"
+            },
+            "require-dev": {
+                "bower-asset/bootstrap": "~3.3.6",
+                "bower-asset/fontawesome": "~4.5.0",
+                "bower-asset/html5-boilerplate": "~5.2.0",
+                "bower-asset/jquery": "~1.12.0",
+                "bower-asset/qunit": "~1.20.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/cropper.js",
+                    "dist/cropper.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "tests",
+                    "test",
+                    "examples",
+                    "assets",
+                    "demo",
+                    "docs",
+                    "gulpfile.js",
+                    "CONTRIBUTING.md",
+                    "FAQ.md"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A simple jQuery image cropping plugin.",
+            "keywords": [
+                "crop",
+                "cropper",
+                "cropping",
+                "css",
+                "development",
+                "front-end",
+                "html",
+                "image",
+                "javascript",
+                "jquery",
+                "move",
+                "plugin",
+                "rotate",
+                "scale",
+                "web",
+                "zoom"
+            ]
+        },
+        {
+            "name": "bower-asset/jcrop",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tapmodo/Jcrop.git",
+                "reference": "80f645b69fc938b3823d92d74e5019036d04a9ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tapmodo/Jcrop/zipball/80f645b69fc938b3823d92d74e5019036d04a9ca",
+                "reference": "80f645b69fc938b3823d92d74e5019036d04a9ca",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "js/Jcrop.js",
+                    "css/Jcrop.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery image cropping plugin",
+            "keywords": [
+                "crop",
+                "cropping",
+                "form",
+                "forms",
+                "image",
+                "images",
+                "select"
+            ]
+        },
+        {
             "name": "bower-asset/jquery",
             "version": "2.2.1",
             "source": {
@@ -84,6 +242,107 @@
                 "javascript",
                 "jquery",
                 "library"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery-file-upload",
+            "version": "9.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blueimp/jQuery-File-Upload.git",
+                "reference": "098b507770581d2c8b037fa0a747ff02eb45a329"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blueimp/jQuery-File-Upload/zipball/098b507770581d2c8b037fa0a747ff02eb45a329",
+                "reference": "098b507770581d2c8b037fa0a747ff02eb45a329",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/blueimp-canvas-to-blob": ">=2.1.1",
+                "bower-asset/blueimp-load-image": ">=1.13.0",
+                "bower-asset/blueimp-tmpl": ">=2.5.4",
+                "bower-asset/jquery": ">=1.6"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "js/jquery.fileupload.js"
+                ],
+                "bower-asset-ignore": [
+                    "/*.*",
+                    "/cors",
+                    "css/demo-ie8.css",
+                    "css/demo.css",
+                    "css/style.css",
+                    "js/app.js",
+                    "js/main.js",
+                    "server",
+                    "test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "File Upload widget with multiple file selection, drag&amp;drop support, progress bar, validation and preview images.",
+            "keywords": [
+                "bootstrap",
+                "chunk",
+                "cross-domain",
+                "cross-site",
+                "drag",
+                "drop",
+                "file",
+                "gae",
+                "go",
+                "jquery",
+                "multiple",
+                "php",
+                "preview",
+                "progress",
+                "python",
+                "resume",
+                "selection",
+                "upload",
+                "widget"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery.fileapi",
+            "version": "0.4.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RubaXa/jquery.fileapi.git",
+                "reference": "5fc1013e103bb0931f5fbd18f15a9194ddf573d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RubaXa/jquery.fileapi/zipball/5fc1013e103bb0931f5fbd18f15a9194ddf573d4",
+                "reference": "5fc1013e103bb0931f5fbd18f15a9194ddf573d4",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "jquery.fileapi.js",
+                "bower-asset-ignore": [
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery plugin for FileAPI (multiupload, image upload, crop, resize and etc.)",
+            "keywords": [
+                "FileAPI",
+                "chunked",
+                "file",
+                "html5",
+                "jquery",
+                "multiupload",
+                "upload"
             ]
         },
         {
