@@ -9,9 +9,6 @@ use yii\helpers\Url;
 echo $this->jsVariable('uploadImgUrl', Url::toRoute('storage/save-tmp-img'));
 
 
-\common\assets\JqueryCropperAsset::register($this);
-//\common\assets\JCropAsset::register($this);
-\common\assets\JqueryFileUploadAsset::register($this);
 \frontend\assets\HomeAsset::register($this);
 
 
@@ -20,8 +17,9 @@ echo $this->jsVariable('uploadImgUrl', Url::toRoute('storage/save-tmp-img'));
 <div id="avatar">
     <img src="<?= $avatarUrl ?>" alt="Avatar">
     <a href="#">
-        <input type="file" class="uploadable-input" name="avatar" data-url="<?= Url::toRoute('storage/save-tmp-img') ?>">
-        <img src="<?= $this->webUrl('images/photoapparat-logo.png') ?>" alt="Load your avatar">
+        <input type="file" class="uploadable-input" name="avatar" data-url="<?= Url::toRoute('home/upload-avatar') ?>">
+        <i class="fa fa-upload"></i>
+        <div id="blackfone"></div>
     </a>
 </div>
 

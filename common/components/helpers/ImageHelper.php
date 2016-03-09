@@ -22,8 +22,8 @@ class ImageHelper
 
     public static function checkFile($file)
     {
-        $ext = pathinfo($file, PATHINFO_EXTENSION);
-        return in_array($ext, self::EXTENSIONS);
+        $mime = FileHelper::getMimeType($file);
+        return static::checkMimeType($mime);
     }
 
     public static function checkExt($ext)

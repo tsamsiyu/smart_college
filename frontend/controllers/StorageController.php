@@ -2,6 +2,7 @@
 
 use common\components\base\Security;
 use common\components\base\Storage;
+use common\components\helpers\FileHelper;
 use common\components\web\Controller;
 use common\components\web\UploadedFile;
 use Yii;
@@ -11,39 +12,36 @@ use yii\web\HttpException;
 
 class StorageController extends Controller
 {
-    public $enableCsrfValidation = false;
-
-
-    public function actionSaveTmpImg()
-    {
-        $app = Yii::$app;
-        /* @var UploadedFile $file */
-        $file = UploadedFile::getInstanceByName('avatar');
-
-        if ($file->isImage()) {
-            /* @var Storage $storage */
-            $storage = $app->storage;
-
-            $name = Yii::$app->security->generateRandomString() . '.' . $file->getExtension();
-            $publicPart = 'users/avatar';
-            $path = $storage->buildPublicPath($publicPart, $name);
-            $isSave = $file->saveAs($path);
-
-            return Json::encode([
-                'isSave' => $isSave,
-                'name' => $name,
-                'path' => Url::toRoute(['storage/file', 'path' => "$publicPart/$name"])
-            ]);
-        }
-
-        throw new HttpException(415);
-    }
-
+//    public function actionSaveTmpImg()
+//    {
+//        $app = Yii::$app;
+//        /* @var UploadedFile $file */
+//        $file = UploadedFile::getInstanceByName('avatar');
+//
+//        if ($file->isImage()) {
+//            /* @var Storage $storage */
+//            $storage = $app->storage;
+//
+//            $name = Yii::$app->security->generateRandomString() . '.' . $file->getExtension();
+//            $publicPart = 'users/avatar';
+//            $path = $storage->buildPublicPath($publicPart, $name);
+//            $isSave = $file->saveAs($path);
+//
+//            return Json::encode([
+//                'isSave' => $isSave,
+//                'name' => $name,
+//                'path' => Url::toRoute(['storage/file', 'path' => "$publicPart/$name"])
+//            ]);
+//        }
+//
+//        throw new HttpException(415);
+//    }
+//
     public function actionFile($path)
     {
         /* @var Storage $storage */
         $storage = Yii::$app->storage;
-        $path = $storage->buildPublicPath($path);
+        $path = $storage->buildPath(Storage::PUBLIC_ROOT, $path);
 
         if (is_file($path)) {
             Yii::$app->response->sendFile($path);
@@ -60,7 +58,7 @@ class StorageController extends Controller
         $security = Yii::$app->security;
 
         $path = $security->decryptByPassword($path);
-        $path = $storage->buildProtectedPath($path);
+        $path = $storage->buildPath(Storage::PROTECTED_ROOT, $path);
 
         if (is_file($path)) {
             Yii::$app->response->sendFile($path);

@@ -1,6 +1,8 @@
 <?php namespace common\models\user;
 
 use common\components\db\ActiveRecord;
+use Yii;
+use yii\helpers\Url;
 
 /**
  * @property integer $user_id
@@ -26,7 +28,7 @@ class Profile extends ActiveRecord
             return \Yii::getAlias($this->emptyAvatarUrl);
         }
 
-        return $this->avatar;
+        return Url::toRoute(['storage/file', 'path' => $this->avatar]);
     }
 
 }

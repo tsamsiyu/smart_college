@@ -11,6 +11,10 @@ use yii\base\Component;
  */
 class Storage extends Component
 {
+    const PUBLIC_ROOT = 'public';
+    const PROTECTED_ROOT = 'protected';
+    const PRIVATE_ROOT = 'private';
+
     protected $_rootPath;
 
     public function init()
@@ -41,28 +45,6 @@ class Storage extends Component
         array_unshift($path, $this->_rootPath);
 
         return FileHelper::join($path);
-    }
-
-    public function buildPublicPath($path)
-    {
-        if (!is_array($path)) {
-            $path = func_get_args();
-        }
-
-        array_unshift($path, 'public');
-
-        return static::buildPath($path);
-    }
-
-    public function buildProtectedPath($path)
-    {
-        if (!is_array($path)) {
-            $path = func_get_args();
-        }
-
-        array_unshift($path, 'protected');
-
-        return static::buildPath($path);
     }
 
 }

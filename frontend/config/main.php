@@ -54,7 +54,6 @@ return [
                 'register/teacher' => 'welcome/register-teacher',
                 'register/owner' => 'welcome/register-owner',
                 'home' => 'home/index',
-                'storage/file/<path:\w+>' => 'storage/file',
 
                 '<controller>/<action>' => '<controller>/<action>'
 //                'GET /' => 'welcome/index',

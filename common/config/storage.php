@@ -2,10 +2,10 @@
 
 return [
     'public' => [ // access by non-encrypted path
-        'users/avatar'
+
     ],
     'protected' => [ // access by encrypted path
-
+        'users/avatar'
     ],
     'private' => [ // access is missing
 

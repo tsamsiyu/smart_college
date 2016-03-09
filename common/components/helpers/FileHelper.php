@@ -4,6 +4,8 @@ use common\components\collections\AryFilter;
 
 class FileHelper extends \yii\helpers\FileHelper
 {
+    const TYPE_IMAGE = 'image';
+
     public static function join($path)
     {
         if (!is_array($path)) {
@@ -13,6 +15,14 @@ class FileHelper extends \yii\helpers\FileHelper
         AryFilter::rmEmpty($path);
 
         return static::normalizePath(implode(DIRECTORY_SEPARATOR, $path));
+    }
+
+    public static function compareType($file, $type)
+    {
+        switch ($type) {
+            case self::TYPE_IMAGE:
+                return ImageHelper::checkFile($file);
+        }
     }
 
 }

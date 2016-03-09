@@ -1,6 +1,9 @@
 <?php namespace frontend\assets;
 
 use common\assets\BootstrapAsset;
+use common\assets\FontAwesomeAsset;
+use common\assets\GeneralStylesAsset;
+use common\assets\JqueryFileUploadAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
@@ -16,7 +19,10 @@ class HomeAsset extends AssetBundle
     public $css = ['styles/home.scss'];
 
     public $depends = [
+        GeneralStylesAsset::class,
+        JqueryAsset::class,
         BootstrapAsset::class,
-        JqueryAsset::class
+        JqueryFileUploadAsset::class,
+        FontAwesomeAsset::class
     ];
 }
