@@ -54,6 +54,8 @@ return [
                 'register/teacher' => 'welcome/register-teacher',
                 'register/owner' => 'welcome/register-owner',
                 'home' => 'home/index',
+                'group' => 'group/index',
+                'groups' => 'teacher/groups',
 
                 '<controller>/<action>' => '<controller>/<action>'
 //                'GET /' => 'welcome/index',

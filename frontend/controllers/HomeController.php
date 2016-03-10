@@ -1,7 +1,6 @@
 <?php namespace frontend\controllers;
 
 use common\components\base\AjaxFilter;
-use common\components\base\Security;
 use common\components\base\Storage;
 use common\components\helpers\FileHelper;
 use common\components\web\action_traits\UploadTrait;
@@ -11,7 +10,6 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Json;
-use yii\helpers\Url;
 
 class HomeController extends Controller
 {
@@ -51,6 +49,7 @@ class HomeController extends Controller
         $avatarUrl = $identity->profile->getAvatarUrl();
 
         return $this->render('index', [
+            'identity' => $identity,
             'avatarUrl' => $avatarUrl
         ]);
     }

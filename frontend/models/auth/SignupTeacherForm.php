@@ -67,6 +67,7 @@ class SignupTeacherForm extends SignupForm
 
         $user = new Identity();
         $user->email = $this->email;
+        $user->username = $this->email;
         $user->role = $this->role;
         $user->college_id = $this->college_id;
         $user->pulpit_id = $this->pulpit_id;

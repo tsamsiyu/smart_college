@@ -2,6 +2,8 @@
 
 use common\components\db\ActiveRecord;
 use common\models\college\College;
+use common\models\college\Group;
+use common\models\college\Pulpit;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -22,8 +24,11 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $college_id
  * @property integer $pulpit_id
  * @property integer $group_id
- * @property Profile $profile
  * @property string $password write-only password
+ *
+ * @property Profile $profile
+ * @property Group $group
+ * @property Pulpit $pulpit
  */
 class User extends ActiveRecord
 {
@@ -117,7 +122,27 @@ class User extends ActiveRecord
 
     public function getProfile()
     {
-        return $this->hasOne(Profile::class, ['user_id' => 'id']);
+        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+    }
+
+    public function getPulpit()
+    {
+        return $this->hasOne(Pulpit::className(), ['id' => 'pulpit_id']);
+    }
+
+    public function getGroup()
+    {
+        return $this->hasOne(Group::className(), ['id' => 'group_id']);
+    }
+
+    public function isTeacher()
+    {
+        return $this->role == self::TEACHER;
+    }
+
+    public function isStudent()
+    {
+        return $this->role == self::STUDENT;
     }
 
 }

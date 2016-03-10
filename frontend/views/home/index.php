@@ -2,6 +2,7 @@
 /**
  * @var \common\components\web\View $this
  * @var string $avatarUrl
+ * @var \common\models\user\Identity $identity
  */
 
 use yii\helpers\Url;
@@ -11,34 +12,30 @@ echo $this->jsVariable('uploadImgUrl', Url::toRoute('storage/save-tmp-img'));
 
 \frontend\assets\HomeAsset::register($this);
 
-
 ?>
 
-<div id="avatar">
-    <img src="<?= $avatarUrl ?>" alt="Avatar">
-    <a href="#">
-        <input type="file" class="uploadable-input" name="avatar" data-url="<?= Url::toRoute('home/upload-avatar') ?>">
-        <i class="fa fa-upload"></i>
-        <div id="blackfone"></div>
-    </a>
-</div>
-
-<div class="modal fade" tabindex="-1" role="dialog" id="avatar-preview-modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><?= Yii::t('app/home', 'resizing') ?></h4>
-            </div>
-            <div class="modal-body">
-                <div style="width: 560px; height: 600px;">
-                    <img src="#" alt="Crop avatar" id="avatar-preview" >
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?= Yii::t('app/common', 'close') ?></button>
-                <button type="button" class="btn btn-primary"><?= Yii::t('app/common', 'save') ?></button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<section class="container cape">
+    <div class="row cape-header">
+        <div class="col-xs-10"></div>
+        <div class="col-xs-2" id="avatar-column">
+            <img src="<?= $avatarUrl ?>" alt="Avatar">
+            <a href="#">
+                <input type="file" class="uploadable-input" name="avatar" data-url="<?= Url::toRoute('home/upload-avatar') ?>">
+                <div id="blackfone"></div>
+                <i class="fa fa-upload"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row cape-group">
+        <div class="col-xs-10"></div>
+        <div class="col-xs-2" id="menu-column">
+            <?php if ($identity->isStudent()) : ?>
+                <a href="<?= Url::toRoute('group/index') ?>">Группа</a>
+            <?php elseif ($identity->isTeacher()) : ?>
+                <p><a href="<?= Url::to('groups') ?>">Группы</a></p>
+                <p><a href="<?= Url::to('flows') ?>">Потоки</a></p>
+                <p><a href="<?= Url::to('subjects') ?>">Предметы</a></p>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>

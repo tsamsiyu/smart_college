@@ -2,12 +2,10 @@
 
 use common\assets\BootstrapAsset;
 use common\assets\FontAwesomeAsset;
-use common\assets\GeneralStylesAsset;
-use common\assets\JqueryFileUploadAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
-class HomeAsset extends AssetBundle
+class GroupAsset extends AssetBundle
 {
     public $sourcePath = '@app/resources';
 
@@ -15,14 +13,17 @@ class HomeAsset extends AssetBundle
         'forceCopy' => YII_DEBUG
     ];
 
-    public $js = ['scripts/home.coffee'];
-    public $css = ['styles/home.scss'];
+    public $css = [
+        'styles/group.scss'
+    ];
+
+    public $js = [
+        'scripts/group.coffee'
+    ];
 
     public $depends = [
-        GeneralStylesAsset::class,
-        AppAsset::class,
+        JqueryAsset::class,
         BootstrapAsset::class,
-        JqueryFileUploadAsset::class,
         FontAwesomeAsset::class
     ];
 }

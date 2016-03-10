@@ -35,7 +35,7 @@ use yii\helpers\Html;
         </div><!-- /.container-fluid -->
     </nav>
 
-    <section id="cape">
+    <section id="content">
         <?= $content ?>
     </section>
 

@@ -1,6 +1,6 @@
 $ () ->
-  $avatarImg = $('#avatar > img')
-  $avatarUpload = $('#avatar > a > i')
+  $avatarImg = $('#avatar-column > img')
+  $avatarUpload = $('#avatar-column > a > i')
   $blackfoneFrontOfUpload = $('#blackfone')
 
   avatarUploadingShow = () ->
@@ -19,23 +19,19 @@ $ () ->
 
   $avatarUpload.on 'mouseover', () ->
     avatarUploadingShow()
-    $avatarImg.addClass 'translucent'
 
   $avatarUpload.on 'mouseout', () ->
     avatarUploadingHide()
-    $avatarImg.removeClass 'translucent'
 
   $blackfoneFrontOfUpload.on 'mouseover', () ->
     avatarUploadingShow()
-    $avatarImg.addClass 'translucent'
 
   $blackfoneFrontOfUpload.on 'mouseout', () ->
     avatarUploadingHide()
-    $avatarImg.removeClass 'translucent'
 
 
   $avatarUpload.on 'click', () ->
-    $('#avatar > a > input[type="file"]').trigger 'click'
+    $('#avatar-column > a > input[type="file"]').trigger 'click'
 
   $('.uploadable-input').fileupload
     dataType: 'json'

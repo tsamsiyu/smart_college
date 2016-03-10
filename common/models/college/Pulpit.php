@@ -2,6 +2,13 @@
 
 use common\components\db\ActiveRecord;
 
+/**
+ * @property Group[] $groups
+ * @property array groupsByCourse
+ *
+ * Class Pulpit
+ * @package common\models\college
+ */
 class Pulpit extends ActiveRecord
 {
     public static function tableName()
@@ -17,6 +24,17 @@ class Pulpit extends ActiveRecord
     public function getCollege()
     {
         return $this->hasOne(College::class, ['id' => 'college_id'])->via('direction');
+    }
+
+    public function getGroups()
+    {
+        return $this->hasMany(Group::className(), ['pulpit_id' => 'id']);
+    }
+
+    public function getGroupsByCourse()
+    {
+        $groups = $this->groups;
+        return Group::groupByCourse($groups);
     }
 
 }
