@@ -15,6 +15,12 @@ class View extends \yii\web\View
             return "<script>window.{$name}={$data}</script>";
         } elseif (is_string($data)) {
             return "<script>window.{$name}='{$data}'</script>";
+        } elseif ($data === false) {
+            return "<script>window.{$name}=false</script>";
+        } elseif ($data === true) {
+            return "<script>window.{$name}=true</script>";
+        } elseif ($data === null) {
+            return "<script>window.{$name}=null</script>";
         } else {
             return "<script>window.{$name}={$data}</script>";
         }

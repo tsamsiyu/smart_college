@@ -4,6 +4,8 @@ use common\components\db\ActiveRecord;
 
 /**
  * @property Group[] $groups
+ * @property Subject[] $subjects
+ *
  * @property array groupsByCourse
  *
  * Class Pulpit
@@ -29,6 +31,11 @@ class Pulpit extends ActiveRecord
     public function getGroups()
     {
         return $this->hasMany(Group::className(), ['pulpit_id' => 'id']);
+    }
+
+    public function getSubjects()
+    {
+        return $this->hasMany(Subject::class, ['pulpit_id' => 'id']);
     }
 
     public function getGroupsByCourse()

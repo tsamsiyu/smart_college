@@ -1,39 +1,24 @@
 $ () ->
   $avatarImg = $('#avatar-column > img')
-  $avatarUpload = $('#avatar-column > a > i')
-  $blackfoneFrontOfUpload = $('#blackfone')
-
-  avatarUploadingShow = () ->
-    $avatarUpload.show()
-    $blackfoneFrontOfUpload.show()
-
-  avatarUploadingHide = () ->
-    $avatarUpload.hide()
-    $blackfoneFrontOfUpload.hide()
+  $avatarUploadLink = $('#avatar-column > a')
+  $fileInput = $('#avatar-column > input[type="file"]')
 
   $avatarImg.on 'mouseover', () ->
-    avatarUploadingShow()
+    $avatarUploadLink.removeClass('i-hide')
 
   $avatarImg.on 'mouseout', () ->
-    avatarUploadingHide()
+    $avatarUploadLink.addClass('i-hide')
 
-  $avatarUpload.on 'mouseover', () ->
-    avatarUploadingShow()
+  $avatarUploadLink.on 'mouseover', () ->
+    $avatarUploadLink.removeClass('i-hide')
 
-  $avatarUpload.on 'mouseout', () ->
-    avatarUploadingHide()
+  $avatarUploadLink.on 'mouseout', () ->
+    $avatarUploadLink.addClass('i-hide')
 
-  $blackfoneFrontOfUpload.on 'mouseover', () ->
-    avatarUploadingShow()
+  $avatarUploadLink.on 'click', () ->
+    $fileInput.trigger 'click'
 
-  $blackfoneFrontOfUpload.on 'mouseout', () ->
-    avatarUploadingHide()
-
-
-  $avatarUpload.on 'click', () ->
-    $('#avatar-column > a > input[type="file"]').trigger 'click'
-
-  $('.uploadable-input').fileupload
+  $fileInput.fileupload
     dataType: 'json'
     done: (response, data) ->
       $avatarImg.attr 'src', data.result.url

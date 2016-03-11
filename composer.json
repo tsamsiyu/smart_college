@@ -21,11 +21,9 @@
         "bower-asset/bootstrap": "*",
         "jacmoe/yii2-tale-jade": "^1.4",
 
-        "bower-asset/jquery.fileapi": "*",
-        "bower-asset/Jcrop": "*",
         "bower-asset/jquery-file-upload": "*",
-        "bower-asset/cropper": "*",
-        "bower-asset/fontawesome": "4.5.0"
+        "bower-asset/fontawesome": "4.5.0",
+        "bower-asset/jquery.dotdotdot": "1.8.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

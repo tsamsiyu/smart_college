@@ -4,6 +4,7 @@ use common\components\db\ActiveRecord;
 use common\models\college\College;
 use common\models\college\Group;
 use common\models\college\Pulpit;
+use common\models\college\Subject;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 

@@ -1,6 +1,7 @@
 <?php namespace common\assets;
 
-use yii\web\AssetBundle;
+
+use common\components\web\AssetBundle;
 
 class GeneralStylesAsset extends AssetBundle
 {

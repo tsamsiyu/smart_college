@@ -5,7 +5,6 @@ use common\assets\FontAwesomeAsset;
 use common\assets\GeneralStylesAsset;
 use common\assets\JqueryFileUploadAsset;
 use yii\web\AssetBundle;
-use yii\web\JqueryAsset;
 
 class HomeAsset extends AssetBundle
 {
@@ -20,7 +19,6 @@ class HomeAsset extends AssetBundle
 
     public $depends = [
         GeneralStylesAsset::class,
-        AppAsset::class,
         BootstrapAsset::class,
         JqueryFileUploadAsset::class,
         FontAwesomeAsset::class

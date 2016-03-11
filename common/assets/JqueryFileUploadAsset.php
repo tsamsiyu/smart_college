@@ -7,10 +7,6 @@ class JqueryFileUploadAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/bower/jquery-file-upload';
 
-    public $publishOptions = [
-        'forceCopy' => YII_DEBUG
-    ];
-
     public $js = [
         'js/vendor/jquery.ui.widget.js',
         'js/jquery.iframe-transport.js',

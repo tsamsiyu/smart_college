@@ -33,4 +33,5 @@ class TeacherController extends Controller
             'identity' => $identity
         ]);
     }
+
 }

@@ -56,6 +56,9 @@ return [
                 'home' => 'home/index',
                 'group' => 'group/index',
                 'groups' => 'teacher/groups',
+                'flows' => 'teacher/flows/index',
+                'subjects' => 'teacher/subjects/index',
+                'subjects/add' => 'teacher/subjects/add',
 
                 '<controller>/<action>' => '<controller>/<action>'
 //                'GET /' => 'welcome/index',

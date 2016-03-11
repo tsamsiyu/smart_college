@@ -1,126 +1,60 @@
 $avatarWidth: 190px;
 $avatarHeight: 220px;
+$blackfoneHeight: 30px;
+$mainColor: #F8F8F8;
+$darkedColor: #e9e9e9;
 
-body {
-}
-
-.cape {
-  padding: 10px;
-  background-color: #F8F8F8;
+#cape {
+  position: relative;
+  margin: 0 15%;
+  outline: 1px solid black;
+  padding: 20px;
+  min-height: 780px;
+  min-width: 780px;
+  background-color: $mainColor;
 }
 
 #avatar-column {
-  top: 10px;
-  right: 20px;
-  margin-bottom: 20px;
+  height: $avatarHeight;
+  width: $avatarWidth;
+  margin: 0 2px 2px 0;
   img {
-    background-color: #efefef;
-    padding: 5px;
     width: $avatarWidth;
     height: $avatarHeight;
   }
   input[type="file"] {
-    visibility: hidden;
     display: none;
   }
-  i {
-    position: absolute;
-    top: 185px;
-    right: 80px;
-    color: white;
-    font-size: 26px;
-  }
-  #blackfone {
-    position: absolute;
-    top: 180px;
-    background-color: black;
-    opacity: 0.6;
-    height: 40px;
+  a {
+    display: block;
     width: $avatarWidth;
+    height: $blackfoneHeight;
+    position: relative;
+    top: -$blackfoneHeight;
+    opacity: 0.7;
+    background-color: black;
+    i {
+      position: relative;
+      left: $avatarWidth / 2 - 10px; // 8px it's a half-width of font-size, i.e. half-width of icon
+      font-size: 20px;
+      top: 6px;
+      color: white;
+    }
   }
 }
 
-#menu-column {
-  background-color: #efefef;
-  right: 5px;
-  width: $avatarWidth;
-  padding: 5px 0;
-  text-align: center;
-  p:hover {
-    background-color: #dbdbdb;
-  }
+#menu {
+  margin-top: 8px;
   a:hover {
     text-decoration: none;
+    color: #7dbfd6;
+  }
+  a {
+    padding-left: 6px;
+    color: #77a4d6;
+    display: block;
+    width: $avatarWidth;
+    margin: 1px 0;
+    background-color: $darkedColor;
   }
 }
-
-//#cape {
-//  margin: 0 auto;
-//  padding: 10px 0;
-//  background-color: #F8F8F8;
-//  width: 1018px;
-//  height: 768px;
-//  position: relative;
-//}
-//
-//#avatar {
-//  position: relative;
-//  left: 820px;
-//  img {
-//    width: $avatarWidth;
-//    height: $avatarHeight;
-//  }
-//  input[type=file] {
-//    display: none;
-//  }
-//  a > i {
-//    font-size: 28px;
-//    color: white;
-//    display: none;
-//    position: relative;
-//    top: 95px;
-//    right: 110px;
-//    z-index: 20;
-//  }
-//}
-//
-//#avatar-preview-container {
-//  width: 565px;
-//  height: 600px;
-//}
-//
-//#blackfone {
-//  display: none;
-//  background-color: black;
-//  width: $avatarWidth;
-//  height: 40px;
-//  position: absolute;
-//  bottom: 1px;
-//  opacity: 0.2;
-//  z-index: 10;
-//}
-//
-//ul#menu-list {
-//  position: relative;
-//  left: 820px;
-//  width: $avatarWidth;
-//  li:first-child {
-//    margin-top: 10px;
-//  }
-//  li {
-//    background-color: #e1fdff;
-//    text-align: center;
-//    list-style: none;
-//    position: relative;
-//    right: 40px;
-//    width: $avatarWidth;
-//    margin-bottom: 3px;
-//    a {
-//      color: grey;
-//    }
-//    a:hover {
-//      color: #00d6b2;
-//      text-decoration: none;
-//    }
-//  }
-//}

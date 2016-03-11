@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4fe3a04650d7c77187161062604f05ef",
+    "hash": "51566897e09e5b8f5ddf25cabe29b6a8",
     "packages": [
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -104,74 +104,6 @@
             ]
         },
         {
-            "name": "bower-asset/cropper",
-            "version": "v2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fengyuanchen/cropper.git",
-                "reference": "2cbe834845b19c79b84a4d889dc38a156911ebd8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fengyuanchen/cropper/zipball/2cbe834845b19c79b84a4d889dc38a156911ebd8",
-                "reference": "2cbe834845b19c79b84a4d889dc38a156911ebd8",
-                "shasum": ""
-            },
-            "require": {
-                "bower-asset/jquery": ">=1.9.1"
-            },
-            "require-dev": {
-                "bower-asset/bootstrap": "~3.3.6",
-                "bower-asset/fontawesome": "~4.5.0",
-                "bower-asset/html5-boilerplate": "~5.2.0",
-                "bower-asset/jquery": "~1.12.0",
-                "bower-asset/qunit": "~1.20.0"
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "dist/cropper.js",
-                    "dist/cropper.css"
-                ],
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "tests",
-                    "test",
-                    "examples",
-                    "assets",
-                    "demo",
-                    "docs",
-                    "gulpfile.js",
-                    "CONTRIBUTING.md",
-                    "FAQ.md"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A simple jQuery image cropping plugin.",
-            "keywords": [
-                "crop",
-                "cropper",
-                "cropping",
-                "css",
-                "development",
-                "front-end",
-                "html",
-                "image",
-                "javascript",
-                "jquery",
-                "move",
-                "plugin",
-                "rotate",
-                "scale",
-                "web",
-                "zoom"
-            ]
-        },
-        {
             "name": "bower-asset/fontawesome",
             "version": "v4.5.0",
             "source": {
@@ -207,48 +139,6 @@
                 "CC-BY-3.0"
             ],
             "description": "Font Awesome"
-        },
-        {
-            "name": "bower-asset/jcrop",
-            "version": "v2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tapmodo/Jcrop.git",
-                "reference": "80f645b69fc938b3823d92d74e5019036d04a9ca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tapmodo/Jcrop/zipball/80f645b69fc938b3823d92d74e5019036d04a9ca",
-                "reference": "80f645b69fc938b3823d92d74e5019036d04a9ca",
-                "shasum": ""
-            },
-            "type": "bower-asset-library",
-            "extra": {
-                "bower-asset-main": [
-                    "js/Jcrop.js",
-                    "css/Jcrop.css"
-                ],
-                "bower-asset-ignore": [
-                    "**/.*",
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "jQuery image cropping plugin",
-            "keywords": [
-                "crop",
-                "cropping",
-                "form",
-                "forms",
-                "image",
-                "images",
-                "select"
-            ]
         },
         {
             "name": "bower-asset/jquery",
@@ -345,41 +235,42 @@
             ]
         },
         {
-            "name": "bower-asset/jquery.fileapi",
-            "version": "0.4.11",
+            "name": "bower-asset/jquery.dotdotdot",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RubaXa/jquery.fileapi.git",
-                "reference": "5fc1013e103bb0931f5fbd18f15a9194ddf573d4"
+                "url": "https://github.com/FrDH/jQuery.dotdotdot.git",
+                "reference": "ec24d45c3d7020b6c2dff5c54ba89982f13b1e57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RubaXa/jquery.fileapi/zipball/5fc1013e103bb0931f5fbd18f15a9194ddf573d4",
-                "reference": "5fc1013e103bb0931f5fbd18f15a9194ddf573d4",
+                "url": "https://api.github.com/repos/FrDH/jQuery.dotdotdot/zipball/ec24d45c3d7020b6c2dff5c54ba89982f13b1e57",
+                "reference": "ec24d45c3d7020b6c2dff5c54ba89982f13b1e57",
                 "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.4.3"
             },
             "type": "bower-asset-library",
             "extra": {
-                "bower-asset-main": "jquery.fileapi.js",
+                "bower-asset-main": "src/jquery.dotdotdot.min.umd.js",
                 "bower-asset-ignore": [
-                    "node_modules",
-                    "bower_components",
-                    "test",
-                    "tests"
+                    ".jshintrc",
+                    "Guardfile",
+                    "index.html",
+                    "*.json",
+                    "README.md"
                 ]
             },
-            "license": [
-                "MIT"
-            ],
-            "description": "jQuery plugin for FileAPI (multiupload, image upload, crop, resize and etc.)",
+            "description": "A jQuery plugin for advanced cross-browser ellipsis on multiple line content.",
             "keywords": [
-                "FileAPI",
-                "chunked",
-                "file",
-                "html5",
-                "jquery",
-                "multiupload",
-                "upload"
+                "dotdotdot",
+                "dots",
+                "ellipsis",
+                "multiline",
+                "overflow",
+                "text",
+                "text-overflow"
             ]
         },
         {
@@ -1101,6 +992,154 @@
     ],
     "packages-dev": [
         {
+            "name": "bower-asset/cropper",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fengyuanchen/cropper.git",
+                "reference": "2cbe834845b19c79b84a4d889dc38a156911ebd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fengyuanchen/cropper/zipball/2cbe834845b19c79b84a4d889dc38a156911ebd8",
+                "reference": "2cbe834845b19c79b84a4d889dc38a156911ebd8",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.9.1"
+            },
+            "require-dev": {
+                "bower-asset/bootstrap": "~3.3.6",
+                "bower-asset/fontawesome": "~4.5.0",
+                "bower-asset/html5-boilerplate": "~5.2.0",
+                "bower-asset/jquery": "~1.12.0",
+                "bower-asset/qunit": "~1.20.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "dist/cropper.js",
+                    "dist/cropper.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "tests",
+                    "test",
+                    "examples",
+                    "assets",
+                    "demo",
+                    "docs",
+                    "gulpfile.js",
+                    "CONTRIBUTING.md",
+                    "FAQ.md"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A simple jQuery image cropping plugin.",
+            "keywords": [
+                "crop",
+                "cropper",
+                "cropping",
+                "css",
+                "development",
+                "front-end",
+                "html",
+                "image",
+                "javascript",
+                "jquery",
+                "move",
+                "plugin",
+                "rotate",
+                "scale",
+                "web",
+                "zoom"
+            ]
+        },
+        {
+            "name": "bower-asset/jcrop",
+            "version": "v2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tapmodo/Jcrop.git",
+                "reference": "80f645b69fc938b3823d92d74e5019036d04a9ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tapmodo/Jcrop/zipball/80f645b69fc938b3823d92d74e5019036d04a9ca",
+                "reference": "80f645b69fc938b3823d92d74e5019036d04a9ca",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "js/Jcrop.js",
+                    "css/Jcrop.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery image cropping plugin",
+            "keywords": [
+                "crop",
+                "cropping",
+                "form",
+                "forms",
+                "image",
+                "images",
+                "select"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery.fileapi",
+            "version": "0.4.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RubaXa/jquery.fileapi.git",
+                "reference": "5fc1013e103bb0931f5fbd18f15a9194ddf573d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RubaXa/jquery.fileapi/zipball/5fc1013e103bb0931f5fbd18f15a9194ddf573d4",
+                "reference": "5fc1013e103bb0931f5fbd18f15a9194ddf573d4",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "jquery.fileapi.js",
+                "bower-asset-ignore": [
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "jQuery plugin for FileAPI (multiupload, image upload, crop, resize and etc.)",
+            "keywords": [
+                "FileAPI",
+                "chunked",
+                "file",
+                "html5",
+                "jquery",
+                "multiupload",
+                "upload"
+            ]
+        },
+        {
             "name": "bower-asset/typeahead.js",
             "version": "v0.10.5",
             "source": {
@@ -1178,6 +1217,48 @@
                 "fixtures"
             ],
             "time": "2015-05-29 06:29:14"
+        },
+        {
+            "name": "harrytang/yii2-dotdotdot",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/harrytang/yii2-dotdotdot.git",
+                "reference": "7b1fa425fffa3f227b310264f9bf4d331fcc5533"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/harrytang/yii2-dotdotdot/zipball/7b1fa425fffa3f227b310264f9bf4d331fcc5533",
+                "reference": "7b1fa425fffa3f227b310264f9bf4d331fcc5533",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "harrytang\\dotdotdot\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Harry Tang",
+                    "email": "giaduy@gmail.com"
+                }
+            ],
+            "description": "JQuery DotDotDot for Yii 2",
+            "homepage": "https://github.com/harrytang/yii2-dotdotdot",
+            "keywords": [
+                "dotdotdot",
+                "extension",
+                "yii"
+            ],
+            "time": "2015-02-05 03:29:34"
         },
         {
             "name": "phpspec/php-diff",

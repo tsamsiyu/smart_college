@@ -8,7 +8,7 @@ class m160310_135905_add_course_to_college_group extends Migration
 
     public function up()
     {
-        $this->addColumn($this->_tableName, 'course', $this->smallInteger());
+        $this->addColumn($this->_tableName, 'course', $this->smallInteger()->defaultValue(1));
     }
 
     public function down()
