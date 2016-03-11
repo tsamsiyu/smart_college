@@ -1,24 +1,20 @@
-<?php namespace frontend\assets;
+<?php namespace frontend\modules\pulpit\assets;
 
 use common\assets\BootstrapAsset;
 use common\assets\DotDotDotAsset;
 use common\assets\FontAwesomeAsset;
-use yii\web\AssetBundle;
+use common\components\web\AssetBundle;
 use yii\web\YiiAsset;
 
 class SubjectsAsset extends AssetBundle
 {
-    public $sourcePath = '@app/resources';
+    public $sourcePath = '@app/modules/pulpit/resources';
 
     public $depends = [
         YiiAsset::class,
         BootstrapAsset::class,
         FontAwesomeAsset::class,
         DotDotDotAsset::class
-    ];
-
-    public $publishOptions = [
-        'forceCopy' => YII_DEBUG
     ];
 
     public $css = [
@@ -28,5 +24,4 @@ class SubjectsAsset extends AssetBundle
     public $js = [
         'scripts/subjects.coffee'
     ];
-
 }

@@ -11,6 +11,10 @@ class PlanAsset extends AssetBundle
         'forceCopy' => YII_DEBUG
     ];
 
+    public $css = [
+        'styles/plan.scss'
+    ];
+
     public $depends = [
         BootstrapAsset::class
     ];

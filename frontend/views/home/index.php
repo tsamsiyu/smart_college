@@ -29,6 +29,7 @@ echo $this->jsVariable('uploadImgUrl', Url::toRoute('storage/save-tmp-img'));
         <?php elseif ($identity->isTeacher()) : ?>
             <a href="<?= Url::to('groups') ?>">Группы</a>
             <a href="<?= Url::to('subjects') ?>">Предметы</a>
+            <a href="<?= Url::toRoute(['teacher/plan/index']) ?>">Учебный план</a>
         <?php endif; ?>
     </div>
 </section>

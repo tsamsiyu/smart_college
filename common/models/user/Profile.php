@@ -15,7 +15,7 @@ use yii\helpers\Url;
  */
 class Profile extends ActiveRecord
 {
-    public $emptyAvatarUrl = '@web/images/avatar-man-640.png';
+    public $emptyAvatarUrl = '@web/images/aka/school73.png';
 
     public static function tableName()
     {

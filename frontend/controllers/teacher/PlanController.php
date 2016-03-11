@@ -17,9 +17,13 @@ class PlanController extends TeacherController
         ]);
     }
 
-    public function actionIndex()
+    public function actionIndex($course = null)
     {
-        return $this->render('index');
+        if ($course) {
+            return $this->render('plan');
+        }
+
+        return $this->render('select_course');
     }
 
 }

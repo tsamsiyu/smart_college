@@ -53,12 +53,11 @@ return [
                 'register/student' => 'welcome/register-student',
                 'register/teacher' => 'welcome/register-teacher',
                 'register/owner' => 'welcome/register-owner',
-                'home' => 'home/index',
-                'group' => 'group/index',
-                'groups' => 'teacher/groups',
-                'flows' => 'teacher/flows/index',
-                'subjects' => 'teacher/subjects/index',
-                'subjects/add' => 'teacher/subjects/add',
+//                'home' => 'home/index',
+//                'group' => 'group/index',
+//                'groups' => 'teacher/groups',
+//                'subjects' => 'teacher/subjects/index',
+//                'subjects/add' => 'teacher/subjects/add',
 
                 '<controller>/<action>' => '<controller>/<action>'
 //                'GET /' => 'welcome/index',
@@ -66,6 +65,14 @@ return [
             ],
         ],
 
+    ],
+    'modules' => [
+        'pulpit' => [
+           'class' => 'frontend\modules\pulpit\PulpitModule'
+        ],
+        'group' => [
+            'class' => 'frontend\modules\group\GroupModule'
+        ]
     ],
     'params' => $params,
 ];
