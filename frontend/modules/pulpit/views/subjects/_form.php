@@ -9,7 +9,7 @@ use yii\helpers\Url;
 
 ?>
 
-<form action="<?= Url::toRoute(['teacher/subjects/add']) ?>" method="POST" class="form-horizontal" novalidate>
+<form action="<?= Url::toRoute(['subjects/edit', 'id' => $form->getId()]) ?>" method="POST" class="form-horizontal" novalidate>
     <div class="form-group <?= $form->hasErrors('name') ? 'has-error' : '' ?>">
         <label for="inputName" class="col-xs-2 control-label">Название</label>
         <div class="col-xs-10">

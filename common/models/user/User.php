@@ -121,16 +121,41 @@ class User extends ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
     public function getProfile()
     {
         return $this->hasOne(Profile::className(), ['user_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
+    public function getCollege()
+    {
+        return $this->hasOne(College::className(), ['id' => 'college_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
     public function getPulpit()
     {
         return $this->hasOne(Pulpit::className(), ['id' => 'pulpit_id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
     public function getGroup()
     {
         return $this->hasOne(Group::className(), ['id' => 'group_id']);

@@ -25,11 +25,11 @@ echo $this->jsVariable('uploadImgUrl', Url::toRoute('storage/save-tmp-img'));
 
     <div id="menu">
         <?php if ($identity->isStudent()) : ?>
-            <a href="<?= Url::toRoute('group/index') ?>">Группа</a>
+            <a href="<?= Url::to('group') ?>">Группа</a>
         <?php elseif ($identity->isTeacher()) : ?>
-            <a href="<?= Url::to('groups') ?>">Группы</a>
-            <a href="<?= Url::to('subjects') ?>">Предметы</a>
-            <a href="<?= Url::toRoute(['teacher/plan/index']) ?>">Учебный план</a>
+            <a href="<?= Url::to('pulpit/groups') ?>">Группы</a>
+            <a href="<?= Url::to('pulpit/subjects') ?>">Предметы</a>
+            <a href="<?= Url::to('pulpit/plan') ?>">Учебный план</a>
         <?php endif; ?>
     </div>
 </section>

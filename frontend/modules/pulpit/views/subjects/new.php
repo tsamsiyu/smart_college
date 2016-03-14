@@ -11,7 +11,7 @@ $this->title = 'Добавление предмета.';
 <div class="container cape">
     <div class="row">
         <div class="col-xs-12">
-            <?= $this->render('_form') ?>
+            <?= $this->render('_form', ['form' => $form]) ?>
         </div>
     </div>
 </div>

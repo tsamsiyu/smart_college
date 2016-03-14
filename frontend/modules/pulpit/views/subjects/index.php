@@ -18,7 +18,7 @@ echo $this->jsVariable('errorsInModal', $form->hasErrors());
 <div class="container" id="cape">
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?= Url::toRoute(['teacher/subjects/add']) ?>" class="btn btn-primary">Добавить&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></a>
+            <a href="<?= Url::toRoute('subjects/new') ?>" class="btn btn-primary">Добавить&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></a>
         </div>
     </div>
     <div class="row cape-subjects-list">
@@ -43,13 +43,13 @@ echo $this->jsVariable('errorsInModal', $form->hasErrors());
                             <td><?= $subject->name ?></td>
                             <td class="dot3"><?= $subject->description ?></td>
                             <td>
-                                <a href="<?= Url::toRoute(['teacher/subjects/remove', 'id' => $subject->getId()]) ?>" data-method="DELETE">
+                                <a href="<?= Url::toRoute(['subjects/remove', 'id' => $subject->getId()]) ?>" data-method="DELETE">
                                     <i class="fa fa-remove"></i>
                                 </a>
 <!--                                <a href="">-->
 <!--                                    <i class="fa fa-eye"></i>-->
 <!--                                </a>-->
-                                <a href="<?= Url::toRoute(['teacher/subjects/edit', 'id' => $subject->getId()]) ?>" class="edit">
+                                <a href="<?= Url::toRoute(['subjects/edit', 'id' => $subject->getId()]) ?>" class="edit">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                             </td>

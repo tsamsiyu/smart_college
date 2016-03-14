@@ -2,16 +2,16 @@ $mainColor: #F8F8F8;
 $darkedColor: #e9e9e9;
 
 @mixin border-radius($radius) {
-  //-webkit-border-radius: $radius;
+  -webkit-border-radius: $radius;
   border-radius: $radius;
-  //background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
 }
 
 
-@mixin box-shadow($setType, $hoff1, $voff1, $blur, $color) {
-  //-webkit-box-shadow: $setType $hoff $voff $blur $color;
-  //-moz-box-shadow: $setType $hoff $voff $blur $color;
-  box-shadow: $setType $hoff1 $voff1 $blur $color;
+@mixin box-shadow($setType, $hoff, $voff, $blur, $color) {
+  -webkit-box-shadow: $setType $hoff $voff $blur $color;
+  -moz-box-shadow: $setType $hoff $voff $blur $color;
+  box-shadow: $setType $hoff $voff $blur $color;
 }
 
 @mixin test-outline($color: red) {
