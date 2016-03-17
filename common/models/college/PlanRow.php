@@ -7,7 +7,7 @@ use common\components\db\ActiveRecord;
  * @property integer $year_part
  * @property boolean $is_exam
  * @property float $credits
- * @property integer $pulpit_id
+ * @property integer $plan_id
  *
  * @property Subject $subject
  *
@@ -34,8 +34,9 @@ class PlanRow extends ActiveRecord
     public function rules()
     {
         return [
-            [['credits', 'subject_id'], 'required'],
+            [['credits', 'subject_id', 'plan_id'], 'required'],
             ['subject_id', 'exist', 'targetClass' => Subject::className(), 'targetAttribute' => 'id'],
+            ['plan_id', 'exist', 'targetClass' => Plan::className(), 'targetAttribute' => 'id'],
             ['credits', 'double']
         ];
     }

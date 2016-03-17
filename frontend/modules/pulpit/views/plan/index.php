@@ -3,9 +3,9 @@
  * @var \common\components\web\View $this
  * @var \common\models\user\Identity $identity
  * @var \common\models\college\PlanRow $planRowForm
+ * @var integer $activeCourse
  * @var array $subjects
  * @var array $plan
- * @var array $invalidated
  */
 
 $this->title = 'Учебные планы';
@@ -21,24 +21,23 @@ $this->title = 'Учебные планы';
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <?php foreach ($plan as $course => $rows) : ?>
-                        <li role="presentation" <?= $course == 1 ? 'class="active"' : '' ?>>
-                            <a href="<?= '#course' . $course ?>" aria-controls="course1" role="tab" data-toggle="tab"><?= $course ?> курс</a>
+                    <?php foreach ($plan as $courseNumber => $rows) : ?>
+                        <li role="presentation" <?= $courseNumber == $activeCourse ? 'class="active"' : '' ?>>
+                            <a href="<?= '#course' . $courseNumber ?>" aria-controls="course1" role="tab" data-toggle="tab"><?= $courseNumber ?> курс</a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content form-wrapper">
-                    <?php foreach ($plan as $course => $rows) : ?>
-                        <div role="tabpanel" class="tab-pane <?= $course == 1 ? 'active' : '' ?>" id="<?= 'course' . $course ?>">
+                    <?php foreach ($plan as $courseNumber => $rows) : ?>
+                        <div role="tabpanel" class="tab-pane <?= $courseNumber == $activeCourse ? 'active' : '' ?>" id="<?= 'course' . $courseNumber ?>">
                             <?= $this->render('_form', [
-                                'course' => $course,
+                                'course' => $courseNumber,
                                 'rows' => $rows,
                                 'planRowForm' => $planRowForm,
                                 'subjects' => $subjects,
                                 'yearParts' => $identity->pulpit->college->year_parts,
-                                'invalidated' => $invalidated
                             ]) ?>
                         </div>
                     <?php endforeach; ?>
