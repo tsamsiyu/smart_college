@@ -21,7 +21,7 @@ class PlanController extends AbstractMainController
         ]);
     }
 
-    public function actionIndex($course = null)
+    public function actionIndex($course = 1)
     {
         $identity = $this->getIdentityUser();
         $planRowForm = new PlanRow();
