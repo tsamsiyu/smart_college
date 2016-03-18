@@ -3,10 +3,10 @@
 
 use common\assets\BootstrapAsset;
 use common\assets\FontAwesomeAsset;
+use yii\web\YiiAsset;
 
-class PlanAsset extends \common\components\web\AssetBundle
+class PlanAsset extends \common\components\web\DebugAssetBundle
 {
-
     public $sourcePath = '@app/modules/pulpit/resources';
 
     public $depends = [

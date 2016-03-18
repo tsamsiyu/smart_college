@@ -3,10 +3,10 @@
 use common\assets\BootstrapAsset;
 use common\assets\DotDotDotAsset;
 use common\assets\FontAwesomeAsset;
-use common\components\web\AssetBundle;
+use common\components\web\DebugAssetBundle;
 use yii\web\YiiAsset;
 
-class SubjectsAsset extends AssetBundle
+class SubjectsAsset extends DebugAssetBundle
 {
     public $sourcePath = '@app/modules/pulpit/resources';
 

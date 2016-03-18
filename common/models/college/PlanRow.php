@@ -10,6 +10,7 @@ use common\components\db\ActiveRecord;
  * @property integer $plan_id
  *
  * @property Subject $subject
+ * @property Plan $plan
  *
  * Class PlanRow
  * @package common\models\college
@@ -41,6 +42,11 @@ class PlanRow extends ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
     public function getPlan()
     {
         return $this->hasOne(Plan::className(), ['id' => 'plan_id']);

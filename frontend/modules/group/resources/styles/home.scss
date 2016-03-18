@@ -1,0 +1,43 @@
+@import '_main.scss';
+
+#feed-headers {
+  margin: 12px;
+}
+
+#feed-headers > div {
+  padding: 0 2px;
+  a {
+    display: block;
+    background-color: $darkedColor;
+  }
+  a:hover {
+    text-decoration: none;
+    background-color: $lightedColor;
+  }
+}
+
+#feed-headers > div:hover {
+  cursor: pointer;
+}
+
+.feed {
+  margin: 0 15px;
+  background-color: $lightedColor;
+  display: none;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.active-feed {
+  display: block;
+}
+
+.feed-panel {
+  height: 20px;
+  width: 40px;
+  padding-left: 10px;
+}
+
+.active-feed-header > a {
+  background-color: $lightedColor !important;
+}

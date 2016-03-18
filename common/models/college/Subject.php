@@ -1,6 +1,7 @@
 <?php namespace common\models\college;
 
 use common\components\db\ActiveRecord;
+use yii\helpers\ArrayHelper;
 
 /**
  * @property string $id
@@ -41,6 +42,21 @@ class Subject extends ActiveRecord
             'name' => 'Название',
             'description' => 'Описание'
         ];
+    }
+
+    public function isBelongsToGroup(Group $group)
+    {
+        $groupActiveSubjects = $group->getActiveSubjects(true);
+
+        if (count($groupActiveSubjects)) {
+            $idsOfGroupActiveSubjects = ArrayHelper::map($groupActiveSubjects, 'id', 'id');
+
+            if (array_key_exists($this->getId(), $idsOfGroupActiveSubjects)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

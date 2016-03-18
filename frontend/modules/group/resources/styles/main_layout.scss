@@ -1,0 +1,52 @@
+@import "_main.scss";
+
+#cape {
+  border: 1px solid $darkedColor;
+  background-color: $mainColor;
+  min-height: 500px;
+}
+
+#cape-header {
+  height: 135px;
+  @include border-radius(5px);
+  @include box-shadow(inset 7px, 7px, 47px, -8px, grey);
+}
+
+#avatar-column {
+  background-color: $darkedColor;
+  height: 30%;
+  margin-top: 10px;
+  padding-left: 10px;
+  img {
+    width: 100%;
+    margin: 0 auto;
+  }
+  padding-bottom: 30px;
+  border-bottom: 1px solid black;
+}
+
+#menu-list {
+  padding: 5px 0 2px 0;
+  ul {
+    padding: 0;
+    display: block;
+    list-style: none;
+
+    li {
+      margin-bottom: 2px;
+      text-align: center;
+      a {
+        display: block;
+        background-color: $darkedColor;
+      }
+      a:hover {
+        background-color: $mainColor;
+        color: #0b97c4;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+#bar-column {
+}

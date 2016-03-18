@@ -4,5 +4,5 @@ use common\components\web\Controller;
 
 abstract class AbstractMainController extends Controller
 {
-
+    public $layout = 'main';
 }

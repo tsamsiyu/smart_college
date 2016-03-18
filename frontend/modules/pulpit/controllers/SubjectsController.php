@@ -3,6 +3,7 @@
 use common\models\college\Subject;
 use common\models\user\Identity;
 use Yii;
+use yii\base\InvalidParamException;
 use yii\filters\VerbFilter;
 
 class SubjectsController extends AbstractMainController
@@ -14,7 +15,8 @@ class SubjectsController extends AbstractMainController
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'index' => ['get'],
-                    'new' => ['get', 'post']
+                    'new' => ['get', 'post'],
+                    'remove' => ['delete']
                 ]
             ]
         ];
@@ -70,12 +72,14 @@ class SubjectsController extends AbstractMainController
     public function actionRemove($id)
     {
         if ($model = Subject::find()->where(['id' => $id])->one()) {
-            $model->delete();
+            if ($model->pulpit_id == $this->getIdentityUser()->pulpit_id) {
+                $model->delete();
 
-            return $this->redirect(['subjects/index']);
+                return $this->redirect(['subjects/index']);
+            }
         }
 
-        throw new \HttpInvalidParamException('Subject missing');
+        throw new InvalidParamException('Subject missing');
     }
 
 }

@@ -1,8 +1,8 @@
 <?php namespace frontend\modules\pulpit\assets;
 
-use common\components\web\AssetBundle;
+use common\components\web\DebugAssetBundle;
 
-class HomeAsset extends AssetBundle
+class HomeAsset extends DebugAssetBundle
 {
     public $sourcePath = '@app/modules/pulpit/resources';
 

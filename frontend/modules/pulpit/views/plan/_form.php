@@ -56,9 +56,15 @@ use yii\helpers\Json;
                         </td>
 
                         <td>
-                            <a href="#" class="remove-plan-row">
-                                <i class="fa fa-close"></i>
-                            </a>
+                            <?php if ($row->isNewRecord) : ?>
+                                <a href="#" class="remove-plan-row">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            <?php else: ?>
+                                <a href="<?= Url::toRoute(['plan/remove', 'id' => $row->getId(), 'course' => $course]) ?>">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

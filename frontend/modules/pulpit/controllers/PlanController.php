@@ -42,16 +42,16 @@ class PlanController extends AbstractMainController
         $identity = $this->getIdentityUser();
         $yearParts = $identity->college->year_parts;
         $planRows = PlanRow::grouppedByCourse($identity->pulpit);
+        $planRowForm = new PlanRow();
 
         if (!isset($planRows[$course])) {
             throw new InvalidParamException;
         }
 
-        if ($this->savePlanList($planRows[$course], $yearParts, $identity->pulpit->getId())) {
+        if ($this->savePlanList($planRows[$course], $yearParts, $identity->pulpit->getId(), $planRowForm->formName())) {
             return $this->redirect(['plan/index', 'course' => $course]);
         }
 
-        $planRowForm = new PlanRow();
         $subjects = Subject::getList('name');
 
         return $this->render('index', [
@@ -63,11 +63,24 @@ class PlanController extends AbstractMainController
         ]);
     }
 
-    protected function savePlanList(&$coursePlan, $yearParts, $pulpitId)
+    public function actionRemove($course, $id)
+    {
+        if ($model = PlanRow::find()->where(['id' => $id])->one()) {
+            if ($model->plan->pulpit_id == $this->getIdentityUser()->pulpit_id) {
+                $model->delete();
+
+                return $this->redirect(['plan/index', 'course' => $course]);
+            }
+        }
+
+        throw new InvalidParamException;
+    }
+
+    protected function savePlanList(&$coursePlan, $yearParts, $pulpitId, $formName)
     {
         $soGood = true;
-        if (isset($_POST['PlanRow']) && is_array($_POST['PlanRow'])) {
-            foreach ($_POST['PlanRow'] as $yearPart => $rows) {
+        if (isset($_POST[$formName]) && is_array($_POST[$formName])) {
+            foreach ($_POST[$formName] as $yearPart => $rows) {
                 if ($yearPart > $yearParts || !is_array($rows)) {
                     throw new InvalidParamException;
                 }
@@ -83,7 +96,7 @@ class PlanController extends AbstractMainController
                             }
 
                             /* @var PlanRow $rowModel */
-                            if (!$rowModel->load(['PlanRow' => $rowParams]) || !$rowModel->save()) {
+                            if (!$rowModel->load([$formName => $rowParams]) || !$rowModel->save()) {
                                 $soGood = false;
                             }
                         } else {
@@ -92,8 +105,9 @@ class PlanController extends AbstractMainController
                     } else {
                         $rowModel = new PlanRow();
                         $rowModel->plan_id = $pulpitId;
+                        $rowModel->year_part = $yearPart;
                         $coursePlan[$yearPart][] = $rowModel;
-                        if (!$rowModel->load(['PlanRow' => $rowParams]) || !$rowModel->save()) {
+                        if (!$rowModel->load([$formName => $rowParams]) || !$rowModel->save()) {
                             $soGood = false;
                         }
                     }

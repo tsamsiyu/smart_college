@@ -1,8 +1,8 @@
 <?php namespace frontend\assets;
 
-use common\components\web\AssetBundle;
+use common\components\web\DebugAssetBundle;
 
-class AppAsset extends AssetBundle
+class AppAsset extends DebugAssetBundle
 {
     public $sourcePath = '@app/resources';
 
