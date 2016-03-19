@@ -7,9 +7,23 @@
 }
 
 #cape-header {
+  a {
+    text-decoration: none;
+    color: #001f75;
+  }
   height: 135px;
   @include border-radius(5px);
+  @include box-shadow(inset -7px, -7px, 47px, -8px, grey);
+}
+
+#cape-header:hover {
   @include box-shadow(inset 7px, 7px, 47px, -8px, grey);
+  cursor: pointer;
+}
+
+#cape-header:active {
+  @include box-shadow(inset 7px, 7px, 60px, -8px, grey);
+  cursor: pointer;
 }
 
 #avatar-column {

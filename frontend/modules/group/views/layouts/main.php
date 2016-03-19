@@ -1,5 +1,5 @@
 <?php
-/* @var $this \yii\web\View */
+/* @var $this \common\components\web\View */
 /* @var $content string */
 
 use yii\helpers\Url;
@@ -39,16 +39,6 @@ MainLayoutAsset::register($this);
 
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<?= Url::toRoute('home/logout') ?>">Выйти</a></li>
-<!--                <li class="dropdown">-->
-<!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a href="#">Action</a></li>-->
-<!--                        <li><a href="#">Another action</a></li>-->
-<!--                        <li><a href="#">Something else here</a></li>-->
-<!--                        <li role="separator" class="divider"></li>-->
-<!--                        <li><a href="#">Separated link</a></li>-->
-<!--                    </ul>-->
-<!--                </li>-->
             </ul>
         </div><!-- /.container-fluid -->
     </nav>
@@ -57,8 +47,10 @@ MainLayoutAsset::register($this);
         <section class="container" id="cape">
             <div class="row" id="cape-header">
                 <div class="col-xs-12">
-                    <h1 class="text-center"><?= Yii::$app->user->getIdentity()->group->code ?></h1>
-                    <h2 class="text-center">Кафедра `<?= Yii::$app->user->getIdentity()->group->pulpit->name ?>`</h2>
+                    <a href="<?= Url::toRoute('home/index') ?>">
+                        <h1 class="text-center"><?= $this->getAppUserModel()->group->code ?></h1>
+                        <h2 class="text-center">Кафедра `<?= $this->getAppUserModel()->group->pulpit->name ?>`</h2>
+                    </a>
                 </div>
             </div>
 
@@ -66,7 +58,7 @@ MainLayoutAsset::register($this);
                 <div class="col-xs-2" id="bar-column">
                     <div class="row" style="padding-left: 5px;">
                         <div class="col-xs-12" id="avatar-column">
-                            <img src="<?= Yii::$app->user->getIdentity()->group->getAvatarUrl() ?>" alt="">
+                            <img src="<?= $this->getAppUserModel()->group->getAvatarUrl() ?>" alt="">
                         </div>
                     </div>
                     <div class="row">
