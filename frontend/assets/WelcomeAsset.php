@@ -1,10 +1,9 @@
 <?php namespace frontend\assets;
 
 use common\assets\BootstrapAsset;
-use yii\web\AssetBundle;
-use yii\web\JqueryAsset;
+use common\components\web\DebugAssetBundle;
 
-class WelcomeAsset extends AssetBundle
+class WelcomeAsset extends DebugAssetBundle
 {
     public $sourcePath = '@frontend/resources';
 
@@ -12,11 +11,12 @@ class WelcomeAsset extends AssetBundle
         'forceCopy' => YII_DEBUG
     ];
 
-    public $css = ['styles/welcome.scss'];
+    public $css = [
+        'styles/welcome.scss'
+    ];
 
     public $depends = [
-        BootstrapAsset::class,
-        JqueryAsset::class
+        BootstrapAsset::class
     ];
 
 }

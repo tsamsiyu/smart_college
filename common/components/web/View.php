@@ -26,4 +26,12 @@ class View extends \yii\web\View
         }
     }
 
+    /**
+     * @return \common\models\user\Identity
+     */
+    public function getAppUserModel()
+    {
+        return \Yii::$app->user->getIdentity();
+    }
+
 }

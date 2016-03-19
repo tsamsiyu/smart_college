@@ -3,6 +3,7 @@
 use common\assets\FontAwesomeAsset;
 use common\components\web\DebugAssetBundle;
 use yii\web\JqueryAsset;
+use yii\web\YiiAsset;
 
 class HomeAsset extends DebugAssetBundle
 {
@@ -17,6 +18,7 @@ class HomeAsset extends DebugAssetBundle
     ];
 
     public $depends = [
+        YiiAsset::class,
         JqueryAsset::class,
         FontAwesomeAsset::class
     ];

@@ -12,3 +12,22 @@ $ () ->
 
     $self.addClass 'active-feed-header'
 
+  $('.show-news-form').on 'click', (e) ->
+    $self = $(this)
+    $self.parent().next().removeClass('hidden')
+
+  $('.close-news-form').on 'click', (e) ->
+    $self = $(this)
+    $self.parent().parent().addClass 'hidden'
+
+  $('.news-topic-edit').on 'click', (e) ->
+    $self = $(this)
+    $self.closest('.news-topic').addClass('hidden').next().removeClass('hidden')
+
+  $('.news-topic-delete').on 'click', (e) ->
+    unless confirm('Вы уверенны?')
+      false
+
+  $('.close-editing-topic').on 'click', (e) ->
+    $self = $(this)
+    $self.closest('.news-topic-form').addClass('hidden').prev().removeClass('hidden')

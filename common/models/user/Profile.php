@@ -31,4 +31,9 @@ class Profile extends ActiveRecord
         return Url::toRoute(['storage/file', 'path' => $this->avatar]);
     }
 
+    public function getPresentationName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
 }

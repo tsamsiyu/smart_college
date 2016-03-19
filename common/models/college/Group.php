@@ -18,6 +18,8 @@ use yii\helpers\Url;
  * @property College $college
  * @property Direction $direction
  * @property Subject[] $activeSubjects
+ * @property GroupNews[] $publicNews
+ * @property GroupNews[] $privateNews
  *
  * Class Group
  * @package common\models\college
@@ -46,9 +48,24 @@ class Group extends ActiveRecord
         return $courses;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
     public function getNews()
     {
         return $this->hasMany(GroupNews::className(), ['group_id' => 'id'])->orderBy('created_at DESC');
+    }
+
+    public function getPublicNews()
+    {
+        return $this->getNews()->where(['access' => GroupNews::PUBLIC_ACCESS]);
+    }
+
+    public function getPrivateNews()
+    {
+        return $this->getNews()->where(['access' => GroupNews::PRIVATE_ACCESS]);
     }
 
     /**
@@ -61,11 +78,21 @@ class Group extends ActiveRecord
         return $this->hasOne(Pulpit::className(), ['id' => 'pulpit_id']);
     }
 
+    /**
+     * @return $this
+     *
+     * @active-relation
+     */
     public function getStudents()
     {
         return $this->hasMany(User::className(), ['group_id' => 'id'])->where(['role' => User::STUDENT]);
     }
 
+    /**
+     * @return int
+     *
+     * @active-relation
+     */
     public function getStudentsCount()
     {
         return count($this->students);
@@ -80,11 +107,21 @@ class Group extends ActiveRecord
         return Url::toRoute(['storage/file', 'path' => $this->avatar]);
     }
 
+    /**
+     * @return $this
+     *
+     * @active-relation
+     */
     public function getDirection()
     {
         return $this->hasOne(Direction::className(), ['id' => 'direction_id'])->via('pulpit');
     }
 
+    /**
+     * @return $this
+     *
+     * @active-relation
+     */
     public function getCollege()
     {
         return $this->hasOne(College::className(), ['id' => 'college_id'])->via('direction');
