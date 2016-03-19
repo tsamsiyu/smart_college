@@ -1,11 +1,11 @@
 <?php
 /**
  * @var \common\components\web\View $this
- * @var integer $course
  * @var \common\models\college\PlanRow $planRowForm
+ * @var \common\models\college\Plan $plan
+ * @var integer $course
  * @var integer $yearParts
  * @var array $subjects
- * @var \common\models\college\PlanRow[] $rows
  */
 
 use yii\helpers\Html;
@@ -41,40 +41,38 @@ use yii\helpers\Json;
                 <td></td>
             </tr>
 
-            <?php if (isset($rows[$yearPart])) : ?>
-                <?php foreach ($rows[$yearPart] as $index => $row) : ?>
-                    <tr>
-                        <?php if (!$row->isNewRecord) : ?>
-                            <?= Html::activeInput('hidden', $row, "[{$yearPart}][{$index}]id") ?>
+            <?php foreach ($plan->getSemesterRows($yearPart) as $index => $row) : ?>
+                <tr>
+                    <?php if (!$row->isNewRecord) : ?>
+                        <?= Html::activeInput('hidden', $row, "[{$yearPart}][{$index}]id") ?>
+                    <?php endif; ?>
+
+                    <td <?= $row->hasErrors('subject_id') ? 'class="has-error"' : '' ?>>
+                        <?= Html::activeDropDownList($row, "[{$yearPart}][{$index}]subject_id", $subjects, ['class' => 'form-control', 'prompt' => '']) ?>
+                    </td>
+                    <td <?= $row->hasErrors('credits') ? 'class="has-error"' : '' ?>>
+                        <?= Html::activeInput('text', $row, "[{$yearPart}][{$index}]credits", ['class' => 'form-control']) ?>
+                    </td>
+
+                    <td>
+                        <?php if ($row->isNewRecord) : ?>
+                            <a href="#" class="remove-plan-row">
+                                <i class="fa fa-close"></i>
+                            </a>
+                        <?php else: ?>
+                            <a href="<?= Url::toRoute(['plan/remove', 'id' => $row->getId(), 'course' => $course]) ?>">
+                                <i class="fa fa-close"></i>
+                            </a>
                         <?php endif; ?>
-
-                        <td <?= $row->hasErrors('subject_id') ? 'class="has-error"' : '' ?>>
-                            <?= Html::activeDropDownList($row, "[{$yearPart}][{$index}]subject_id", $subjects, ['class' => 'form-control', 'prompt' => '']) ?>
-                        </td>
-                        <td <?= $row->hasErrors('credits') ? 'class="has-error"' : '' ?>>
-                            <?= Html::activeInput('text', $row, "[{$yearPart}][{$index}]credits", ['class' => 'form-control']) ?>
-                        </td>
-
-                        <td>
-                            <?php if ($row->isNewRecord) : ?>
-                                <a href="#" class="remove-plan-row">
-                                    <i class="fa fa-close"></i>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?= Url::toRoute(['plan/remove', 'id' => $row->getId(), 'course' => $course]) ?>">
-                                    <i class="fa fa-close"></i>
-                                </a>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
 
             <tr>
                 <td colspan="2">
                     <a href="#"
                        data-year-part="<?= $yearPart ?>"
-                       data-next-index="<?= isset($rows[$yearPart]) ? count($rows[$yearPart]) + 1 : 0 ?>"
+                       data-next-index="<?= count($plan->getSemesterRows($yearPart)) + 1 ?>"
                        class="add-plan-row">
                         <i class="fa fa-plus-circle"></i> Добавить
                     </a>

@@ -101,10 +101,4 @@ class HomeController extends AbstractMainController
         throw new InvalidParamException;
     }
 
-    public function actionLogout()
-    {
-        \Yii::$app->user->logout();
-
-        return $this->redirect('welcome/index');
-    }
 }

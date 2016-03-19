@@ -20,6 +20,7 @@ use yii\helpers\Url;
  * @property Subject[] $activeSubjects
  * @property GroupNews[] $publicNews
  * @property GroupNews[] $privateNews
+ * @property Plan $plan
  *
  * Class Group
  * @package common\models\college
@@ -149,6 +150,11 @@ class Group extends ActiveRecord
         }
 
         return $q->all();
+    }
+
+    public function getPlan()
+    {
+        return $this->hasOne(Plan::className(), ['course' => $this->course]);
     }
 
 }

@@ -2,6 +2,7 @@
 
 use common\assets\BootstrapAsset;
 use common\components\web\DebugAssetBundle;
+use yii\web\YiiAsset;
 
 class MainLayoutAsset extends DebugAssetBundle
 {
@@ -12,6 +13,7 @@ class MainLayoutAsset extends DebugAssetBundle
     ];
 
     public $depends = [
+        YiiAsset::class,
         BootstrapAsset::class
     ];
 }

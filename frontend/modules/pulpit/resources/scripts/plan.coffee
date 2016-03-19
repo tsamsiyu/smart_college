@@ -11,21 +11,21 @@ $ () ->
   )()
 
   buildInputName = (yearPart, index, name) ->
-    "#{formName}[#{yearPart}][#{index}]#{name}"
+    "#{formName}[#{yearPart}][#{index}][#{name}]"
 
   buildPlanRow = (yearPart, index) ->
     "<tr>
       <td>
-          <select name='{subjectInputName}' class='form-control'>
-            <option value=''></option>
-            #{subjectsListRaw}
-          </select>
+        <select name='{subjectInputName}' class='form-control'>
+          <option value=''></option>
+          #{subjectsListRaw}
+        </select>
       </td>
       <td>
         <input type='text' name='{creditsInputName}' class='form-control'>
       </td>
       <td></td>
-     </tr>"
+    </tr>"
     .replace '{subjectInputName}', buildInputName yearPart, index, 'subject_id'
     .replace '{creditsInputName}', buildInputName yearPart, index, 'credits'
 

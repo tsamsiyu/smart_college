@@ -1,11 +1,9 @@
 <?php
 /**
  * @var \common\components\web\View $this
- * @var \common\models\user\Identity $identity
  * @var \common\models\college\PlanRow $planRowForm
  * @var integer $activeCourse
  * @var array $subjects
- * @var array $plan
  */
 
 $this->title = 'Учебные планы';
@@ -21,26 +19,26 @@ $this->title = 'Учебные планы';
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <?php foreach ($plan as $courseNumber => $rows) : ?>
-                        <li role="presentation" <?= $courseNumber == $activeCourse ? 'class="active"' : '' ?>>
-                            <a href="<?= '#course' . $courseNumber ?>" aria-controls="course1" role="tab" data-toggle="tab"><?= $courseNumber ?> курс</a>
+                    <?php for ($i = 1; $i <= $this->getAppUserModel()->college->courses_count; ++$i) : ?>
+                        <li role="presentation" <?= $i == $activeCourse ? 'class="active"' : '' ?>>
+                            <a href="<?= '#course' . $i ?>" aria-controls="course1" role="tab" data-toggle="tab"><?= $i ?> курс</a>
                         </li>
-                    <?php endforeach; ?>
+                    <?php endfor; ?>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content form-wrapper">
-                    <?php foreach ($plan as $courseNumber => $rows) : ?>
-                        <div role="tabpanel" class="tab-pane <?= $courseNumber == $activeCourse ? 'active' : '' ?>" id="<?= 'course' . $courseNumber ?>">
+                    <?php for ($i = 1; $i <= $this->getAppUserModel()->college->courses_count; ++$i) : ?>
+                        <div role="tabpanel" class="tab-pane <?= $i == $activeCourse ? 'active' : '' ?>" id="<?= 'course' . $i ?>">
                             <?= $this->render('_form', [
-                                'course' => $courseNumber,
-                                'rows' => $rows,
+                                'course' => $i,
+                                'plan' => $this->getAppUserModel()->pulpit->getCoursePlan($i),
                                 'planRowForm' => $planRowForm,
                                 'subjects' => $subjects,
-                                'yearParts' => $identity->pulpit->college->year_parts,
+                                'yearParts' => $this->getAppUserModel()->pulpit->college->year_parts
                             ]) ?>
                         </div>
-                    <?php endforeach; ?>
+                    <?php endfor; ?>
                 </div>
 
             </div>

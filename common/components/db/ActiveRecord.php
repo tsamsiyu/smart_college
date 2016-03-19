@@ -1,5 +1,6 @@
 <?php namespace common\components\db;
 
+use Yii;
 use yii\helpers\ArrayHelper;
 
 class ActiveRecord extends \yii\db\ActiveRecord
@@ -19,6 +20,11 @@ class ActiveRecord extends \yii\db\ActiveRecord
     {
         $key = $key ?: static::getIdName();
         return ArrayHelper::map(static::find()->select([$key, $value])->all(), $key, $value);
+    }
+
+    public static function find()
+    {
+        return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
     }
 
 }

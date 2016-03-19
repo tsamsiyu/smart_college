@@ -82,11 +82,11 @@ class Pulpit extends ActiveRecord
 
     /**
      * @param $course
-     * @return mixed
+     * @return Plan
      *
      * @cache-fragment
      */
-    public function getPlanByCourse($course)
+    public function getCoursePlan($course)
     {
         return $this->cacheFragment('course_' . $course, function () use ($course) {
             return Plan::find()->where(['pulpit_id' => $this->getId(), 'course' => $course])->one();

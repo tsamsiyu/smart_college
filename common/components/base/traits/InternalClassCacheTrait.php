@@ -7,7 +7,8 @@ trait InternalClassCacheTrait
     public function cacheFragment($name, callable $value, $reload = false)
     {
         if (!isset($this->_cachedFragments[$name]) || $reload) {
-            return $this->_cachedFragments[$name] = call_user_func($value);
+            $oldValue = isset($this->_cachedFragments[$name]) ? $this->_cachedFragments[$name] : null;
+            return $this->_cachedFragments[$name] = call_user_func_array($value, [$oldValue]);
         }
 
         return $this->_cachedFragments[$name];

@@ -30,6 +30,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Profile $profile
  * @property Group $group
  * @property Pulpit $pulpit
+ * @property College $college
  */
 class User extends ActiveRecord
 {

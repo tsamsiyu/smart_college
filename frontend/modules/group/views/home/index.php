@@ -41,7 +41,6 @@ HomeAsset::register($this);
                     <div class="form-group <?= $publicNewsModel->hasErrors('body') ? 'has-error' : '' ?>">
                         <?= Html::activeTextarea($publicNewsModel, 'body', [
                             'class' => 'form-control',
-                            'id' => 'inputTitle',
                             'placeholder' => 'Публичная новость...'
                         ]) ?>
                     </div>
@@ -76,7 +75,6 @@ HomeAsset::register($this);
                         <div class="form-group <?= $topic->hasErrors('body') ? 'has-error' : '' ?>">
                             <?= Html::activeTextarea($topic, 'body', [
                                 'class' => 'form-control',
-                                'id' => 'inputTitle',
                                 'placeholder' => 'Приватная новость...'
                             ]) ?>
                         </div>
@@ -101,7 +99,6 @@ HomeAsset::register($this);
                     <div class="form-group <?= $privateNewsModel->hasErrors('body') ? 'has-error' : '' ?>">
                         <?= Html::activeTextarea($privateNewsModel, 'body', [
                             'class' => 'form-control',
-                            'id' => 'inputTitle',
                             'placeholder' => 'Приватная новость...'
                         ]) ?>
                     </div>
@@ -127,7 +124,7 @@ HomeAsset::register($this);
                     <?php endif; ?>
                     <div><?= $topic->body ?></div>
                     <div class="topic-meta">
-                        <?= $topic->created ?> | <?= $topic->author->profile->presentationName ?>
+                        <?= $topic->updated ?> | <?= $topic->author->profile->presentationName ?>
                     </div>
                 </div>
                 <div class="news-topic-form hidden">
@@ -135,7 +132,6 @@ HomeAsset::register($this);
                         <div class="form-group <?= $topic->hasErrors('body') ? 'has-error' : '' ?>">
                             <?= Html::activeTextarea($topic, 'body', [
                                 'class' => 'form-control',
-                                'id' => 'inputTitle',
                                 'placeholder' => 'Приватная новость...'
                             ]) ?>
                         </div>

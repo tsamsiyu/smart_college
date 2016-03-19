@@ -11,6 +11,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $body
  * @property string $created_at
  * @property string $created
+ * @property string $updated
  * @property string $updated_at
  * @property integer $access
  * @property integer $group_id
@@ -74,6 +75,11 @@ class GroupNews extends ActiveRecord
     public function getCreated()
     {
         return Yii::$app->formatter->asDatetime($this->created_at);
+    }
+
+    public function getUpdated()
+    {
+        return Yii::$app->formatter->asDatetime($this->updated_at);
     }
 
     public function isPublic()
