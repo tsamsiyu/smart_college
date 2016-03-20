@@ -84,8 +84,8 @@ class PlanController extends AbstractMainController
 
                 foreach ($rows as $index => $rowParams) {
                     if (isset($rowParams['id'])) {
-                        $planRow = $plan->findRow()->byPk($rowParams['id'])->andWhere(['year_part' => $yearPart])->one();
-                        if ($planRow) {
+                        $planRow = $plan->findRow()->byPk($rowParams['id'])->one();
+                        if ($planRow && $planRow->year_part == $yearPart) {
                             if (!$planRow->load([$planRow->formName() => $rowParams]) || !$planRow->save()) {
                                 $soGood = false;
                             }
