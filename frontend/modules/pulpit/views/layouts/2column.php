@@ -69,7 +69,7 @@ $identity = $this->getAppUserModel();
 
             <div class="row">
                 <div id="pulpit-content">
-                    <div class="col-xs-3">
+                    <div class="col-xs-3" id="column1">
                         <div id="pulpit-avatar">
                             <img src="<?= $identity->pulpit->getAvatarUrl() ?>" alt="Avatar">
                         </div>
@@ -82,7 +82,7 @@ $identity = $this->getAppUserModel();
                         </div>
                     </div>
 
-                    <div class="col-xs-9">
+                    <div class="col-xs-9" id="column2">
                         <div id="content">
                             <?= $content ?>
                         </div>

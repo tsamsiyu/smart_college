@@ -18,3 +18,15 @@ $lightedColor: #f3f3f3;
 @mixin test-outline($color: red) {
   outline: 1px solid $color;
 }
+
+.invalid {
+  color: red;
+}
+
+.invalid-block {
+  border: 1px solid red;
+}
+
+.invalid-value {
+  border: 1px solid red;
+}

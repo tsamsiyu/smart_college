@@ -10,6 +10,8 @@ use yii\helpers\Url;
  * @property Plan[] $plans
  * @property College $college
  * @property array groupsByCourse
+ * @property PulpitNews[] $publicNews
+ * @property PulpitNews[] $privateNews
  *
  * @property string $avatar
  * @property string $name
@@ -123,10 +125,17 @@ class Pulpit extends ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        if ($insert) {
-            Plan::generatePlans($this->getId());
-        }
-
         parent::afterSave($insert, $changedAttributes);
     }
+
+    public function getPublicNews()
+    {
+        return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])->where(['access' => PulpitNews::PUBLIC_ACCESS]);
+    }
+
+    public function getPrivateNews()
+    {
+        return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])->where(['access' => PulpitNews::PRIVATE_ACCESS]);
+    }
+
 }

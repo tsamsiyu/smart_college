@@ -13,7 +13,7 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\modules\group\assets\HomeAsset;
 
-HomeAsset::register($this);
+//HomeAsset::register($this);
 
 ?>
 

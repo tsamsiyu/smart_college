@@ -10,8 +10,7 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
-        'log',
-        'frontend\bootstrap\UserHomeUrlBootstrap'
+        'log'
     ],
     'homeUrl' => 'home',
     'controllerNamespace' => 'frontend\controllers',
