@@ -38,7 +38,7 @@ MainLayoutAsset::register($this);
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?= Url::toRoute(['/site/logout']) ?>" data-method="POST">Выйти</a></li>
+                <li><a href="<?= Url::toRoute(['/user/logout']) ?>" data-method="POST">Выйти</a></li>
             </ul>
         </div><!-- /.container-fluid -->
     </nav>

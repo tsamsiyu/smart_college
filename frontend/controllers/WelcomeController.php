@@ -26,7 +26,7 @@ class WelcomeController extends Controller
                     ]
                 ],
                 'denyCallback' => function () {
-                    return $this->redirect(['home/index']);
+                    return $this->goHome();
                 }
             ],
             'verbs' => [

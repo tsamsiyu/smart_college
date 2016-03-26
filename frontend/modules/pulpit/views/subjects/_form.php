@@ -7,6 +7,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use common\assets\BootstrapAsset;
+
+BootstrapAsset::register($this);
 
 ?>
 

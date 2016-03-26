@@ -8,6 +8,12 @@ use yii\helpers\Url;
 
 $this->title = "Редактирование учебного предмета '{$form['name']}''";
 
+$this->params['breadcrumbs'][] = [
+    'label' => 'Учебные предменты',
+    'url' => ['/pulpit/subjects']
+];
+$this->params['breadcrumbs'][] = 'Редактировать';
+
 ?>
 
 <div class="container cape">

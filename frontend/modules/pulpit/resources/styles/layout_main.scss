@@ -1,0 +1,29 @@
+@import "_main.scss";
+
+#primary-block {
+  padding: 5px;
+  background-color: $mainColor;
+}
+
+#pulpit-header {
+  @include box-shadow(inset 0, 0px, 10px, -2px, rgb(52, 117, 225));
+  text-align: center;
+  padding-bottom: 10px;
+  img {
+    margin-top: 10px;
+    width: 150px;
+  }
+  h1 {
+    margin: 0;
+  }
+}
+
+a#home-link {
+  color: #50a3d4;
+  text-decoration: none;
+}
+
+#pulpit-header:hover {
+  @include box-shadow(inset 2px, 2px, 15px, -1px, rgb(52, 117, 225));
+  cursor: pointer;
+}

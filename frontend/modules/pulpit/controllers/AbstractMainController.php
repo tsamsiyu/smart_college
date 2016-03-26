@@ -4,5 +4,20 @@ use common\components\web\Controller;
 
 abstract class AbstractMainController extends Controller
 {
-    public $layout = '@app/modules/pulpit/views/layouts/cape';
+    protected $_homeRoute = 'pulpit/home';
+    public $layout = '2column';
+
+    public function init()
+    {
+        if ($this->route == $this->_homeRoute) {
+            $this->view->params['breadcrumbs'][] = 'Кафедра';
+        } else {
+            $this->view->params['breadcrumbs'][] = [
+                'label' => 'Кафедра',
+                'url' => '.'
+            ];
+        }
+    }
+
+
 }

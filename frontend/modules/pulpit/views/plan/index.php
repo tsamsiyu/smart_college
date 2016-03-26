@@ -6,9 +6,12 @@
  * @var array $subjects
  */
 
-$this->title = 'Учебные планы';
+use \frontend\modules\pulpit\assets\PlanAsset;
 
-\frontend\modules\pulpit\assets\PlanAsset::register($this);
+$this->title = 'Учебные планы';
+$this->params['breadcrumbs'][] = 'Учебный план';
+
+PlanAsset::register($this);
 
 ?>
 

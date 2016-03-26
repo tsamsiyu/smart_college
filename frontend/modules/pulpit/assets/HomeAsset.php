@@ -1,5 +1,6 @@
 <?php namespace frontend\modules\pulpit\assets;
 
+use common\assets\BootstrapAsset;
 use common\components\web\DebugAssetBundle;
 
 class HomeAsset extends DebugAssetBundle
@@ -12,6 +13,10 @@ class HomeAsset extends DebugAssetBundle
 
     public $js = [
         'scripts/home.coffee'
+    ];
+
+    public $depends = [
+        BootstrapAsset::class
     ];
 
 }

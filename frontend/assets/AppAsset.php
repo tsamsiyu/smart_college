@@ -1,6 +1,7 @@
 <?php namespace frontend\assets;
 
 use common\components\web\DebugAssetBundle;
+use yii\web\YiiAsset;
 
 class AppAsset extends DebugAssetBundle
 {
@@ -9,4 +10,9 @@ class AppAsset extends DebugAssetBundle
     public $css = [
         'styles/general.scss'
     ];
+
+    public $depends = [
+        YiiAsset::class
+    ];
+
 }

@@ -8,6 +8,8 @@ use yii\filters\VerbFilter;
 
 class SubjectsController extends AbstractMainController
 {
+    public $layout = 'main';
+
     public function behaviors()
     {
         return [

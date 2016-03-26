@@ -6,16 +6,18 @@
  */
 
 use yii\helpers\Url;
+use frontend\modules\pulpit\assets\SubjectsAsset;
 
 $this->title = 'Учебные предметы';
+$this->params['breadcrumbs'][] = 'Учебные предметы';
 
 echo $this->jsVariable('errorsInModal', $form->hasErrors());
 
-\frontend\modules\pulpit\assets\SubjectsAsset::register($this);
+SubjectsAsset::register($this);
 
 ?>
 
-<div class="container" id="cape">
+<div id="cape">
     <div class="row">
         <div class="col-xs-12">
             <a href="<?= Url::toRoute('subjects/new') ?>" class="btn btn-primary">Добавить&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></a>

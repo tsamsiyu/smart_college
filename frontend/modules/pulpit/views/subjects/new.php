@@ -7,6 +7,11 @@
 use yii\helpers\Url;
 
 $this->title = 'Добавление предмета.';
+$this->params['breadcrumbs'][] = [
+    'label' => 'Учебные предменты',
+    'url' => ['/pulpit/subjects']
+];
+$this->params['breadcrumbs'][] = 'Создать';
 
 ?>
 
