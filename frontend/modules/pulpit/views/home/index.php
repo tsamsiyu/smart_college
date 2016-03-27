@@ -6,7 +6,6 @@
 
 $this->title = 'Кафедра "' . $this->getAppUserModel()->pulpit->name . '"';
 
-use yii\helpers\Url;
 use \frontend\modules\pulpit\assets\HomeAsset;
 
 $this->params['breadcrumbs'] = [];
@@ -53,23 +52,4 @@ HomeAsset::register($this);
         'form' => $form,
         'topics' => $this->getAppUserModel()->pulpit->privateNews
     ]) ?>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="modalAddTopic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h5 class="modal-title" id="myModalLabel">Оповещение</h5>
-            </div>
-            <div class="modal-body">
-                <p>Новость была успешно сохранена</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            </div>
-        </div>
-    </div>
 </div>

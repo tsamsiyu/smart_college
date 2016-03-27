@@ -1,11 +1,11 @@
 <?php
 /**
  * @var string $feedKey - public, private etc
- * @var \common\models\college\PulpitNews $form
+ * @var \common\models\college\GroupNews $form
  * @var string $createUri
  * @var string $editUri
  * @var string $removeUri
- * @var \common\models\college\PulpitNews[] $topics
+ * @var \common\models\college\GroupNews[] $topics
  */
 
 use yii\helpers\Html;

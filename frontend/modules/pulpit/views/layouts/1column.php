@@ -6,9 +6,9 @@ use common\components\web\View;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
-use frontend\modules\pulpit\assets\Layout2ColumnAsset;
+use frontend\modules\pulpit\assets\Layout1ColumnAsset;
 
-Layout2ColumnAsset::register($this);
+Layout1ColumnAsset::register($this);
 
 $identity = $this->getAppUserModel();
 
@@ -55,6 +55,7 @@ $identity = $this->getAppUserModel();
                 ]); ?>
             </div>
         </div>
+
         <div id="primary-block">
             <div class="row">
                 <div class="col-xs-12">
@@ -68,24 +69,9 @@ $identity = $this->getAppUserModel();
             </div>
 
             <div class="row">
-                <div id="community-content">
-                    <div class="col-xs-3" id="column1">
-                        <div id="community-avatar">
-                            <img src="<?= $identity->pulpit->getAvatarUrl() ?>" alt="Avatar">
-                        </div>
-
-                        <div id="community-menu">
-                            <ul>
-                                <li><a href="<?= Url::to(['/pulpit/subjects']) ?>">Предметы</a></li>
-                                <li><a href="<?= Url::to(['/pulpit/plan']) ?>">План</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-9" id="column2">
-                        <div id="content">
-                            <?= $content ?>
-                        </div>
+                <div class="col-xs-12">
+                    <div id="content">
+                        <?= $content ?>
                     </div>
                 </div>
             </div>

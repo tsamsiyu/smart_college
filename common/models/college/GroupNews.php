@@ -1,5 +1,6 @@
 <?php namespace common\models\college;
 
+use common\models\user\User;
 use Yii;
 use common\components\db\ActiveRecord;
 use common\models\user\Identity;
@@ -90,6 +91,11 @@ class GroupNews extends ActiveRecord
     public function isPrivate()
     {
         return $this->access = self::PRIVATE_ACCESS;
+    }
+
+    public function isOwner(User $user)
+    {
+        return $user->getId() == $this->author_id;
     }
 
 }

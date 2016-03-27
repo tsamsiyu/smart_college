@@ -25,11 +25,10 @@ class HomeController extends AbstractMainController
 
     public function actionIndex()
     {
-        $groupNewsModel = new GroupNews();
+        $form = new GroupNews();
 
         return $this->render('index', [
-            'privateNewsModel' => $groupNewsModel,
-            'publicNewsModel' => $groupNewsModel
+            'form' => $form
         ]);
     }
 

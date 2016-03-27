@@ -1,5 +1,5 @@
 $ () ->
-
+  $body = $('body')
   $feedLabel = $('a.feed-label')
   $feedColumn = $('.feed-column')
   topicTemplate = $('.topic-template').html()
@@ -49,7 +49,6 @@ $ () ->
       .done (response) ->
         if response.status == Api.serverResponse.status.SAVED
           $body.removeClass 'invalid-value'
-          $('#modalAddTopic').modal()
           callback(response.data)
       .fail () ->
         alert('Произошла серверная ошибка, пожалуйста обратитесь к администратору, чтобы мы исправили ее')
@@ -84,19 +83,19 @@ $ () ->
       $(newsList).prepend createdTopicBlock
     e.preventDefault()
 
-  $('body').on 'click', '.topic-edit', (e) ->
+  $body.on 'click', '.topic-edit', (e) ->
     $self = $(this)
     $topicWrapper = $self.closest('.topic-wrapper');
     toggleTopicMode($topicWrapper)
     e.preventDefault()
 
-  $('body').on 'click', '.topic-edit_form-close', (e) ->
+  $body.on 'click', '.topic-edit_form-close', (e) ->
     $self = $(this)
     $topicWrapper = $self.closest('.topic-wrapper')
     toggleTopicMode($topicWrapper)
     e.preventDefault()
 
-  $('body').on 'submit', '.topic-edit_form form', (e) ->
+  $body.on 'submit', '.topic-edit_form form', (e) ->
     $self = $(this)
     topicSend $self, (data) ->
       $topicWrapper = $self.closest '.topic-wrapper'
@@ -105,13 +104,13 @@ $ () ->
       toggleTopicMode $topicWrapper
     e.preventDefault()
 
-  $('body').on 'click', '.topic-remove', (e) ->
+  $body.on 'click', '.topic-remove', (e) ->
     $self = $(this)
     if confirm $self.data 'confirm-message'
       topicRemove($self)
     e.preventDefault()
 
-  # RUN EVENTS
+  # # # ~ RUN APP ~ # # #
 
   if location.hash == '#private'
     $('#private-label').trigger 'click'

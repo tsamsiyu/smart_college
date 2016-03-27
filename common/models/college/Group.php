@@ -157,4 +157,29 @@ class Group extends ActiveRecord
         return $this->hasOne(Plan::className(), ['course' => $this->course]);
     }
 
+    /**
+     * @return \common\components\db\ActiveQuery
+     * @param integer $id
+     */
+    public function findNews($id = null)
+    {
+        $query = GroupNews::find()->where(['group_id' => $this->getId()]);
+
+        if ($id) {
+            $query->byPk($id);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param string $access
+     * @param null|integer $id
+     * @return \common\components\db\ActiveQuery
+     */
+    public function findNewsByAccess($access, $id = null)
+    {
+        return $this->findNews($id)->andWhere(['access' => $access]);
+    }
+
 }

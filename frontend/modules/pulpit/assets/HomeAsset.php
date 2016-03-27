@@ -21,7 +21,6 @@ class HomeAsset extends DebugAssetBundle
 
     public $depends = [
         JqueryAjaxFormPlugin::class,
-        JqueryFormErrorsPlugin::class,
         BootstrapAsset::class,
         FontAwesomeAsset::class,
         ApiScriptAsset::class
