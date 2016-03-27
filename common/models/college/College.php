@@ -6,6 +6,9 @@ use common\components\db\ActiveRecord;
  * @property integer $year_parts
  * @property integer $courses_count
  *
+ * @property Pulpit[] $pulpits
+ * @property Direction[] $directions
+ *
  * Class College
  * @package common\models\college
  */
@@ -35,6 +38,28 @@ class College extends ActiveRecord
                 return 2;
             }
         }
+    }
+
+    public function getDirections()
+    {
+        return $this->hasMany(Direction::className(), ['college_id' => 'id']);
+    }
+
+    /**
+     * @return \common\components\db\ActiveQuery
+     */
+    public function getPulpits()
+    {
+        return $this->hasMany(Pulpit::className(), ['direction_id' => 'id'])->via('directions');
+    }
+
+    /**
+     * @param array $conditions
+     * @return \common\components\db\ActiveQuery
+     */
+    public function findPulpits(array $conditions = [])
+    {
+        return Pulpit::find()->joinWith('direction')->where(['college_id' => $this->getId()])->andWhere($conditions);
     }
 
 }

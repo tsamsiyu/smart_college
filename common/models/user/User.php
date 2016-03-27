@@ -31,6 +31,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Group $group
  * @property Pulpit $pulpit
  * @property College $college
+ * @property Pulpit[] $otherPulpits
  */
 class User extends ActiveRecord
 {
@@ -150,6 +151,16 @@ class User extends ActiveRecord
     public function getPulpit()
     {
         return $this->hasOne(Pulpit::className(), ['id' => 'pulpit_id']);
+    }
+
+    public function getOtherPulpits()
+    {
+        return Pulpit::find()->where("id != :selfPulpitId", [':selfPulpitId' => $this->pulpit_id])->all();
+    }
+
+    public function isOwnPulpit(Pulpit $pulpit)
+    {
+        return $pulpit->getId() == $this->pulpit_id;
     }
 
     /**
