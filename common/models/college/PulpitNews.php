@@ -2,6 +2,7 @@
 
 use common\components\db\ActiveRecord;
 use common\models\user\Identity;
+use common\models\user\User;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -13,6 +14,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $access
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $created
+ * @property string $updated
  *
  * @property Identity $author
  * @property Pulpit $pulpit
@@ -61,6 +64,11 @@ class PulpitNews extends ActiveRecord
     public function getAuthor()
     {
         return $this->hasOne(Identity::className(), ['id' => 'author_id']);
+    }
+
+    public function isOwner(User $user)
+    {
+        return $user->getId() == $this->author_id;
     }
 
     /**

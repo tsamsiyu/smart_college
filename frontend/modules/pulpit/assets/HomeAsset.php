@@ -1,5 +1,6 @@
 <?php namespace frontend\modules\pulpit\assets;
 
+use common\assets\ApiScriptAsset;
 use common\assets\BootstrapAsset;
 use common\assets\FontAwesomeAsset;
 use common\assets\JqueryAjaxFormPlugin;
@@ -22,7 +23,8 @@ class HomeAsset extends DebugAssetBundle
         JqueryAjaxFormPlugin::class,
         JqueryFormErrorsPlugin::class,
         BootstrapAsset::class,
-        FontAwesomeAsset::class
+        FontAwesomeAsset::class,
+        ApiScriptAsset::class
     ];
 
 }

@@ -12,43 +12,87 @@ class NewsController extends Controller
     {
         return [
             'ajax' => [
-                'class' => AjaxFilter::className(),
-                'actions' => ['save-public-topic', 'save-private-topic']
+                'class' => AjaxFilter::className()
             ],
             'verb' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'save-public-topic' => ['post'],
-                    'save-private-topic' => ['post']
+                    'save-private-topic' => ['post'],
+                    'edit-public-topic' => ['post'],
+                    'edit-private-topic' => ['post'],
+                    'remove-topic' => ['delete']
                 ]
             ]
         ];
     }
 
-
     public function actionSavePublicTopic()
     {
-        return $this->saveTopicWithAccess(PulpitNews::PUBLIC_ACCESS);
+        return $this->createTopicWithAccess(PulpitNews::PUBLIC_ACCESS);
     }
 
     public function actionSavePrivateTopic()
     {
-        return $this->saveTopicWithAccess(PulpitNews::PRIVATE_ACCESS);
+        return $this->createTopicWithAccess(PulpitNews::PRIVATE_ACCESS);
     }
 
-    protected function saveTopicWithAccess($access)
+    public function actionEditPublicTopic($id)
+    {
+        return $this->editTopicWithAccess($id, PulpitNews::PUBLIC_ACCESS);
+    }
+
+    public function actionEditPrivateTopic($id)
+    {
+        return $this->editTopicWithAccess($id, PulpitNews::PRIVATE_ACCESS);
+    }
+
+    public function actionRemoveTopic($id)
+    {
+        if ($topic = $this->getIdentityUser()->pulpit->findNews($id)->one()) {
+            if ($topic->delete()) {
+                return $this->json(JsonResponse::DELETED);
+            } else {
+                return $this->json(JsonResponse::NON_EXECUTION);
+            }
+        }
+
+        return $this->json(JsonResponse::NON_EXIST);
+    }
+
+    protected function editTopicWithAccess($id, $access)
+    {
+        /* @var PulpitNews $model */
+        $model = $this->getIdentityUser()->pulpit->findNewsByAccess($access, $id)->one();
+        $model->access = $access;
+
+        return $this->saveTopic($model);
+    }
+
+
+    protected function createTopicWithAccess($access)
     {
         $model = new PulpitNews();
         $model->access = $access;
-        $model->pulpit_id = $this->getIdentityUser()->pulpit_id;
-        $model->author_id = $this->getIdentityUser()->getId();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            return $this->json(JsonResponse::SAVED);
+        return $this->saveTopic($model);
+    }
+
+    protected function saveTopic(PulpitNews $topic)
+    {
+        $topic->pulpit_id = $this->getIdentityUser()->pulpit_id;
+        $topic->author_id = $this->getIdentityUser()->getId();
+
+        if ($topic->load(\Yii::$app->request->post()) && $topic->save()) {
+            return $this->json(JsonResponse::SAVED, [
+                'updated' => $topic->updated,
+                'id' => $topic->getId(),
+                'body' => $topic->body
+            ]);
         }
 
         return $this->json(JsonResponse::INVALIDATED, [
-            'errors' => $model->firstErrors
+            'errors' => $topic->firstErrors
         ]);
     }
 

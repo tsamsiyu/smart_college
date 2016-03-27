@@ -26,7 +26,9 @@ class WelcomeController extends Controller
                     ]
                 ],
                 'denyCallback' => function () {
-                    return $this->goHome();
+                    /* @var \frontend\components\web\User $user */
+                    $user = Yii::$app->user;
+                    return $this->redirect([$user->homeUrl]);
                 }
             ],
             'verbs' => [

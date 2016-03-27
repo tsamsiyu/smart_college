@@ -128,14 +128,49 @@ class Pulpit extends ActiveRecord
         parent::afterSave($insert, $changedAttributes);
     }
 
+    /**
+     * @return \common\components\db\ActiveQuery
+     */
     public function getPublicNews()
     {
-        return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])->where(['access' => PulpitNews::PUBLIC_ACCESS]);
+        return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])
+            ->where(['access' => PulpitNews::PUBLIC_ACCESS])
+            ->orderBy(['updated_at' => SORT_DESC]);
     }
 
+    /**
+     * @return \common\components\db\ActiveQuery
+     * @param integer $id
+     */
+    public function findNews($id = null)
+    {
+        $query = PulpitNews::find()->where(['pulpit_id' => $this->getId()]);
+
+        if ($id) {
+            $query->byPk($id);
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param string $access
+     * @param null|integer $id
+     * @return \common\components\db\ActiveQuery
+     */
+    public function findNewsByAccess($access, $id = null)
+    {
+        return $this->findNews($id)->andWhere(['access' => $access]);
+    }
+
+    /**
+     * @return \common\components\db\ActiveQuery
+     */
     public function getPrivateNews()
     {
-        return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])->where(['access' => PulpitNews::PRIVATE_ACCESS]);
+        return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])
+            ->where(['access' => PulpitNews::PRIVATE_ACCESS])
+            ->orderBy(['updated_at' => SORT_DESC]);
     }
 
 }

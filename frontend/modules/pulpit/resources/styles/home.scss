@@ -1,10 +1,10 @@
 @import "_main.scss";
 
 
-#select-feed {
+#feed-labels {
   padding: 0;
   height: 20px;
-  .select-feed-label {
+  .feed-label-column {
     padding: 0;
     a {
       display: block;
@@ -28,27 +28,20 @@
   display: none;
 }
 
-.feed-panel {
-  height: 20px;
-  margin: 0 2px 0 2px;
-  padding-left: 10px;
-  background-color: $darkedColor;
-}
-
 .feed-column {
   margin-top: 5px;
-  padding: 0;
+  padding: 0 2px;
 }
 
 .active-feed-column {
   display: block;
 }
 
-.news-form {
+.topic-form {
   padding: 10px;
 }
 
-.news-form-wrapper {
+.topic-form-wrapper {
   @include box-shadow(inset 2px, 2px, 2px, -2px, rgb(52, 117, 225));
   padding: 5px;
   border-radius: 3px;
@@ -57,4 +50,37 @@
     max-width: 100%;
     min-height: 40px;
   }
+}
+
+.topic_form-toggle {
+  display: block;
+  height: 20px;
+  background-color: #d1e2f7;
+  width: 100%;
+}
+
+.topic_form-toggle:hover {
+  opacity: 0.5;
+}
+
+.topic-wrapper {
+  .topic-block, .topic-edit_form {
+    padding: 3px 6px;
+    margin: 4px 0;
+  }
+  .topic-block {
+    background-color: white;
+    .topic-meta {
+      margin-top: 4px;
+      color: grey;
+      font-size: 10px;
+    }
+    .topic-panel {
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.topic-wrapper:hover {
+  background-color: $lightedColor;
 }

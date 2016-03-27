@@ -22,6 +22,10 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return ArrayHelper::map(static::find()->select([$key, $value])->all(), $key, $value);
     }
 
+    /**
+     * @return ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     */
     public static function find()
     {
         return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
