@@ -38,7 +38,7 @@ $identity = $this->getAppUserModel();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Smart College</a>
+                <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>">Smart College</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<?= Url::to(['/user/logout']) ?>" data-method="POST">Выйти</a></li>

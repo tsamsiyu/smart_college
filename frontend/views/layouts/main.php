@@ -1,9 +1,11 @@
 <?php
-/* @var $this \yii\web\View */
+/* @var \common\components\web\View $this */
 /* @var $content string */
 
+use common\components\web\helpers\Url;
 use yii\helpers\Html;
 
+\common\assets\BootstrapAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>
@@ -30,8 +32,15 @@ use yii\helpers\Html;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Smart College</a>
+            <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>">Smart College</a>
         </div>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="<?= Url::to(['/pulpits']) ?>" data-method="POST">Кафедры</a></li>
+            <li><a href="<?= Url::to(['/groups']) ?>" data-method="POST">Группы</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="<?= Url::to(['/user/logout']) ?>" data-method="POST">Выйти</a></li>
+        </ul>
     </div><!-- /.container-fluid -->
 </nav>
 
