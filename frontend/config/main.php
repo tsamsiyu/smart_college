@@ -56,6 +56,7 @@ return [
                 'register/student' => 'welcome/register-student',
                 'register/teacher' => 'welcome/register-teacher',
                 'register/owner' => 'welcome/register-owner',
+                'pulpits/<pulpitCode>' => 'pulpits/index',
                 'pulpits/<pulpitCode>/subjects' => 'pulpits/subjects',
                 'pulpits/<pulpitCode>/plan' => 'pulpits/plan',
 //                'home' => 'home/index',

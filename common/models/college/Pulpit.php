@@ -15,6 +15,7 @@ use yii\helpers\Url;
  *
  * @property string $avatar
  * @property string $name
+ * @property string $code
  * @property integer $id
  * @property integer $direction_id
  *

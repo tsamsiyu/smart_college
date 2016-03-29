@@ -1,6 +1,7 @@
 <?php
 /* @var $this View */
 /* @var $content string */
+/* @var \common\models\college\Pulpit $pulpit */
 
 use common\components\web\View;
 use yii\helpers\Html;
@@ -11,6 +12,7 @@ use frontend\modules\pulpit\assets\Layout2ColumnAsset;
 Layout2ColumnAsset::register($this);
 
 $identity = $this->getAppUserModel();
+$pulpit = $this->context->getPulpit();
 
 ?>
 
@@ -62,10 +64,10 @@ $identity = $this->getAppUserModel();
         <div id="primary-block">
             <div class="row">
                 <div class="col-xs-12">
-                    <a href="<?= Url::to(['/pulpit']) ?>" id="home-link">
+                    <a href="<?= Url::to(['pulpits/index', 'pulpitCode' => $pulpit->code]) ?>" id="home-link">
                         <div id="community-header">
                             <img src="<?= Url::to('@web/images/aka/school73.png') ?>" alt="">
-                            <h1><?= $identity->pulpit->name ?></h1>
+                            <h1><?= $pulpit->name ?></h1>
                         </div>
                     </a>
                 </div>
@@ -75,13 +77,13 @@ $identity = $this->getAppUserModel();
                 <div id="community-content">
                     <div class="col-xs-3" id="column1">
                         <div id="community-avatar">
-                            <img src="<?= $identity->pulpit->getAvatarUrl() ?>" alt="Avatar">
+                            <img src="<?= $pulpit->getAvatarUrl() ?>" alt="Avatar">
                         </div>
 
                         <div id="community-menu">
                             <ul>
-                                <li><a href="<?= Url::to(['/pulpit/subjects']) ?>">Предметы</a></li>
-                                <li><a href="<?= Url::to(['/pulpit/plan']) ?>">План</a></li>
+                                <li><a href="<?= Url::to(['pulpits/subjects', 'pulpitCode' => $pulpit->code]) ?>">Предметы</a></li>
+                                <li><a href="<?= Url::to(['/pulpits/plan', 'pulpitCode' => $pulpit->code]) ?>">План</a></li>
                             </ul>
                         </div>
                     </div>

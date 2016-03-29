@@ -6,6 +6,8 @@
 use yii\helpers\Url;
 use \frontend\assets\PulpitsAsset;
 
+$this->title = 'Список кафедр';
+
 PulpitsAsset::register($this);
 
 ?>
@@ -20,7 +22,7 @@ PulpitsAsset::register($this);
                 <?php foreach ($direction->pulpits as $pulpit) : ?>
                     <?php if (!$this->getAppUserModel()->isOwnPulpit($pulpit)) : ?>
                         <div class="pulpit-cell">
-                            <a href="<?= Url::to(['/pulpits', 'code' => $pulpit->code]) ?>"><?= $pulpit->name ?></a>
+                            <a href="<?= Url::to(['pulpits/index', 'pulpitCode' => $pulpit->code]) ?>"><?= $pulpit->name ?></a>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>

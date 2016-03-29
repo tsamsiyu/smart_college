@@ -5,6 +5,8 @@ use common\components\db\ActiveRecord;
 /**
  * @property Pulpit[] $pulpits
  *
+ * @property string $name
+ *
  * Class Direction
  * @package common\models\college
  */

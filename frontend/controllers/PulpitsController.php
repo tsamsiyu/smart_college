@@ -4,43 +4,75 @@ use common\components\web\Controller;
 use common\models\college\Pulpit;
 use yii\web\NotFoundHttpException;
 
+
+/**
+ * @property Pulpit $pulpit
+ *
+ * Class PulpitsController
+ * @package frontend\controllers
+ */
 class PulpitsController extends Controller
 {
-    public function actionIndex($code = null)
+    protected $_pulpit;
+
+
+    public function actionIndex($pulpitCode = null)
     {
         $this->layout = '@module/views/layouts/1column';
 
-        if ($code) {
-            return $this->item($code);
+        if ($pulpitCode) {
+            return $this->item($pulpitCode);
         }
 
         return $this->render('index');
     }
 
-    public function actionSubjects()
+    public function actionSubjects($pulpitCode)
     {
+        $this->layout = 'pulpit_2column';
+        $this->identityPulpit($pulpitCode);
 
+        return $this->render('subjects/index');
     }
 
-    public function actionPlan()
+    public function actionPlan($pulpitCode)
     {
 
     }
 
     protected function item($code)
     {
-        $this->layout = '@pulpit/views/layouts/2column';
+        $this->layout = 'pulpit_2column';
 
-        $pulpit = $this->getIdentityUser()->college->findPulpits([Pulpit::tableName() . '.code' => $code])->one();
+        $pulpit = $this->identityPulpit($code)
+        ;
         if (!$pulpit) {
             throw new NotFoundHttpException();
         }
 
         $this->view->params['pulpit'] = $pulpit;
 
-        return $this->render('item', [
-            'pulpit' => $pulpit
-        ]);
+        return $this->render('item');
+    }
+
+
+    /**
+     * @return Pulpit|null
+     */
+    public function getPulpit()
+    {
+        return $this->_pulpit;
+    }
+
+    /**
+     * @param $code
+     * @return Pulpit|null
+     */
+    protected function identityPulpit($code)
+    {
+        $this->_pulpit = $this->getIdentityUser()->college->findPulpits([Pulpit::tableName() . '.code' => $code])->one();
+
+        return $this->_pulpit;
     }
 
 }
