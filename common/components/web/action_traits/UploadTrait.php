@@ -9,7 +9,7 @@ use yii\web\UploadedFile;
 
 trait UploadTrait
 {
-    public function uploadToStorage($paramName, $visiblePath, $storeRoot, $fileType = null)
+    public function uploadToStorage($paramName, $baseStorageFolder, $storeRoot, $fileType = null)
     {
         $app = Yii::$app;
         /* @var UploadedFile $file */
@@ -20,9 +20,9 @@ trait UploadTrait
         }
 
         if ($storeRoot === Storage::PUBLIC_ROOT) {
-            $webRoot = 'storage/file';
+            $webRoot = '/storage/file';
         } elseif ($storeRoot === Storage::PROTECTED_ROOT) {
-            $webRoot = 'storage/secured-file';
+            $webRoot = '/storage/secured-file';
         } elseif ($storeRoot === Storage::PRIVATE_ROOT) {
             $webRoot = null;
         } else {
@@ -30,13 +30,22 @@ trait UploadTrait
         }
 
         /* @var Storage $storage */
-        $storage = $app->storage;
-        $filename = Yii::$app->security->generateRandomString() . '.' . $file->getExtension();
-        $filepath = $storage->buildPath($storeRoot, $visiblePath, $filename);
-        $isSave = $file->saveAs($filepath);
+        $storage = $app->get('storage');
 
-        if ($webRoot) {
-            $route = Url::toRoute([$webRoot, 'path' => "$filepath/$filename"]);
+        /* @var \common\components\base\Security $security */
+        $security = $app->get('security');
+
+        $filename = Yii::$app->security->generateRandomString() . '.' . $file->getExtension();
+        $relativePath = FileHelper::join($baseStorageFolder, $filename);
+        $absolutePath = $storage->buildPath($storeRoot, $relativePath);
+
+        FileHelper::createDirectory(dirname($absolutePath));
+        $isSave = $file->saveAs($absolutePath);
+
+        if ($storeRoot === Storage::PUBLIC_ROOT) {
+            $route = Url::to([$webRoot, 'path' => $relativePath]);
+        } elseif ($storeRoot === Storage::PROTECTED_ROOT) {
+            $route = Url::to([$webRoot, 'path' => $security->encryptByPassword($relativePath)]);
         } else {
             $route = null;
         }
@@ -45,7 +54,8 @@ trait UploadTrait
             'isSave' => $isSave,
             'route' => $route,
             'filename' => $filename,
-            'filepath' => $filepath
+            'absolutePath' => $absolutePath,
+            'relativePath' => $relativePath
         ];
 
     }

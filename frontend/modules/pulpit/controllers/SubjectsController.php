@@ -1,5 +1,10 @@
 <?php namespace frontend\modules\pulpit\controllers;
 
+use common\components\base\Storage;
+use common\components\helpers\FileHelper;
+use common\components\web\action_traits\UploadTrait;
+use common\components\web\JsonResponse;
+use common\components\web\UploadedFile;
 use common\models\college\Subject;
 use common\models\user\Identity;
 use Yii;
@@ -8,6 +13,8 @@ use yii\filters\VerbFilter;
 
 class SubjectsController extends AbstractMainController
 {
+    use UploadTrait;
+
     public $layout = '1column';
 
     public function init()
@@ -23,7 +30,10 @@ class SubjectsController extends AbstractMainController
                 'actions' => [
                     'index' => ['get'],
                     'new' => ['get', 'post'],
-                    'remove' => ['delete']
+                    'remove' => ['delete'],
+                    'materials' => ['get'],
+                    'add-materials-file' => ['post'],
+                    'add-materials-folder' => ['post']
                 ]
             ]
         ];
@@ -89,7 +99,7 @@ class SubjectsController extends AbstractMainController
         throw new InvalidParamException('Subject missing');
     }
 
-    public function actionMaterials($subjectCode)
+    public function actionMaterials($subjectCode, $currentFolder = '')
     {
         $subject = Subject::find()->where(['code' => $subjectCode])->one();
 
@@ -98,8 +108,33 @@ class SubjectsController extends AbstractMainController
         }
 
         return $this->render('materials', [
-            'subject' => $subject
+            'subject' => $subject,
+            'currentFolder' => $currentFolder
         ]);
+    }
+
+    public function actionAddMaterialsFile($subjectCode, $currentFolder = '')
+    {
+        $pulpit = $this->getIdentityUser()->pulpit;
+
+        $baseStoragePath =  FileHelper::join(
+            'colleges', $pulpit->college->code,
+            'pulpits', $pulpit->code,
+            'subjects', $subjectCode,
+            'materials', $currentFolder);
+
+        $res = $this->uploadToStorage('material', $baseStoragePath, Storage::PROTECTED_ROOT);
+
+        if ($res['isSave']) {
+            return $this->json(JsonResponse::STORED, [
+                'route' => $res['route']
+            ]);
+        }
+    }
+
+    public function actionAddMaterialsFolder()
+    {
+
     }
 
 }

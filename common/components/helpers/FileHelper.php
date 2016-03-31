@@ -5,6 +5,7 @@ use common\components\collections\AryFilter;
 class FileHelper extends \yii\helpers\FileHelper
 {
     const TYPE_IMAGE = 'image';
+    const TYPE_DOCUMENT = 'document';
 
     public static function join($path)
     {

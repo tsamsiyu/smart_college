@@ -12,31 +12,6 @@ use yii\web\HttpException;
 
 class StorageController extends Controller
 {
-//    public function actionSaveTmpImg()
-//    {
-//        $app = Yii::$app;
-//        /* @var UploadedFile $file */
-//        $file = UploadedFile::getInstanceByName('avatar');
-//
-//        if ($file->isImage()) {
-//            /* @var Storage $storage */
-//            $storage = $app->storage;
-//
-//            $name = Yii::$app->security->generateRandomString() . '.' . $file->getExtension();
-//            $publicPart = 'users/avatar';
-//            $path = $storage->buildPublicPath($publicPart, $name);
-//            $isSave = $file->saveAs($path);
-//
-//            return Json::encode([
-//                'isSave' => $isSave,
-//                'name' => $name,
-//                'path' => Url::toRoute(['storage/file', 'path' => "$publicPart/$name"])
-//            ]);
-//        }
-//
-//        throw new HttpException(415);
-//    }
-//
     public function actionFile($path)
     {
         /* @var Storage $storage */
@@ -53,9 +28,10 @@ class StorageController extends Controller
     public function actionSecuredFile($path)
     {
         /* @var Storage $storage */
-        $storage = Yii::$app->storage;
+        $storage = Yii::$app->get('storage');
+
         /* @var Security $security */
-        $security = Yii::$app->security;
+        $security = Yii::$app->get('security');
 
         $path = $security->decryptByPassword($path);
         $path = $storage->buildPath(Storage::PROTECTED_ROOT, $path);
