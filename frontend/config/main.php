@@ -51,6 +51,13 @@ return [
             'enablePrettyUrl' => true,
 //            'showScriptName' => false,
             'rules' => [
+                [
+                    'class' => 'yii\web\GroupUrlRule',
+                    'prefix' => 'pulpit',
+                    'rules' => [
+                        'GET subject/<subjectCode>/materials' => 'subjects/materials'
+                    ]
+                ],
                 '/' => 'welcome/index',
                 'register' => 'welcome/register',
                 'register/student' => 'welcome/register-student',
@@ -58,6 +65,7 @@ return [
                 'register/owner' => 'welcome/register-owner',
                 'pulpits/<pulpitCode>' => 'pulpits/index',
                 'pulpits/<pulpitCode>/subjects' => 'pulpits/subjects',
+                'pulpits/<pulpitCode>/subject/<subjectCode>' => 'pulpits/subject',
                 'pulpits/<pulpitCode>/plan' => 'pulpits/plan',
 //                'home' => 'home/index',
 //                'group' => 'group/index',

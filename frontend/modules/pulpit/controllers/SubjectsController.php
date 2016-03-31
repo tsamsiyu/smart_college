@@ -10,6 +10,11 @@ class SubjectsController extends AbstractMainController
 {
     public $layout = '1column';
 
+    public function init()
+    {
+        parent::init();
+    }
+
     public function behaviors()
     {
         return [
@@ -82,6 +87,19 @@ class SubjectsController extends AbstractMainController
         }
 
         throw new InvalidParamException('Subject missing');
+    }
+
+    public function actionMaterials($subjectCode)
+    {
+        $subject = Subject::find()->where(['code' => $subjectCode])->one();
+
+        if (!$subject) {
+            return false;
+        }
+
+        return $this->render('materials', [
+            'subject' => $subject
+        ]);
     }
 
 }

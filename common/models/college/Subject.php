@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
  * @property string $name
  * @property integer $pulpit_id
  * @property string $description
+ * @property string $code
  *
  * Class Subject
  * @package common\models\college

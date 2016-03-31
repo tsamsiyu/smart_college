@@ -48,9 +48,9 @@ SubjectsAsset::register($this);
                                 <a href="<?= Url::toRoute(['subjects/remove', 'id' => $subject->getId()]) ?>" data-method="DELETE">
                                     <i class="fa fa-remove"></i>
                                 </a>
-<!--                                <a href="">-->
-<!--                                    <i class="fa fa-eye"></i>-->
-<!--                                </a>-->
+                                <a href="<?= Url::to(['subjects/materials', 'subjectCode' => $subject->code]) ?>">
+                                    <i class="fa fa-folder-open-o"></i>
+                                </a>
                                 <a href="<?= Url::toRoute(['subjects/edit', 'id' => $subject->getId()]) ?>" class="edit">
                                     <i class="fa fa-pencil"></i>
                                 </a>

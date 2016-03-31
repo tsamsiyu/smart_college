@@ -40,6 +40,15 @@ class PulpitsController extends Controller
 
     }
 
+    public function actionSubject($pulpitCode, $subjectCode)
+    {
+        $this->layout = 'pulpit_2column';
+
+        $this->identityPulpit($pulpitCode);
+
+        return $this->render('subjects/item');
+    }
+
     protected function item($code)
     {
         $this->layout = 'pulpit_2column';
