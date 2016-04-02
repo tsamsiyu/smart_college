@@ -35,7 +35,7 @@ trait UploadTrait
         /* @var \common\components\base\Security $security */
         $security = $app->get('security');
 
-        $filename = Yii::$app->security->generateRandomString() . '.' . $file->getExtension();
+        $filename = time() . '_' . md5($file->getBaseName()) . '.' . $file->getExtension();
         $relativePath = FileHelper::join($baseStorageFolder, $filename);
         $absolutePath = $storage->buildPath($storeRoot, $relativePath);
 

@@ -2,11 +2,13 @@
 /**
  * @var common\components\web\View $this
  * @var \common\models\college\Subject $subject
- * @var string $currentFolder
+ * @var string $folder
+ * @var string $absoluteStorageFolder
  */
 
 use yii\helpers\Url;
 use frontend\modules\pulpit\assets\SubjectMaterialsAsset;
+use frontend\modules\pulpit\widgets\storage\StorageWidget;
 
 $this->title = "Учебные материалы предмета `{$subject->name}`";
 
@@ -14,6 +16,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Учебные предметы', 
 $this->params['breadcrumbs'][] = $subject->code;
 
 
+StorageWidget::registerAssets($this);
 SubjectMaterialsAsset::register($this);
 
 ?>
@@ -21,7 +24,7 @@ SubjectMaterialsAsset::register($this);
 
 <div class="col-xs-12">
     <form action="<?= Url::to(['subjects/add-materials-file',
-        'currentFolder' => $currentFolder,
+        'folder' => $folder,
         'subjectCode' => $subject->code
     ]) ?>" class="hidden">
         <input type="file" id="add-file-input" name="material">
@@ -29,5 +32,13 @@ SubjectMaterialsAsset::register($this);
     <div class="actions">
         <button type="button" class="btn btn-action" id="add-file">Добавить Файл</button>
         <button type="button" class="btn btn-action" id="add-folder">Добавить папку</button>
+    </div>
+
+    <div class="storage">
+        <?= StorageWidget::widget([
+            'path' => $absoluteStorageFolder,
+            'initFolder' => $folder,
+            'id' => 'materials-storage'
+        ]) ?>
     </div>
 </div>

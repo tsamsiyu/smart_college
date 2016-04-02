@@ -13,8 +13,6 @@ class FileHelper extends \yii\helpers\FileHelper
             $path = func_get_args();
         }
 
-        AryFilter::rmEmpty($path);
-
         return static::normalizePath(implode(DIRECTORY_SEPARATOR, $path));
     }
 

@@ -1,5 +1,6 @@
 <?php namespace frontend\modules\pulpit\assets;
 
+use common\assets\FontAwesomeAsset;
 use common\assets\JqueryFileUploadAsset;
 use common\components\web\DebugAssetBundle;
 
@@ -16,7 +17,8 @@ class SubjectMaterialsAsset extends DebugAssetBundle
     ];
 
     public $depends = [
-        JqueryFileUploadAsset::class
+        JqueryFileUploadAsset::class,
+        FontAwesomeAsset::class
     ];
 
 }

@@ -9,12 +9,21 @@ use yii\helpers\ArrayHelper;
  * @property integer $pulpit_id
  * @property string $description
  * @property string $code
+ * @property SubjectMaterials $materials
+ *
+ * @property Pulpit $pulpit
  *
  * Class Subject
  * @package common\models\college
  */
 class Subject extends ActiveRecord
 {
+    /**
+     * @var SubjectMaterials|null
+     */
+    protected $materials;
+
+
     public static function tableName()
     {
         return '{{%college_subject}}';
@@ -58,6 +67,25 @@ class Subject extends ActiveRecord
         }
 
         return false;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     *
+     * @active-relation
+     */
+    public function getPulpit()
+    {
+        return $this->hasOne(Pulpit::className(), ['id' => 'pulpit_id']);
+    }
+
+    public function getMaterials()
+    {
+        if (!isset($this->materials)) {
+            $this->materials = new SubjectMaterials($this);
+        }
+
+        return $this->materials;
     }
 
 }

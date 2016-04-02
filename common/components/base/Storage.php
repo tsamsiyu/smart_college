@@ -1,5 +1,6 @@
 <?php namespace common\components\base;
 
+use common\components\base\storage\IStorage;
 use common\components\helpers\FileHelper;
 use yii\base\Component;
 
@@ -9,7 +10,7 @@ use yii\base\Component;
  * Class Storage
  * @package common\components\storage
  */
-class Storage extends Component
+class Storage extends Component implements IStorage
 {
     const PUBLIC_ROOT = 'public';
     const PROTECTED_ROOT = 'protected';

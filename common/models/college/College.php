@@ -5,6 +5,7 @@ use common\components\db\ActiveRecord;
 /**
  * @property integer $year_parts
  * @property integer $courses_count
+ * @property string $code
  *
  * @property Pulpit[] $pulpits
  * @property Direction[] $directions

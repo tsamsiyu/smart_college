@@ -1,6 +1,7 @@
 <?php namespace frontend\modules\pulpit\controllers;
 
 use common\components\base\Storage;
+use common\components\base\storage\IStorage;
 use common\components\helpers\FileHelper;
 use common\components\web\action_traits\UploadTrait;
 use common\components\web\JsonResponse;
@@ -99,9 +100,15 @@ class SubjectsController extends AbstractMainController
         throw new InvalidParamException('Subject missing');
     }
 
-    public function actionMaterials($subjectCode, $currentFolder = '')
+    public function actionMaterials($subjectCode, $folder = '')
     {
+        /* @var Subject $subject */
         $subject = Subject::find()->where(['code' => $subjectCode])->one();
+
+        /* @var Storage $storage */
+        $storage = Yii::$app->get('storage');
+
+        $absoluteStorageFolder = $subject->materials->absoluteStorageFolder($storage, $folder);
 
         if (!$subject) {
             return false;
@@ -109,21 +116,23 @@ class SubjectsController extends AbstractMainController
 
         return $this->render('materials', [
             'subject' => $subject,
-            'currentFolder' => $currentFolder
+            'folder' => $folder,
+            'absoluteStorageFolder' => $absoluteStorageFolder
         ]);
     }
 
-    public function actionAddMaterialsFile($subjectCode, $currentFolder = '')
+    public function actionAddMaterialsFile($subjectCode)
     {
-        $pulpit = $this->getIdentityUser()->pulpit;
+        $folder = Yii::$app->request->post('folder');
 
-        $baseStoragePath =  FileHelper::join(
-            'colleges', $pulpit->college->code,
-            'pulpits', $pulpit->code,
-            'subjects', $subjectCode,
-            'materials', $currentFolder);
+        if (!$folder) {
+            return $this->json(JsonResponse::INVALIDATED);
+        }
 
-        $res = $this->uploadToStorage('material', $baseStoragePath, Storage::PROTECTED_ROOT);
+        /* @var Subject $subject */
+        $subject = $this->getIdentityUser()->pulpit->getSubjects()->where(['code' => $subjectCode])->one();
+
+        $res = $this->uploadToStorage('material', $subject->materials->storageFolder($folder), Storage::PROTECTED_ROOT);
 
         if ($res['isSave']) {
             return $this->json(JsonResponse::STORED, [
@@ -132,9 +141,24 @@ class SubjectsController extends AbstractMainController
         }
     }
 
-    public function actionAddMaterialsFolder()
+    public function actionAddMaterialsFolder($subjectCode)
     {
+        $folder = Yii::$app->request->post('folder');
 
+        if (!$folder) {
+            return $this->json(JsonResponse::INVALIDATED);
+        }
+
+        /* @var Subject $subject */
+        $subject = $this->getIdentityUser()->pulpit->getSubjects()->where(['code' => $subjectCode])->one();
+
+        /* @var Storage $storage */
+        $storage = Yii::$app->get('storage');
+
+        $newFolder = $subject->materials->absoluteStorageFolder($storage, $folder);
+        FileHelper::createDirectory($newFolder);
+
+        return $this->json(JsonResponse::CREATED);
     }
 
 }

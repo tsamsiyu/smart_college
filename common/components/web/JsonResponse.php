@@ -8,6 +8,7 @@ class JsonResponse extends Object
     const VALIDATED = 2;
     const DELETED = 3;
     const STORED = 4;
+    const CREATED = 5;
 
     const INVALIDATED = 100;
 
