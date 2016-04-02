@@ -1,42 +1,48 @@
+$formAddFolder = $('#form-add-folder')
+folderRowPattern = $('#folder-row-pattern').html()
 $materialsStorage = $('#materials-storage')
-$materialsStorageWidget = $materialsStorage.storageWidget()
 
+$materialsStorage.on 'click', '.material-wrapper .material-remove', (e) ->
+  e.preventDefault()
+  removeByLinkOptions($(this))
+
+$materialsStorage.on 'click', '.material-wrapper .material-remove-folder', (e) ->
+  e.preventDefault()
+  removeByLinkOptions($(this))
+
+$('#input-add-file').on 'click', () ->
+  console.log 'add file'
+
+$formAddFolder.on 'submit', (e) ->
+  e.preventDefault()
+  $self = $(this)
+  $self.ajaxForm().done (response) ->
+    if response.status == Api.serverResponse.status.CREATED
+      $self.addClass 'hidden'
+      $self.trigger 'reset'
+      $materialsStorage.append(folderRowPattern
+      .replace(/\{path\}/gi, response.data.path + '/' + response.data.folder)
+      .replace(/\{name\}/gi, response.data.folder)
+      )
 
 $('#add-folder').on 'click', () ->
-  $materialsStorageWidget.addFolder()
+  $self = $(this)
+  $formAddFolder.removeClass 'hidden'
+
+$('#close-folder-adding').on 'click', () ->
+  $formAddFolder.addClass('hidden').trigger('reset')
 
 
-
-
-
-
-
-
-
-
-#$body.on 'click', '.folder-cancel', () ->
-#  $(this).closest('.folder-wrapper').remove()
-#
-#$body.on 'submit', '.folder-form', (e) ->
-#  $self = $(this)
-#  folder = $self.data('current-folder') + $self.find('input').val()
-#  $.ajax
-#    url: $self.attr 'action'
-#    method: 'POST'
-#    data:
-#      'folder': folder
-#  e.preventDefault()
-
-#$fileInput = $('#add-file-input')
-#$body = $('body')
-#$storageList = $('#storage-list')
-#folderPatternHtml = $('#folder-pattern').html()
-#
-#$('#add-file-input').fileupload
-#  dataType: 'json'
-#  url: $fileInput.closest('form').attr('action')
-#
-#  ### EVENTS ###
-#$('#add-file').on 'click', () ->
-#  $fileInput.trigger 'click'
-#
+removeByLinkOptions = ($link) ->
+  if confirm $link.data('confirm-msg')
+    path = $link.data('path')
+    if path
+      $.ajax
+        method: 'POST'
+        url: $link.attr 'href'
+        data:
+          path: path
+        dataType: 'json'
+      .done (response) ->
+        if response.status == Api.serverResponse.status.DELETED
+          $link.closest('.material-wrapper').remove()

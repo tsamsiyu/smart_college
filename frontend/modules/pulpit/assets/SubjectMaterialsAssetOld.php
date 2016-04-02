@@ -2,11 +2,10 @@
 
 use common\assets\ApiScriptAsset;
 use common\assets\FontAwesomeAsset;
-use common\assets\JqueryAjaxFormPlugin;
 use common\assets\JqueryFileUploadAsset;
 use common\components\web\DebugAssetBundle;
 
-class SubjectMaterialsAsset extends DebugAssetBundle
+class SubjectMaterialsAssetOld extends DebugAssetBundle
 {
     public $sourcePath = '@module/resources';
 
@@ -21,7 +20,6 @@ class SubjectMaterialsAsset extends DebugAssetBundle
     public $depends = [
         JqueryFileUploadAsset::class,
         FontAwesomeAsset::class,
-        JqueryAjaxFormPlugin::class,
         ApiScriptAsset::class
     ];
 

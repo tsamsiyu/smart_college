@@ -25,31 +25,45 @@ class StorageWidget extends Widget
 
         $this->lastFolderLevel = $this->initFolder;
         $storageMarkup = $this->recursivelyStorageBuilder(new \RecursiveDirectoryIterator($this->path));
+
         $folderPatternMarkup = Html::tag('div', $this->render('_folder', [
             'folder' => ''
         ]), [
             'class' => 'folder-pattern hidden'
         ]);
 
-        return Html::tag('div', $folderPatternMarkup . $storageMarkup, [
+        $storageLevelPatternMarkup = Html::tag('div', $this->render('index', [
+            'iterator' => new \ArrayIterator(),
+            'folder' => '',
+            'visible' => true,
+            'storageLevel' => ''
+        ]), [
+            'class' => 'storage-pattern hidden'
+        ]);
+
+        return Html::tag('div', $storageLevelPatternMarkup . $folderPatternMarkup . $storageMarkup, [
             'class' => 'storage-wrapper storage-widget',
             'id' => $this->id
         ]);
     }
 
-    protected function recursivelyStorageBuilder(\RecursiveDirectoryIterator $iterator, $visible = true, $html = '')
+    protected function recursivelyStorageBuilder(\RecursiveDirectoryIterator $iterator, $visible = true, $html = '', $level = 1)
     {
         $html .= $this->render('index', [
             'iterator' => $iterator,
             'folder' => $this->lastFolderLevel,
-            'visible' => $visible
+            'visible' => $visible,
+            'storageLevel' => $level
         ]);
 
-        if ($iterator->hasChildren()) {
-            var_dump($iterator->getSubPath());
-            die;
-//            $this->lastFolder = FileHelper::join($this->lastFolder, );
-            $this->recursivelyStorageBuilder($iterator->getChildren(), false, $html);
+        foreach ($iterator as $item) {
+            if ($item->getFilename() != '.' && $item->getFilename() != '..') {
+                if ($iterator->hasChildren()) {
+                    if (!FileHelper::emptyPath($item->getPath(), $item->getFilename())) {
+                        $html .= $this->recursivelyStorageBuilder($iterator->getChildren(), false, $html, $level + 1);
+                    }
+                }
+            }
         }
 
         return $html;

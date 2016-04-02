@@ -16,6 +16,26 @@ class FileHelper extends \yii\helpers\FileHelper
         return static::normalizePath(implode(DIRECTORY_SEPARATOR, $path));
     }
 
+    public static function emptyPath($path)
+    {
+        if (!is_array($path)) {
+            $path = func_get_args();
+        }
+
+        $path = static::join($path);
+
+        return !count(glob("$path/*"));
+    }
+
+    public static function cutFirstFolder(&$path)
+    {
+        $exploded = explode(DIRECTORY_SEPARATOR, ltrim($path, DIRECTORY_SEPARATOR));
+        $first = array_shift($exploded);
+        $path = implode(DIRECTORY_SEPARATOR, $exploded);
+
+        return $first;
+    }
+
     public static function compareType($file, $type)
     {
         switch ($type) {

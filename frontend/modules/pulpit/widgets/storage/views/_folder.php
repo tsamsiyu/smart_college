@@ -1,6 +1,5 @@
 <?php
 /**
- * @var string $folder
  * @var string $name
  */
 

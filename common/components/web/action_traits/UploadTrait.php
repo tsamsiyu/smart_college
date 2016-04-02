@@ -1,6 +1,6 @@
 <?php namespace common\components\web\action_traits;
 
-use common\components\base\Storage;
+use common\components\base\storage\Storage;
 use common\components\helpers\FileHelper;
 use HttpException;
 use Yii;
@@ -19,16 +19,6 @@ trait UploadTrait
             throw new HttpException(415);
         }
 
-        if ($storeRoot === Storage::PUBLIC_ROOT) {
-            $webRoot = '/storage/file';
-        } elseif ($storeRoot === Storage::PROTECTED_ROOT) {
-            $webRoot = '/storage/secured-file';
-        } elseif ($storeRoot === Storage::PRIVATE_ROOT) {
-            $webRoot = null;
-        } else {
-            throw new \InvalidArgumentException("Invalid root storage path: `$storeRoot`");
-        }
-
         /* @var Storage $storage */
         $storage = $app->get('storage');
 
@@ -42,17 +32,9 @@ trait UploadTrait
         FileHelper::createDirectory(dirname($absolutePath));
         $isSave = $file->saveAs($absolutePath);
 
-        if ($storeRoot === Storage::PUBLIC_ROOT) {
-            $route = Url::to([$webRoot, 'path' => $relativePath]);
-        } elseif ($storeRoot === Storage::PROTECTED_ROOT) {
-            $route = Url::to([$webRoot, 'path' => $security->encryptByPassword($relativePath)]);
-        } else {
-            $route = null;
-        }
-
         return [
             'isSave' => $isSave,
-            'route' => $route,
+            'route' => Storage::buildUrl($storeRoot, $relativePath),
             'filename' => $filename,
             'absolutePath' => $absolutePath,
             'relativePath' => $relativePath

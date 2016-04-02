@@ -3,16 +3,20 @@
  * @var \RecursiveDirectoryIterator $iterator
  * @var string $folder
  * @var boolean $visible
+ * @var integer $storageLevel
  */
 
 
 ?>
 
 
-<div class="storage-list <?= $visible ? 'current-folder-level' : 'hidden' ?>" data-folder-level="<?= $folder ?>">
+<div class="storage-list <?= $visible ? 'current-folder-level' : 'hidden' ?>"
+     data-folder-level="<?= $folder ?>"
+     data-storage-level="<?= $storageLevel ?>">
+
     <?php foreach ($iterator as $item) : ?>
         <?php /* @var SplFileInfo $item */ ?>
-        <?php $name = $item->getBasename() ?>
+        <?php $name = $item->getFilename() ?>
 
         <?php if ($item->isFile()) : ?>
             <?= $this->render('_file', [
@@ -20,8 +24,7 @@
             ]) ?>
         <?php elseif ($name !== '.' && $name !== '..') : ?>
             <?= $this->render('_folder', [
-                'name' => $name,
-                'folder' => $folder
+                'name' => $name
             ]) ?>
         <?php endif; ?>
     <?php endforeach; ?>

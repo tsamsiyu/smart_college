@@ -1,6 +1,7 @@
 <?php namespace common\models\college;
 
-use common\components\base\Storage;
+use common\components\base\storage\Storage;
+use common\components\base\storage\StorageIterator;
 use yii\base\Model;
 use common\components\helpers\FileHelper;
 
@@ -38,6 +39,6 @@ class SubjectMaterials extends Model
 
     public function directoryIterator(Storage $storage, $folder = '')
     {
-        return new \RecursiveDirectoryIterator($this->absoluteStorageFolder($storage, $folder));
+        return StorageIterator::ordered($this->absoluteStorageFolder($storage, $folder));
     }
 }

@@ -1,11 +1,9 @@
 <?php namespace frontend\modules\pulpit\controllers;
 
-use common\components\base\Storage;
-use common\components\base\storage\IStorage;
+use common\components\base\storage\Storage;
 use common\components\helpers\FileHelper;
 use common\components\web\action_traits\UploadTrait;
 use common\components\web\JsonResponse;
-use common\components\web\UploadedFile;
 use common\models\college\Subject;
 use common\models\user\Identity;
 use Yii;
@@ -14,14 +12,7 @@ use yii\filters\VerbFilter;
 
 class SubjectsController extends AbstractMainController
 {
-    use UploadTrait;
-
     public $layout = '1column';
-
-    public function init()
-    {
-        parent::init();
-    }
 
     public function behaviors()
     {
@@ -34,7 +25,9 @@ class SubjectsController extends AbstractMainController
                     'remove' => ['delete'],
                     'materials' => ['get'],
                     'add-materials-file' => ['post'],
-                    'add-materials-folder' => ['post']
+                    'add-materials-folder' => ['post'],
+                    'remove-materials-folder' => ['post'],
+                    'remove-materials-file' => ['post']
                 ]
             ]
         ];
@@ -100,30 +93,9 @@ class SubjectsController extends AbstractMainController
         throw new InvalidParamException('Subject missing');
     }
 
-    public function actionMaterials($subjectCode, $folder = '')
-    {
-        /* @var Subject $subject */
-        $subject = Subject::find()->where(['code' => $subjectCode])->one();
-
-        /* @var Storage $storage */
-        $storage = Yii::$app->get('storage');
-
-        $absoluteStorageFolder = $subject->materials->absoluteStorageFolder($storage, $folder);
-
-        if (!$subject) {
-            return false;
-        }
-
-        return $this->render('materials', [
-            'subject' => $subject,
-            'folder' => $folder,
-            'absoluteStorageFolder' => $absoluteStorageFolder
-        ]);
-    }
-
     public function actionAddMaterialsFile($subjectCode)
     {
-        $folder = Yii::$app->request->post('folder');
+        $folder = Yii::$app->request->post('path');
 
         if (!$folder) {
             return $this->json(JsonResponse::INVALIDATED);
@@ -143,7 +115,7 @@ class SubjectsController extends AbstractMainController
 
     public function actionAddMaterialsFolder($subjectCode)
     {
-        $folder = Yii::$app->request->post('folder');
+        $folder = Yii::$app->request->post('path');
 
         if (!$folder) {
             return $this->json(JsonResponse::INVALIDATED);
@@ -152,13 +124,48 @@ class SubjectsController extends AbstractMainController
         /* @var Subject $subject */
         $subject = $this->getIdentityUser()->pulpit->getSubjects()->where(['code' => $subjectCode])->one();
 
-        /* @var Storage $storage */
+        /* @var \common\components\base\storage\Storage $storage */
         $storage = Yii::$app->get('storage');
 
         $newFolder = $subject->materials->absoluteStorageFolder($storage, $folder);
+
+        if (is_dir($newFolder)) {
+            return $this->json(JsonResponse::INVALIDATED);
+        }
+
         FileHelper::createDirectory($newFolder);
 
         return $this->json(JsonResponse::CREATED);
+    }
+
+    public function actionRemoveMaterialsFile()
+    {
+
+    }
+
+    public function actionRemoveMaterialsFolder($subjectCode)
+    {
+        $folder = Yii::$app->request->post('path');
+
+        if (!$folder) {
+            return $this->json(JsonResponse::INVALIDATED);
+        }
+
+        /* @var Subject $subject */
+        $subject = $this->getIdentityUser()->pulpit->getSubjects()->where(['code' => $subjectCode])->one();
+
+        /* @var \common\components\base\storage\Storage $storage */
+        $storage = Yii::$app->get('storage');
+
+        $absoluteFolderPath = $subject->materials->absoluteStorageFolder($storage, $folder);
+
+        if (!is_dir($absoluteFolderPath)) {
+            return $this->json(JsonResponse::INVALIDATED);
+        }
+
+        FileHelper::removeDirectory($absoluteFolderPath);
+
+        return $this->json(JsonResponse::DELETED);
     }
 
 }

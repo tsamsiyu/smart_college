@@ -15,6 +15,8 @@ $this->title = "Учебные материалы предмета `{$subject->n
 $this->params['breadcrumbs'][] = ['label' => 'Учебные предметы', 'url' => ['/pulpit/subjects']];
 $this->params['breadcrumbs'][] = $subject->code;
 
+echo $this->jsVariable('addFolderUrl', Url::to(['subjects/add-materials-folder', 'subjectCode' => $subject->code]));
+echo $this->jsVariable('removeFolderUrl', Url::to(['subjects/remove-materials-folder', 'subjectCode' => $subject->code]));
 
 StorageWidget::registerAssets($this);
 SubjectMaterialsAsset::register($this);

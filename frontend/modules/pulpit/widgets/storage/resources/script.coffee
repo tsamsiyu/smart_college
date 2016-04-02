@@ -1,3 +1,0 @@
-StorageWidget = () ->
-  addFolder: () ->
-

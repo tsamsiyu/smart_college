@@ -11,7 +11,7 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
         'storage' => [
-            'class' => 'common\components\base\Storage'
+            'class' => 'common\components\base\storage\Storage'
         ],
         'security' => [
             'class' => 'common\components\base\Security'

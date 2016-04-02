@@ -1,3 +1,5 @@
+@import '_main.scss';
+
 .actions {
   margin: 10px 0;
 }
@@ -11,22 +13,46 @@
   border: 1px solid #ff03e6 !important;
 }
 
-//.folder-wrapper {
-//  margin-top: 15px;
-//  border-top: 1px solid grey;
-//  padding-top: 15px;
-//  .folder-icon {
-//    font-size: 18px;
-//  }
-//  form {
-//    display: inline;
-//    input {
-//      height: 20px;
-//      border: 0;
-//    }
-//    button {
-//      background-color: transparent;
-//      border: 0;
-//    }
-//  }
-//}
+#form-add-folder {
+  input {
+    @include border-radius(6px);
+    min-width: 40%;
+    border: 1px solid black;
+  }
+  input:hover {
+    border: 1px solid blue;
+  }
+  input:focus {
+    @include box-shadow(inset 0px, 0px, 2px, 0px, blue);
+  }
+  button {
+    display: inline;
+    border: 0;
+    background-color: transparent;
+  }
+  button:hover {
+    color: green;
+  }
+  #close-folder-adding {
+    color: black;
+  }
+  #close-folder-adding:hover {
+    color: red;
+  }
+}
+
+#materials-storage {
+  padding-top: 20px;
+  margin-bottom: 100px;
+  .material-wrapper {
+    border-bottom: 1px solid grey;
+    padding: 10px 0;
+    .material-bar {
+      float: right;
+    }
+    .material-icon {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+  }
+}

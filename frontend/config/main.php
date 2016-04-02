@@ -55,9 +55,9 @@ return [
                     'class' => 'yii\web\GroupUrlRule',
                     'prefix' => 'pulpit',
                     'rules' => [
-                        'subject/<subjectCode>/materials' => 'subjects/materials',
-                        'subject/<subjectCode>/materials/add-file' => 'subjects/add-materials-file',
-                        'subject/<subjectCode>/materials/add-folder' => 'subjects/add-materials-folder'
+                        'subject/<subjectCode>/materials' => 'subject-materials/index',
+                        'subject/<subjectCode>/materials/remove-file' => 'subject-materials/remove-file',
+                        'subject/<subjectCode>/materials/remove-folder' => 'subject-materials/remove-folder'
                     ]
                 ],
                 '/' => 'welcome/index',

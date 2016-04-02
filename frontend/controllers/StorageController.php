@@ -1,13 +1,9 @@
 <?php namespace frontend\controllers;
 
 use common\components\base\Security;
-use common\components\base\Storage;
-use common\components\helpers\FileHelper;
+use common\components\base\storage\Storage;
 use common\components\web\Controller;
-use common\components\web\UploadedFile;
 use Yii;
-use yii\helpers\Json;
-use yii\helpers\Url;
 use yii\web\HttpException;
 
 class StorageController extends Controller
@@ -15,7 +11,7 @@ class StorageController extends Controller
     public function actionFile($path)
     {
         /* @var Storage $storage */
-        $storage = Yii::$app->storage;
+        $storage = Yii::$app->get('storage');
         $path = $storage->buildPath(Storage::PUBLIC_ROOT, $path);
 
         if (is_file($path)) {
