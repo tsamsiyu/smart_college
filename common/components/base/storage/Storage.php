@@ -52,9 +52,9 @@ class Storage extends Component implements IStorage
     public static function getWebRoot($storeRoot)
     {
         if ($storeRoot === Storage::PUBLIC_ROOT) {
-            return '/storage/file';
+            return '/storage/public';
         } elseif ($storeRoot === Storage::PROTECTED_ROOT) {
-            return '/storage/secured-file';
+            return '/storage/protected';
         } elseif ($storeRoot === Storage::PRIVATE_ROOT) {
             return null;
         } else {

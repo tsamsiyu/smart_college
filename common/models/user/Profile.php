@@ -28,7 +28,7 @@ class Profile extends ActiveRecord
             return \Yii::getAlias($this->emptyAvatarUrl);
         }
 
-        return Url::toRoute(['storage/file', 'path' => $this->avatar]);
+        return Url::toRoute(['storage/public', 'path' => $this->avatar]);
     }
 
     public function getPresentationName()

@@ -8,7 +8,7 @@ use yii\web\HttpException;
 
 class StorageController extends Controller
 {
-    public function actionFile($path)
+    public function actionPublic($path)
     {
         /* @var Storage $storage */
         $storage = Yii::$app->get('storage');
@@ -21,7 +21,7 @@ class StorageController extends Controller
         }
     }
 
-    public function actionSecuredFile($path)
+    public function actionProtected($path)
     {
         /* @var Storage $storage */
         $storage = Yii::$app->get('storage');
