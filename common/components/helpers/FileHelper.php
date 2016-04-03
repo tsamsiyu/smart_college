@@ -27,7 +27,7 @@ class FileHelper extends \yii\helpers\FileHelper
         return !count(glob("$path/*"));
     }
 
-    public static function cutFirstFolder(&$path)
+    public static function shift(&$path)
     {
         $exploded = explode(DIRECTORY_SEPARATOR, ltrim($path, DIRECTORY_SEPARATOR));
         $first = array_shift($exploded);
@@ -42,6 +42,31 @@ class FileHelper extends \yii\helpers\FileHelper
             case self::TYPE_IMAGE:
                 return ImageHelper::checkFile($file);
         }
+    }
+
+    public static function paginate($path)
+    {
+        if ($path) {
+            $pages = explode(DIRECTORY_SEPARATOR, static::normalizePath(trim($path, DIRECTORY_SEPARATOR)));
+            $prev = array_shift($pages);
+            $res = [
+                [
+                    'name' => $prev,
+                    'path' => $prev
+                ]
+            ];
+            foreach ($pages as $page) {
+                $res[] = [
+                    'name' => $page,
+                    'path' => $prev . DIRECTORY_SEPARATOR . $page
+                ];
+                $prev .= DIRECTORY_SEPARATOR . $page;
+            }
+
+            return $res;
+        }
+
+        return [];
     }
 
 }

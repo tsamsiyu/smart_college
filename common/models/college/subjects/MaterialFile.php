@@ -1,41 +1,39 @@
 <?php namespace common\models\college\subjects;
 
+use common\components\helpers\FileHelper;
 use common\models\college\Subject;
 use Yii;
 use yii\base\Model;
-use common\components\helpers\FileHelper;
 
-class MaterialFolder extends Model
+class MaterialFile extends Model
 {
-    public $path = '';
-    public $folder = '';
+    public $path;
     public $subjectCode;
+    public $file;
 
+    /**
+     * @var Subject
+     */
     protected $subject;
+
 
     public function rules()
     {
         return [
-            [['folder', 'subjectCode'], 'required'],
+            [['subjectCode'], 'required'],
+            ['file', 'file'],
             ['subjectCode', 'validateSubjectExist'],
             ['path', 'validateExistInStorage'],
-            ['folder', 'validateNonInternalDir'],
-            ['folder', 'validateNonExistInStorage']
+            ['file', 'validateNonInternalDir'],
+            ['file', 'validateNonExistInStorage']
         ];
     }
 
     public function scenarios()
     {
         return [
-            self::SCENARIO_DEFAULT => ['path', 'folder', 'subjectCode']
+            self::SCENARIO_DEFAULT => ['path', 'file', 'subjectCode']
         ];
-    }
-
-    public function validateSubjectExist()
-    {
-        if (!$this->getSubject() instanceof Subject) {
-            $this->addError('subjectCode', 'Такого предмета не существует.');
-        }
     }
 
     public function getStorageBasePath()
@@ -46,9 +44,22 @@ class MaterialFolder extends Model
         return $this->getSubject()->materials->absoluteStorageFolder($storage, $this->path);
     }
 
+    public function getStorageRelativeBasePath()
+    {
+        return $this->getSubject()->materials->storageFolder($this->path);
+    }
+
     public function getStorageFullPath()
     {
-        return FileHelper::join($this->getStorageBasePath(), $this->folder);
+        return FileHelper::join($this->getStorageBasePath(), $this->file);
+    }
+
+
+    public function validateSubjectExist()
+    {
+        if (!$this->getSubject() instanceof Subject) {
+            $this->addError('subjectCode', 'Такого предмета не существует.');
+        }
     }
 
     /**
@@ -75,30 +86,15 @@ class MaterialFolder extends Model
     public function validateNonExistInStorage()
     {
         if (file_exists($this->getStorageFullPath())) {
-            $this->addError('folder', 'Эта папка уже существует');
+            $this->addError('file', 'Этот файл уже существует');
         }
     }
 
     public function validateNonInternalDir()
     {
-        if (preg_match('/[\/\\\]+/', $this->folder)) {
-            $this->addError('folder', 'Недопустимые символы в названии');
+        if (preg_match('/[\/\\\]+/', $this->file)) {
+            $this->addError('file', 'Недопустимые символы в названии');
         }
-    }
-
-    public function createPath($runValidation = true)
-    {
-        $isValid = $runValidation ? $this->validate() : true;
-
-        if ($isValid) {
-            try {
-                return FileHelper::createDirectory($this->getStorageFullPath());
-            } catch (\Exception $e) {
-                $this->addError('folder', 'Невозможно создать');
-            }
-        }
-
-        return false;
     }
 
 }

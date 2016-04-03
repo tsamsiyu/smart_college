@@ -11,8 +11,6 @@ use frontend\modules\pulpit\assets\SubjectsAsset;
 $this->title = 'Учебные предметы';
 $this->params['breadcrumbs'][] = 'Учебные предметы';
 
-echo $this->jsVariable('errorsInModal', $form->hasErrors());
-
 SubjectsAsset::register($this);
 
 ?>
@@ -48,7 +46,7 @@ SubjectsAsset::register($this);
                                 <a href="<?= Url::toRoute(['subjects/remove', 'id' => $subject->getId()]) ?>" data-method="DELETE">
                                     <i class="fa fa-remove"></i>
                                 </a>
-                                <a href="<?= Url::to(['subjects/materials', 'subjectCode' => $subject->code]) ?>">
+                                <a href="<?= Url::to(['subject-materials/index', 'subjectCode' => $subject->code]) ?>">
                                     <i class="fa fa-folder-open-o"></i>
                                 </a>
                                 <a href="<?= Url::toRoute(['subjects/edit', 'id' => $subject->getId()]) ?>" class="edit">

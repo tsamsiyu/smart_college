@@ -3,14 +3,13 @@
 use common\components\web\DebugAssetBundle;
 use yii\web\JqueryAsset;
 
-class JqueryAjaxFormPlugin extends DebugAssetBundle
+class BehaviorsAsset extends DebugAssetBundle
 {
-    public $sourcePath = '@common/resources/scripts/jq-plugins';
+    public $sourcePath = '@common/resources/scripts';
 
-    public $js = ['ajaxForm.coffee'];
+    public $js = ['behaviors.coffee'];
 
     public $depends = [
         JqueryAsset::class
     ];
-
 }

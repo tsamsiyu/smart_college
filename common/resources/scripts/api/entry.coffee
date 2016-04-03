@@ -6,6 +6,7 @@
       INVALIDATED: 100
       SAVED: 1
       DELETED: 3
+      STORED: 4
       CREATED: 5
       NON_EXIST: 201
       NON_EXECUTION: 202

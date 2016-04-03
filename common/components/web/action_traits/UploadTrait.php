@@ -9,7 +9,7 @@ use yii\web\UploadedFile;
 
 trait UploadTrait
 {
-    public function uploadToStorage($paramName, $baseStorageFolder, $storeRoot, $fileType = null)
+    public function uploadToStorage($paramName, $baseStorageFolder, $storeRoot, $fileType = null, $autoname = true)
     {
         $app = Yii::$app;
         /* @var UploadedFile $file */
@@ -25,12 +25,22 @@ trait UploadTrait
         /* @var \common\components\base\Security $security */
         $security = $app->get('security');
 
-        $filename = time() . '_' . md5($file->getBaseName()) . '.' . $file->getExtension();
+        if ($autoname) {
+            $filename = time() . '_' . md5($file->baseName) . '.' . $file->extension;
+        } else {
+            $filename = $file->baseName . '.' . $file->extension;
+        }
+
         $relativePath = FileHelper::join($baseStorageFolder, $filename);
         $absolutePath = $storage->buildPath($storeRoot, $relativePath);
 
         FileHelper::createDirectory(dirname($absolutePath));
-        $isSave = $file->saveAs($absolutePath);
+
+        try {
+            $isSave = $file->saveAs($absolutePath);
+        } catch (\Exception $e) {
+            $isSave = false;
+        }
 
         return [
             'isSave' => $isSave,

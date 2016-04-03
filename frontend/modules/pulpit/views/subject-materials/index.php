@@ -5,6 +5,8 @@
  * @var string $folder
  * @var \RecursiveDirectoryIterator $materialsIterator
  * @var \common\models\college\subjects\MaterialFolder $materialFolderForm
+ * @var \common\models\college\subjects\MaterialFile $materialFileForm
+ * @var array $pages
  */
 
 use yii\helpers\Url;
@@ -24,19 +26,39 @@ SubjectMaterialsAsset::register($this);
 ?>
 
 
-
 <div class="col-xs-12">
     <div class="actions">
-        <button type="button" class="btn btn-action" id="add-file">Добавить Файл</button>
-        <button type="button" class="btn btn-action" id="add-folder">Добавить папку</button>
+        <button type="button" class="btn btn-primary" id="add-file">Добавить Файл</button>
+        <button type="button" class="btn btn-primary" id="add-folder">Добавить папку</button>
     </div>
 
-    <form action="<?= Url::to(['subject-materials/add-file',
-        'path' => $folder,
-        'subjectCode' => $subject->code
-    ]) ?>" class="hidden">
-        <input type="hidden" name="path" value="<?= $folder ?>">
-        <input type="file" id="input-add-file" name="file">
+    <div class="storage-pages">
+        <span>
+            <a href="<?= Url::to([
+                'subject-materials/index',
+                'subjectCode' => $subject->code,
+                'path' => ''
+            ]) ?>">Начало</a>
+        </span>
+        <?php foreach ($pages as $page) : ?>
+            <span>
+                <span>/</span>
+                <a href="<?= Url::to([
+                    'subject-materials/index',
+                    'subjectCode' => $subject->code,
+                    'path' => $page['path']
+                ]) ?>">
+                    <?= $page['name'] ?>
+                </a>
+            </span>
+        <?php endforeach; ?>
+    </div>
+
+    <form action="<?= Url::to(['subject-materials/add-file']) ?>" class="hidden" id="adding-file-form">
+        <input type="hidden" name="<?= Html::getInputName($materialFileForm, 'path') ?>" value="<?= $folder ?>">
+        <input type="hidden" name="<?= Html::getInputName($materialFileForm, 'subjectCode') ?>"
+               value="<?= $subject->code ?>">
+        <input type="file" name="<?= Html::getInputName($materialFileForm, 'file') ?>">
     </form>
 
     <form action="<?= Url::to(['subject-materials/add-folder']) ?>"
@@ -44,7 +66,8 @@ SubjectMaterialsAsset::register($this);
           id="form-add-folder"
           method="POST">
         <input type="hidden" name="<?= Html::getInputName($materialFolderForm, 'path') ?>" value="<?= $folder ?>">
-        <input type="hidden" name="<?= Html::getInputName($materialFolderForm, 'subjectCode') ?>" value="<?= $subject->code ?>">
+        <input type="hidden" name="<?= Html::getInputName($materialFolderForm, 'subjectCode') ?>"
+               value="<?= $subject->code ?>">
         <input type="text" name="<?= Html::getInputName($materialFolderForm, 'folder') ?>" title="Название папки">
         <button type="submit">
             <i class="fa fa-check-circle"></i>
@@ -77,7 +100,7 @@ SubjectMaterialsAsset::register($this);
                             </a>
                         </span>
                     </div>
-                <?php else :?>
+                <?php else : ?>
                     <div class="material-folder">
                         <a href="<?= Url::to([
                             'subject-materials/index',
@@ -104,6 +127,8 @@ SubjectMaterialsAsset::register($this);
     </div>
 </div>
 
+
+<!-- folder row pattern -->
 <div id="folder-row-pattern" class="hidden">
     <div class="material-wrapper">
         <div class="material-folder">
@@ -120,6 +145,29 @@ SubjectMaterialsAsset::register($this);
                 'subject-materials/remove-folder',
                 'subjectCode' => $subject->code,
             ]) ?>" class="material-remove-folder"
+               data-path="{path}"
+               data-confirm-msg="Вы подтвеждаете удаление?">
+                <i class="fa fa-remove"></i>
+            </a>
+        </span>
+        </div>
+    </div>
+</div>
+
+<!-- file row pattern -->
+<div id="file-row-pattern" class="hidden">
+    <div class="material-wrapper">
+        <div class="material-file">
+            <i class="fa fa-file material-icon"></i>
+            <span>{name}</span>
+        <span class="material-bar">
+            <a href="{downloadUrl}" target="_blank">
+                <i class="fa fa-cloud-download"></i>
+            </a>
+            <a href="<?= Url::to([
+                'subject-materials/remove-file',
+                'subjectCode' => $subject->code
+            ]) ?>" class="material-remove"
                data-path="{path}"
                data-confirm-msg="Вы подтвеждаете удаление?">
                 <i class="fa fa-remove"></i>

@@ -3,6 +3,7 @@
 use common\assets\BootstrapAsset;
 use common\assets\DotDotDotAsset;
 use common\assets\FontAwesomeAsset;
+use common\assets\JqueryFileUploadAsset;
 use common\components\web\DebugAssetBundle;
 use yii\web\YiiAsset;
 
@@ -14,7 +15,8 @@ class SubjectsAsset extends DebugAssetBundle
         YiiAsset::class,
         BootstrapAsset::class,
         FontAwesomeAsset::class,
-        DotDotDotAsset::class
+        DotDotDotAsset::class,
+        JqueryFileUploadAsset::class
     ];
 
     public $css = [

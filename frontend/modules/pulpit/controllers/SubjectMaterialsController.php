@@ -1,12 +1,15 @@
 <?php namespace frontend\modules\pulpit\controllers;
 
+use common\components\base\storage\Storage;
 use common\components\web\action_traits\UploadTrait;
 use common\components\web\JsonResponse;
 use common\models\college\Subject;
+use common\models\college\subjects\MaterialFile;
 use common\models\college\subjects\MaterialFolder;
 use Yii;
 use yii\filters\VerbFilter;
 use common\components\helpers\FileHelper;
+use yii\helpers\Html;
 
 class SubjectMaterialsController extends AbstractMainController
 {
@@ -29,8 +32,8 @@ class SubjectMaterialsController extends AbstractMainController
                     'index' => ['get'],
                     'add-file' => ['post'],
                     'add-folder' => ['post'],
-                    'remove-folder' => ['post'],
-                    'remove-file' => ['post']
+                    'remove-folder' => ['delete'],
+                    'remove-file' => ['delete']
                 ]
             ]
         ];
@@ -40,6 +43,9 @@ class SubjectMaterialsController extends AbstractMainController
     {
         $this->identitySubject($subjectCode);
         $materialFolderForm = new MaterialFolder();
+        $materialFileForm = new MaterialFile();
+
+        $pages = FileHelper::paginate($path);
 
         /* @var \common\components\base\storage\Storage $storage */
         $storage = Yii::$app->get('storage');
@@ -54,7 +60,9 @@ class SubjectMaterialsController extends AbstractMainController
             'subject' => $this->subject,
             'folder' => $path,
             'materialsIterator' => $iterator,
-            'materialFolderForm' => $materialFolderForm
+            'materialFolderForm' => $materialFolderForm,
+            'materialFileForm' => $materialFileForm,
+            'pages' => $pages
         ]);
     }
 
@@ -86,6 +94,30 @@ class SubjectMaterialsController extends AbstractMainController
         }
 
         return $this->json(JsonResponse::DELETED);
+    }
+
+    public function actionAddFile()
+    {
+        $form = new MaterialFile();
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            $uploadingRes = $this->uploadToStorage(
+                Html::getInputName($form, 'file'),
+                $form->getStorageRelativeBasePath(),
+                Storage::PROTECTED_ROOT, null, false);
+
+            if ($uploadingRes['isSave']) {
+                return $this->json(JsonResponse::STORED, [
+                    'downloadUrl' => $uploadingRes['route'],
+                    'path' => $form->path,
+                    'name' => $uploadingRes['filename']
+                ]);
+            } else {
+                $form->addError('file', 'Не удалось сохранить');
+            }
+        }
+
+        return $this->json(1, $form->errors);
     }
 
     public function actionAddFolder()

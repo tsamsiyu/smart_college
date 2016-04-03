@@ -25,7 +25,7 @@ class StorageItem extends \SplFileInfo
 
         if (strpos($path, $storage->getRootPath()) === 0) {
             $relativePath = substr($path, strlen($storage->getRootPath()));
-            $this->storeRoot = FileHelper::cutFirstFolder($relativePath);
+            $this->storeRoot = FileHelper::shift($relativePath);
             if (!Storage::hasRootPath($this->storeRoot)) {
                 throw new \InvalidArgumentException("Undefined storage root: `{$this->storeRoot}`");
             }

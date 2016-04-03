@@ -1,19 +1,13 @@
 <?php namespace common\assets;
 
-use yii\web\AssetBundle;
+use common\components\web\DebugAssetBundle;
 use yii\web\JqueryAsset;
 
-class LinkedListAsset extends AssetBundle
+class LinkedListAsset extends DebugAssetBundle
 {
-    public $sourcePath = '@common/resources/scripts';
+    public $sourcePath = '@common/resources/scripts/jq-plugins';
 
-    public $publishOptions = [
-        'forceCopy' => true
-    ];
-
-    public $js = [
-        'linkedList.coffee'
-    ];
+    public $js = ['linkedList.coffee'];
 
     public $depends = [
         JqueryAsset::class

@@ -1,6 +1,7 @@
 <?php namespace frontend\modules\pulpit\assets;
 
 use common\assets\ApiScriptAsset;
+use common\assets\BehaviorsAsset;
 use common\assets\FontAwesomeAsset;
 use common\assets\JqueryAjaxFormPlugin;
 use common\assets\JqueryFileUploadAsset;
@@ -22,7 +23,7 @@ class SubjectMaterialsAsset extends DebugAssetBundle
         JqueryFileUploadAsset::class,
         FontAwesomeAsset::class,
         JqueryAjaxFormPlugin::class,
-        ApiScriptAsset::class
+        ApiScriptAsset::class,
     ];
 
 }
