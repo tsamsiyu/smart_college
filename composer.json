@@ -24,7 +24,8 @@
 
         "bower-asset/jquery-file-upload": "*",
         "bower-asset/fontawesome": "4.5.0",
-        "bower-asset/jquery.dotdotdot": "1.8.0"
+        "bower-asset/jquery.dotdotdot": "1.8.0",
+        "bower-asset/bootstrap-select": "1.10"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

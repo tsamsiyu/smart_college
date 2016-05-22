@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d69fb6e23eff9c05721fcec8838dc9e0",
-    "content-hash": "0dbca1c2106cb64c6cf9209d6e607cea",
+    "hash": "9becbbb2d1e32ec7b4c5c97ce30210dc",
+    "content-hash": "f6d06dcbce5521efc1746feb0f401907",
     "packages": [
         {
             "name": "bower-asset/blueimp-canvas-to-blob",
@@ -102,6 +102,50 @@
                 "mobile-first",
                 "responsive",
                 "web"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-select",
+            "version": "v1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silviomoreto/bootstrap-select.git",
+                "reference": "a1b3d496e7ea13054451ddaa941fa217898b8ce4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silviomoreto/bootstrap-select/zipball/a1b3d496e7ea13054451ddaa941fa217898b8ce4",
+                "reference": "a1b3d496e7ea13054451ddaa941fa217898b8ce4",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": ">=1.8"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "less/bootstrap-select.less",
+                    "dist/css/bootstrap-select.css",
+                    "dist/js/bootstrap-select.js"
+                ],
+                "bower-asset-ignore": [
+                    ".gitignore",
+                    "CONTRIBUTING.md",
+                    "Gruntfile.js",
+                    "README.md",
+                    "composer.json",
+                    "package.json",
+                    "test.html"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "keywords": [
+                "bootstrap",
+                "form",
+                "replacement",
+                "select"
             ]
         },
         {
@@ -645,7 +689,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Talesoft/tale-factory/zipball/2ff9f746d1636048b9c0cc7c9c24d17c82c3a7ac",
+                "url": "https://api.github.com/repos/Talesoft/tale-factory/zipball/63335da0e6b435aa481ea2917b017cf482efa043",
                 "reference": "2ff9f746d1636048b9c0cc7c9c24d17c82c3a7ac",
                 "shasum": ""
             },

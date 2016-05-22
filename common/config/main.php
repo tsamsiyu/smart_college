@@ -1,7 +1,7 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'name' => 'Smart College',
+    'name' => 'Онлайн колледж',
     'language' => 'ru-RU',
     'components' => [
         'assetManager' => [

@@ -2,6 +2,7 @@
 
 use common\components\web\Controller;
 use common\models\college\Pulpit;
+use common\models\college\Subject;
 use yii\web\NotFoundHttpException;
 
 
@@ -42,11 +43,17 @@ class PulpitsController extends Controller
 
     public function actionSubject($pulpitCode, $subjectCode)
     {
+        $subject = Subject::find()->where(['code' => $subjectCode])->one();
+
+        if (!$subject) {
+            return false;
+        }
+
         $this->layout = 'pulpit_2column';
 
         $this->identityPulpit($pulpitCode);
 
-        return $this->render('subjects/item');
+        return $this->render('subjects/item', ['subject' => $subject]);
     }
 
     protected function item($code)

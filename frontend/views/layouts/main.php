@@ -32,7 +32,7 @@ use yii\helpers\Html;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>">Smart College</a>
+            <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>"><?= Yii::$app->name ?></a>
         </div>
         <ul class="nav navbar-nav navbar-left">
             <li><a href="<?= Url::to(['/pulpits']) ?>" data-method="POST">Кафедры</a></li>

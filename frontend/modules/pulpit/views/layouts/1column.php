@@ -38,8 +38,13 @@ $identity = $this->getAppUserModel();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>">Smart College</a>
+                <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>"><?= Yii::$app->name ?></a>
             </div>
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="<?= Url::to(['/pulpits']) ?>" data-method="POST">Кафедры</a></li>
+                <li><a href="<?= Url::to(['/groups']) ?>" data-method="POST">Группы</a></li>
+                <li><a href="<?= Url::to(['/messages']) ?>" >Сообщения</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<?= Url::to(['/user/logout']) ?>" data-method="POST">Выйти</a></li>
             </ul>

@@ -6,11 +6,12 @@ use common\components\web\View;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
-use frontend\modules\group\assets\Layout1ColumnAsset;
+use frontend\modules\pulpit\assets\Layout2ColumnAsset;
 
-Layout1ColumnAsset::register($this);
+Layout2ColumnAsset::register($this);
 
 $identity = $this->getAppUserModel();
+$group = $this->context->getGroup();
 
 ?>
 
@@ -60,24 +61,37 @@ $identity = $this->getAppUserModel();
                 ]); ?>
             </div>
         </div>
-
         <div id="primary-block">
             <div class="row">
                 <div class="col-xs-12">
-                    <a href="<?= Url::to(['/group']) ?>" id="home-link">
+                    <a href="<?= Url::to(['groups/item', 'groupCode' => $group->code]) ?>" id="home-link">
                         <div id="community-header">
                             <img src="<?= Url::to('@web/images/aka/school73.png') ?>" alt="">
-                            <h1><?= $identity->group->code ?></h1>
-                            <h2 class="text-center">Кафедра `<?= $this->getAppUserModel()->group->pulpit->name ?>`</h2>
+                            <h1><?= $group->pulpit->name ?></h1>
+                            <h2 style="margin: 4px 0 0 0;"><?= $group->code ?></h2>
                         </div>
                     </a>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-xs-12">
-                    <div id="content">
-                        <?= $content ?>
+                <div id="community-content">
+                    <div class="col-xs-3" id="column1">
+                        <div id="community-avatar">
+                            <img src="<?= $group->getAvatarUrl() ?>" alt="Avatar">
+                        </div>
+
+                        <div id="community-menu">
+                            <ul>
+                                <li><a href="<?= Url::to(['groups/subjects', 'groupCode' => $group->code]) ?>">Предметы</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-9" id="column2">
+                        <div id="content">
+                            <?= $content ?>
+                        </div>
                     </div>
                 </div>
             </div>

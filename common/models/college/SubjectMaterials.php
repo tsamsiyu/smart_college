@@ -39,6 +39,8 @@ class SubjectMaterials extends Model
 
     public function directoryIterator(Storage $storage, $folder = '')
     {
-        return StorageIterator::ordered($this->absoluteStorageFolder($storage, $folder));
+        $path = $this->absoluteStorageFolder($storage, $folder);
+        FileHelper::createDirectory($path);
+        return StorageIterator::ordered($path);
     }
 }

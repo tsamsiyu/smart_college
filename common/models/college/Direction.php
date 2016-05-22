@@ -21,4 +21,9 @@ class Direction extends ActiveRecord
     {
         return $this->hasMany(Pulpit::className(), ['direction_id' => 'id']);
     }
+
+    public function getGroups()
+    {
+        return $this->hasMany(Group::className(), ['pulpit_id' => 'id'])->via('pulpits');
+    }
 }

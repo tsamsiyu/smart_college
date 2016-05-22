@@ -6,15 +6,21 @@ use yii\base\InvalidParamException;
 
 class SubjectsController extends AbstractMainController
 {
-    public function actionIndex($id = null)
+    public function actionIndex($id = null, $path = '')
     {
         if ($id) {
-            if ($model = Subject::findOne($id)) {
-                if ($model->isBelongsToGroup($this->getIdentityUser()->group)) {
+            if ($subject = Subject::findOne($id)) {
+                /* @var \common\components\base\storage\Storage $storage */
+                $storage = Yii::$app->get('storage');
+                $iterator = $subject->materials->directoryIterator($storage, $path);
+
+//                if ($model->isBelongsToGroup($this->getIdentityUser()->group)) {
                     return $this->render('item', [
-                        'subject' => $model
+                        'subject' => $subject,
+                        'folder' => $path,
+                        'materialsIterator' => $iterator
                     ]);
-                }
+//                }
             }
 
             throw new InvalidParamException;

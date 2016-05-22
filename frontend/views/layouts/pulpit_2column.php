@@ -40,7 +40,7 @@ $pulpit = $this->context->getPulpit();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>">Smart College</a>
+                <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>"><?= Yii::$app->name ?></a>
             </div>
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="<?= Url::to(['/pulpits']) ?>" data-method="POST">Кафедры</a></li>
@@ -83,7 +83,6 @@ $pulpit = $this->context->getPulpit();
                         <div id="community-menu">
                             <ul>
                                 <li><a href="<?= Url::to(['pulpits/subjects', 'pulpitCode' => $pulpit->code]) ?>">Предметы</a></li>
-                                <li><a href="<?= Url::to(['/pulpits/plan', 'pulpitCode' => $pulpit->code]) ?>">План</a></li>
                             </ul>
                         </div>
                     </div>

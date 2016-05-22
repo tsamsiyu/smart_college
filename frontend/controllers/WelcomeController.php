@@ -50,7 +50,7 @@ class WelcomeController extends Controller
 
         if (isset($_POST['LoginForm'])) {
             if ($model->load(Yii::$app->request->post()) && $model->login()) {
-                return $this->goHome();
+                return $this->redirect([Yii::$app->user->homeUrl]);
             }
         }
 

@@ -2,6 +2,7 @@
 
 use common\components\base\traits\InternalClassCacheTrait;
 use common\components\db\ActiveRecord;
+use common\models\user\User;
 use yii\helpers\Url;
 
 /**
@@ -172,6 +173,21 @@ class Pulpit extends ActiveRecord
         return $this->hasMany(PulpitNews::className(), ['pulpit_id' => 'id'])
             ->where(['access' => PulpitNews::PRIVATE_ACCESS])
             ->orderBy(['updated_at' => SORT_DESC]);
+    }
+
+    public function getTeachers()
+    {
+        return $this->hasMany(User::className(), ['pulpit_id' => 'id'])->andWhere(['role' => User::TEACHER]);
+    }
+
+    public function getStudents()
+    {
+        return $this->hasMany(User::className(), ['group_id' => 'id'])->via('groups');
+    }
+
+    public function getUsers()
+    {
+        return array_merge($this->teachers, $this->students);
     }
 
 }

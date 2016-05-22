@@ -32,7 +32,7 @@ class Subject extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'pulpit_id'], 'required'],
+            [['name', 'pulpit_id', 'description'], 'required'],
             ['pulpit_id', 'exist', 'targetClass' => Pulpit::class, 'targetAttribute' => 'id'],
             ['description', 'string', 'max' => 2000],
             ['name', 'string', 'max' => 255]
