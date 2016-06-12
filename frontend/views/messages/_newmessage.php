@@ -22,6 +22,7 @@ BootstrapSelectAsset::register($this);
                 <?php foreach ($pulpits as $pulpit) : ?>
                     <optgroup label="<?= $pulpit->code ?>">
                         <?php foreach ($pulpit->users as $user) : ?>
+                            <?php if ($user->id != Yii::$app->user->getIdentity()->getId()) : ?>
                             <option value="<?= $user->id ?>">
                                 <?= $user->profile->first_name ?>
                                 <?= $user->profile->last_name ?>
@@ -30,6 +31,7 @@ BootstrapSelectAsset::register($this);
                                     '(группа ' . $user->group->code . ')'
                                 ?>
                             </option>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </optgroup>
                 <?php endforeach; ?>

@@ -18,7 +18,7 @@ SubjectsAsset::register($this);
 <div id="cape">
     <div class="row">
         <div class="col-xs-12">
-            <a href="<?= Url::toRoute('subjects/new') ?>" class="btn btn-primary">Добавить&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></a>
+            <a href="<?= Url::toRoute('subjects/new') ?>" class="btn btn-primary" style="margin-top: 10px;">Добавить&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle"></i></a>
         </div>
     </div>
     <div class="row cape-subjects-list">

@@ -13,12 +13,21 @@ BootstrapAsset::register($this);
 
 ?>
 
+<div style="width: 500px; margin: 0 auto; margin-top: 10px;">
 <form action="<?= $submitUrl ?>" method="POST" class="form-horizontal" novalidate>
     <div class="form-group <?= $form->hasErrors('name') ? 'has-error' : '' ?>">
         <label for="inputName" class="col-xs-2 control-label">Название</label>
         <div class="col-xs-10">
             <?= Html::activeInput('text', $form, 'name', ['class' => 'form-control', 'id' => 'inputName']) ?>
             <?= Html::error($form, 'name', ['class' => 'help-block']) ?>
+        </div>
+    </div>
+
+    <div class="form-group <?= $form->hasErrors('code') ? 'has-error' : '' ?>">
+        <label for="inputCode" class="col-xs-2 control-label">Код</label>
+        <div class="col-xs-10">
+            <?= Html::activeInput('text', $form, 'code', ['class' => 'form-control', 'id' => 'inputCode']) ?>
+            <?= Html::error($form, 'code', ['class' => 'help-block']) ?>
         </div>
     </div>
 
@@ -36,3 +45,4 @@ BootstrapAsset::register($this);
         </div>
     </div>
 </form>
+</div>

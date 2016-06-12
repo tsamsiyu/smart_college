@@ -36,7 +36,7 @@ HomeAsset::register($this);
     <?= $this->render('_feed', [
         'feedKey' => 'public',
         'createUri' => '/group/news/save-public-topic',
-        'editUri' => '/group/news/save-public-topic',
+        'editUri' => '/group/news/edit-public-topic',
         'removeUri' => '/group/news/remove-topic',
         'form' => $form,
         'topics' => $this->getAppUserModel()->group->publicNews

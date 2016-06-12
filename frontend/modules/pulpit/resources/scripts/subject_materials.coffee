@@ -44,12 +44,13 @@ $addingFileForm.find('input[type="file"]').fileupload
       $materialsStorage.append(fileRowPattern
       .replace(/\{name\}/gi, placeholders.name)
       .replace(/\{downloadUrl\}/gi, placeholders.downloadUrl)
-      .replace(/\{path\}/gi, placeholders.path))
+      .replace(/\{path\}/gi, placeholders.path + '/' + placeholders.name))
 
 
 removeByLinkOptions = ($link) ->
   if confirm $link.data('confirm-msg')
     path = $link.data('path')
+    console.log path
     if path
       $.ajax
         method: 'DELETE'

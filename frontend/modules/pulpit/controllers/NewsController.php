@@ -47,6 +47,17 @@ class NewsController extends Controller
         return $this->editTopicWithAccess($id, PulpitNews::PRIVATE_ACCESS);
     }
 
+    /**
+     * Удаляет новость из базы данных.
+     *
+     * Если создатель удаляемой новости не является
+     * пользователем, который инициировал текущее
+     * действие, то метод веренет ключ NON_EXIST
+     *
+     * @param $id
+     * @return string
+     * @throws \Exception
+     */
     public function actionRemoveTopic($id)
     {
         if ($topic = $this->getIdentityUser()->pulpit->findNews($id)->one()) {
@@ -78,6 +89,13 @@ class NewsController extends Controller
         return $this->saveTopic($model);
     }
 
+    /**
+     * Для переданной модели новости проводит валидацию
+     * с данными из запроса и сохраняет ее в базу.
+     *
+     * @param PulpitNews $topic
+     * @return string
+     */
     protected function saveTopic(PulpitNews $topic)
     {
         $topic->pulpit_id = $this->getIdentityUser()->pulpit_id;

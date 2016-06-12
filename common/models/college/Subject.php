@@ -32,8 +32,9 @@ class Subject extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'pulpit_id', 'description'], 'required'],
+            [['name', 'pulpit_id', 'description', 'code'], 'required'],
             ['pulpit_id', 'exist', 'targetClass' => Pulpit::class, 'targetAttribute' => 'id'],
+            ['code', 'unique'],
             ['description', 'string', 'max' => 2000],
             ['name', 'string', 'max' => 255]
         ];
@@ -42,7 +43,7 @@ class Subject extends ActiveRecord
     public function scenarios()
     {
         return [
-            self::SCENARIO_DEFAULT => ['name', 'description']
+            self::SCENARIO_DEFAULT => ['name', 'description', 'code']
         ];
     }
 
@@ -50,7 +51,8 @@ class Subject extends ActiveRecord
     {
         return [
             'name' => 'Название',
-            'description' => 'Описание'
+            'description' => 'Описание',
+            'code' => 'Код'
         ];
     }
 

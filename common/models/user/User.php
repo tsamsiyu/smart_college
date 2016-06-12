@@ -56,7 +56,7 @@ class User extends ActiveRecord
         return [
             self::STUDENT => Yii::t('app/common', 'student'),
             self::TEACHER => Yii::t('app/common', 'teacher'),
-            self::COLLEGE_OWNER => Yii::t('app/common', 'college_owner')
+//            self::COLLEGE_OWNER => Yii::t('app/common', 'college_owner')
         ];
     }
 

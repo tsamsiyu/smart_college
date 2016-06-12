@@ -39,6 +39,16 @@ class SubjectMaterialsController extends AbstractMainController
         ];
     }
 
+    /**
+     * Для указанного в запросе кода учебного предмета
+     * формирует список учебных материалов, которые уже записаны
+     * в хранилище.
+     *
+     * @param $subjectCode
+     * @param string $path
+     * @return bool|string
+     * @throws \yii\base\InvalidConfigException
+     */
     public function actionIndex($subjectCode, $path = '')
     {
         $this->identitySubject($subjectCode);
@@ -66,6 +76,14 @@ class SubjectMaterialsController extends AbstractMainController
         ]);
     }
 
+    /**
+     * Удаляет файл по указанному в запросе пути.
+     * В случае ошибки удаления, возвращает сообщение
+     * об этой ошибке
+     *
+     * @param $subjectCode
+     * @return string
+     */
     public function actionRemoveFile($subjectCode)
     {
         $absolutePath = $this->verifySubjectPath('path', $subjectCode);
@@ -81,6 +99,16 @@ class SubjectMaterialsController extends AbstractMainController
         return $this->json(JsonResponse::DELETED);
     }
 
+    /**
+     * Удаляет папку с учебными материалами
+     * вместе с ее содержимым
+     *
+     * Если при удалении вознакает ошибки, то
+     * возвращает пользователю ее описание
+     *
+     * @param $subjectCode
+     * @return string
+     */
     public function actionRemoveFolder($subjectCode)
     {
         $absolutePath = $this->verifySubjectPath('path', $subjectCode);
@@ -96,6 +124,14 @@ class SubjectMaterialsController extends AbstractMainController
         return $this->json(JsonResponse::DELETED);
     }
 
+    /**
+     * Сохраняет переданный файл в хранилище,
+     * если он был передан и имеет верный тип
+     * и название
+     *
+     * @return string
+     * @throws \HttpException
+     */
     public function actionAddFile()
     {
         $form = new MaterialFile();
@@ -120,6 +156,11 @@ class SubjectMaterialsController extends AbstractMainController
         return $this->json(1, $form->errors);
     }
 
+    /**
+     * Добавляет новую папку в хранилище для учебных материалов
+     *
+     * @return string
+     */
     public function actionAddFolder()
     {
         $form = new MaterialFolder();

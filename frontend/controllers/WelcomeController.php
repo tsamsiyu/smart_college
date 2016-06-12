@@ -59,6 +59,13 @@ class WelcomeController extends Controller
         ]);
     }
 
+    /**
+     * Этот метод принимает данные, посланные клиентом
+     * на первом шаге регистрации. Если они валидны -
+     * происоходит перенаправление на второй шаг регистрации.
+     *
+     * @return bool|string|\yii\web\Response
+     */
     public function actionRegister()
     {
         $model = new SignupForm();
@@ -81,6 +88,17 @@ class WelcomeController extends Controller
         ]);
     }
 
+    /**
+     * Этот метод принимает данные с формы второго шага
+     * регистрации пользователя. Если данные валидны, то он
+     * сохраняет пользователя в базу данных, выставляя ему роль "Студент"
+     *
+     * NOTE:    перед валидацией данных, метод проверяет, что в сессии
+     *          хрянятся данные с первого шага, если их там нет -
+     *          пользователь будет перенаправлен на него.
+     *
+     * @return string|\yii\web\Response
+     */
     public function actionRegisterStudent()
     {
         $model = new SignupStudentForm();
@@ -93,16 +111,26 @@ class WelcomeController extends Controller
         if (isset($_POST['SignupStudentForm'])) {
             if ($model->load(Yii::$app->request->post()) && ($user = $model->signup())) {
                 if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+                    return $this->redirect([Yii::$app->user->homeUrl]);
                 }
             }
         }
-
         return $this->render('register_student', [
             'form' => $model
         ]);
     }
 
+    /**
+     * Этот метод принимает данные с формы второго шага
+     * регистрации пользователя. Если данные валидны, то он
+     * сохраняет пользователя в базу данных, выставляя ему роль "Преподаватель"
+     *
+     * NOTE:    перед валидацией данных, метод проверяет, что в сессии
+     *          хрянятся данные с первого шага, если их там нет -
+     *          пользователь будет перенаправлен на него.
+     *
+     * @return string|\yii\web\Response
+     */
     public function actionRegisterTeacher()
     {
         $model = new SignupTeacherForm();
@@ -115,7 +143,7 @@ class WelcomeController extends Controller
         if (isset($_POST['SignupTeacherForm'])) {
             if ($model->load(Yii::$app->request->post()) && ($user = $model->signup())) {
                 if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+                    return $this->redirect([Yii::$app->user->homeUrl]);
                 }
             }
         }
@@ -125,12 +153,13 @@ class WelcomeController extends Controller
         ]);
     }
 
-    public function actionRegisterOwner()
-    {
-
-    }
-
-
+    /**
+     * В зависимости от роли пользователя определяет url
+     * для второго шага регистрации и перенаправляет туда
+     *
+     * @param SignupForm $model
+     * @return bool|\yii\web\Response
+     */
     public function redirectToStep2(SignupForm $model)
     {
         switch ($model->role) {
@@ -147,6 +176,13 @@ class WelcomeController extends Controller
         return $this->redirect([$route]);
     }
 
+    /**
+     * Если в сессии есть данные с первого шага регистрации -
+     * возвращает результат их валидации, иначе - возвращает false
+     *
+     * @param SignupForm $model
+     * @return bool
+     */
     protected function checkFirstStep(SignupForm $model)
     {
         $primaryData = Yii::$app->session->get(self::REGISTER_STEP1);
@@ -158,4 +194,5 @@ class WelcomeController extends Controller
 
         return false;
     }
+
 }
