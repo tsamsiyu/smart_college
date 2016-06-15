@@ -20,7 +20,7 @@ $this->title = 'Отчеты';
         var msgGroup = <?= Json::encode($msgGroup) ?>;
         var data = google.visualization.arrayToDataTable(msgGroup);
         var options = {
-            title: 'Отправленные группой сообщения',
+            title: 'График изменения активности отправки сообщений студентами',
             curveType: 'function'
         };
         var chart = new google.visualization.LineChart(document.getElementById('group_chart'));
@@ -29,7 +29,7 @@ $this->title = 'Отчеты';
         msgGroup = <?= Json::encode($msgPulpit) ?>;
         data = google.visualization.arrayToDataTable(msgGroup);
         options = {
-            title: 'Отправленные кафедрой сообщения',
+            title: 'График изменения активности отправки сообщений преподавателями',
             curveType: 'function'
         };
         chart = new google.visualization.LineChart(document.getElementById('pulpit_chart'));

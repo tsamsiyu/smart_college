@@ -20,7 +20,7 @@ $this->title = 'Отчеты';
         messagesInfo.unshift(['Task', 'Messages by pulpits']);
         var data = google.visualization.arrayToDataTable(messagesInfo);
         var options = {
-            title: 'Распределенность количества отправленных сообщений по кафедрам'
+            title: 'График распределения по кафедрам всех отправленных студентами сообщений'
         };
         var chart = new google.visualization.PieChart(document.getElementById('messages-by-pulpits'));
         chart.draw(data, options);
@@ -30,7 +30,7 @@ $this->title = 'Отчеты';
         messagesInfo.unshift(['Task', 'Messages by directions']);
         data = google.visualization.arrayToDataTable(messagesInfo);
         options = {
-            title: 'Распределенность количества отправленных сообщений по факультетам кафедр'
+            title: 'График распределения по факультетам всех отправленных студентами сообщений'
         };
         chart = new google.visualization.PieChart(document.getElementById('messages-by-directions'));
         chart.draw(data, options);

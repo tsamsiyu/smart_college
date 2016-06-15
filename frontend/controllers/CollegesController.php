@@ -331,7 +331,7 @@ class CollegesController extends Controller
             ->innerJoin('college_direction d', 'd.id = p.direction_id')
             ->andWhere(['d.college_id' => $id])
             ->groupBy(['d.id', 'year'])
-            ->orderBy(['year' => SORT_DESC])
+            ->orderBy(['year' => SORT_ASC])
             ->all();
 
         return $this->render('publicNewsInTime', [
