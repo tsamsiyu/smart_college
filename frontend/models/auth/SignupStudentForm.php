@@ -24,7 +24,7 @@ class SignupStudentForm extends SignupForm
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => 'common\models\user\User', 'message' => Yii::t('app/errors', 'unique', ['field' => 'email'])],
+            ['email', 'unique', 'targetClass' => 'common\models\user\User', 'message' => 'Email должен быть уникальным'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],

@@ -34,6 +34,9 @@ use yii\helpers\Html;
             </button>
             <a class="navbar-brand" href="<?= Url::to([Yii::$app->user->homeUrl]) ?>"><?= Yii::$app->name ?></a>
         </div>
+        <ul class="nav navbar-nav navbar-left">
+            <li><a href="<?= Url::to(['/colleges']) ?>" data-method="POST">Список ВУЗов</a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="<?= Url::to(['/user/logout']) ?>" data-method="POST">Выйти</a></li>
         </ul>
@@ -41,7 +44,6 @@ use yii\helpers\Html;
 </nav>
 
 <?= $content ?>
-
 
 <?php $this->endBody() ?>
 </body>
