@@ -37,7 +37,7 @@ $this->title = 'Страницы сообщений';
 </style>
 
 
-<div class="col-xs-12">
+<div class="col-xs-12" style="margin-bottom: 20px;">
     <div style="margin-top: 20px; margin-bottom: 20px; padding: 10px 10px 1px 10px; background-color: #f0e8ff;">
         <?= $this->render('_newmessage', [
             'form' => $form,
@@ -47,7 +47,7 @@ $this->title = 'Страницы сообщений';
 
     <div>
         <?php foreach ($messages as $recipient => $messages) : ?>
-            <?php $user = \common\models\user\User::findOne($recipient) ?>
+            <?php $user = \common\models\user\User::find()->where(['id' => $recipient])->limit(1)->one() ?>
             <?php if ($user) : ?>
                 <div class="messager">
                     <div data-toggle="modal" data-target="#msg-list-<?= $recipient ?>">
@@ -81,9 +81,9 @@ $this->title = 'Страницы сообщений';
                                         )
                                     </div>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body" style="height: 300px;">
                                     <?php foreach ($messages as $message) : ?>
-                                        <div style="max-height: 500px;"
+                                        <div style="max-height: 700px;"
                                              class="<?= $message->id_sender == Yii::$app->user->id ? 'recipient-msg' : 'recipient-msg' ?>">
                                             <?php if ($message->id_sender == Yii::$app->user->id) : ?>
                                                 <span class="msg-owner msg-owner-sender">Вы: </span>

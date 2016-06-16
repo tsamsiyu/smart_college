@@ -27,7 +27,6 @@ SubjectsAsset::register($this);
                 <tr>
                     <td>#</td>
                     <td class="text-center">Название</td>
-                    <td class="text-center">Описание</td>
                     <td></td>
                 </tr>
                 <?php if (!count($identity->pulpit->subjects)) : ?>
@@ -41,7 +40,6 @@ SubjectsAsset::register($this);
                         <tr>
                             <td><?= $subject->getId() ?></td>
                             <td><?= $subject->name ?></td>
-                            <td class="dot3"><?= $subject->description ?></td>
                             <td>
                                 <a href="<?= Url::toRoute(['subjects/remove', 'id' => $subject->getId()]) ?>" data-method="DELETE">
                                     <i class="fa fa-remove"></i>

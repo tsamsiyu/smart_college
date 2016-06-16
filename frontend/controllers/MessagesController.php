@@ -7,6 +7,7 @@ use common\components\web\Controller;
 use common\models\college\Pulpit;
 use common\models\Message;
 use Yii;
+use yii\db\Expression;
 use yii\filters\AccessControl;
 
 class MessagesController extends Controller
@@ -57,7 +58,7 @@ class MessagesController extends Controller
             'id_recipient' => $uid
         ])->orWhere([
             'id_sender' => $uid
-        ])->all();
+        ])->orderBy(['id' => SORT_DESC])->limit(5)->all();
 
         $grouppifyMessages = [];
         foreach ($allMessages as $msg) {
@@ -95,19 +96,24 @@ class MessagesController extends Controller
             'college_id' => Yii::$app->user->getIdentity()->college->id
         ])->joinWith('direction')->all();
 
-        $allMessages = Message::find()->where([
-            'id_recipient' => $uid
-        ])->orWhere([
-            'id_sender' => $uid
-        ])->all();
+        $lastAbonents = Message::find()
+            ->select(new Expression("DISTINCT CASE WHEN id_recipient = {$uid} THEN id_sender ELSE id_recipient END AS abonent"))
+            ->where([
+                'id_recipient' => $uid
+            ])->orWhere([
+                'id_sender' => $uid
+            ])
+            ->asArray()
+            ->orderBy(['id' => SORT_DESC])
+            ->limit(5)
+            ->all();
 
         $grouppifyMessages = [];
-        foreach ($allMessages as $msg) {
-            if ($msg->id_recipient == $uid) {
-                $grouppifyMessages[$msg->id_sender][] = $msg;
-            } else {
-                $grouppifyMessages[$msg->id_recipient][] = $msg;
-            }
+        foreach ($lastAbonents as $abonent) {
+            $grouppifyMessages[$abonent['abonent']] = Message::find()
+                ->where(['id_recipient' => $abonent['abonent'], 'id_sender' => $uid])
+                ->orWhere(['id_sender' => $abonent['abonent'], 'id_recipient' => $uid])
+                ->all();
         }
 
         return $this->render('index', [

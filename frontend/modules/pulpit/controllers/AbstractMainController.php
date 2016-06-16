@@ -1,6 +1,7 @@
 <?php namespace frontend\modules\pulpit\controllers;
 
 use common\components\web\Controller;
+use yii\helpers\Url;
 
 abstract class AbstractMainController extends Controller
 {
@@ -14,7 +15,7 @@ abstract class AbstractMainController extends Controller
         } else {
             $this->view->params['breadcrumbs'][] = [
                 'label' => 'Кафедра',
-                'url' => '.'
+                'url' => Url::to(['/' . $this->_homeRoute])
             ];
         }
     }
